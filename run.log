@@ -1,0 +1,35 @@
+Mon Jul 27 10:02:25 CEST 2026
+Preloading tcmalloc_minimal.so
+Preloading libexcabort.so
+Py:Athena            INFO including file "AthenaCommon/Preparation.py"
+Py:Athena            INFO using release [AthGeneration-23.6.40] [x86_64-el9-gcc13-opt] [main/bb522d41163] -- built on [2024-11-19T2126]
+Py:Athena            INFO executing ROOT6Setup
+Py:Athena            INFO including file "AthenaCommon/Execution.py"
+Py:Athena            INFO including file "local_jo.py"
+========== LOCAL_JO LOADED ==========
+Py:ConfigurableDb    INFO Read module info for 478 configurables from 2 genConfDb files
+Py:ConfigurableDb    INFO No duplicates have been found: that's good !
+INPUT = ['/eos/user/m/marsella/EVNT.29331034._003002.pool.root.1']
+['/eos/user/m/marsella/EVNT.29331034._003002.pool.root.1']
+Py:Athena            INFO including file "AthenaCommon/runbatch.py"
+Warning in <TInterpreter::ReadRootmapFile>: While processing /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/AthGeneration.rootmap, class HepMC3::FourVector was found to be associated to libGeneratorObjectsDict.so although it is already associated to libHepMC3rootIO.so
+Warning in <TInterpreter::ReadRootmapFile>: While processing /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/AthGeneration.rootmap, class HepMC::FourVector was found to be associated to libGeneratorObjectsDict.so although it is already associated to libHepMC3rootIO.so
+# setting LC_ALL to "C"
+ApplicationMgr    SUCCESS 
+====================================================================================================================================
+                                                   Welcome to ApplicationMgr (GaudiCoreSvc v39r1)
+                                          running on lxplus975.cern.ch on Mon Jul 27 10:02:41 2026
+====================================================================================================================================
+ApplicationMgr       INFO Application Manager Configured successfully
+Rivet_i           WARNING $CMTPATH variable not set: finding the main analysis plugin directory will be difficult...
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'ATLAS_2024_I2768921'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_HFDECAYS'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_HFJETS'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+ApplicationMgr       INFO Application Manager Initialized successfully
+ApplicationMgr       INFO Application Manager Started successfully
+ApplicationMgr       INFO Application Manager Stopped successfully
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully
+Py:Athena            INFO leaving with code 0: "successful run"

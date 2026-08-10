@@ -1,0 +1,118 @@
+Mon Jul 27 12:25:02 CEST 2026
+Preloading tcmalloc_minimal.so
+Preloading libexcabort.so
+Py:Athena            INFO including file "AthenaCommon/Preparation.py"
+Py:Athena            INFO using release [AthGeneration-23.6.40] [x86_64-el9-gcc13-opt] [main/bb522d41163] -- built on [2024-11-19T2126]
+Py:Athena            INFO executing ROOT6Setup
+Py:Athena            INFO including file "AthenaCommon/Execution.py"
+Py:Athena            INFO including file "minimal_rivet.py"
+Py:ConfigurableDb    INFO Read module info for 478 configurables from 2 genConfDb files
+Py:ConfigurableDb    INFO No duplicates have been found: that's good !
+Py:Athena            INFO including file "AthenaCommon/runbatch.py"
+# setting LC_ALL to "C"
+ApplicationMgr    SUCCESS 
+====================================================================================================================================
+                                                   Welcome to ApplicationMgr (GaudiCoreSvc v39r1)
+                                          running on lxplus943.cern.ch on Mon Jul 27 12:25:35 2026
+====================================================================================================================================
+ApplicationMgr       INFO Application Manager Configured successfully
+AthDictLoaderSvc     INFO in initialize...
+AthDictLoaderSvc     INFO acquired Dso-registry
+ClassIDSvc           INFO getRegistryEntries: read 3108 CLIDRegistry entries for module ALL
+CoreDumpSvc          INFO Handling signals: 11(Segmentation fault) 7(Bus error) 4(Illegal instruction) 8(Floating point exception) 14(Alarm clock) 
+AthenaEventLoopMgr   INFO Initializing AthenaEventLoopMgr
+ClassIDSvc           INFO getRegistryEntries: read 697 CLIDRegistry entries for module ALL
+ClassIDSvc           INFO getRegistryEntries: read 524 CLIDRegistry entries for module ALL
+xAODMaker::Even...   INFO Initializing xAODMaker::EventInfoCnvAlg
+MetaDataSvc          INFO Initializing MetaDataSvc
+PoolSvc              INFO io_register[PoolSvc](xmlcatalog_file:PoolFileCatalog.xml) [ok]
+PoolSvc              INFO Set connectionsvc retry/timeout/IDLE timeout to  'ConnectionRetrialPeriod':300/ 'ConnectionRetrialTimeOut':3600/ 'ConnectionTimeOut':5 seconds with connection cleanup disabled
+PoolSvc              INFO Frontier compression level set to 5
+DBReplicaSvc         INFO Frontier server at (serverurl=http://atlasfrontier-local.cern.ch:8000/atlr)(serverurl=http://atlasfrontier-ai.cern.ch:8000/atlr)(proxyurl=http://v4a-local.cern.ch:80)(proxyurl=http://v4f.hl-lhc.net:6082)(proxyurl=http://ca-proxy-atlas.cern.ch:3128)(proxyurl=http://ca-proxy-meyrin.cern.ch:3128)(proxyurl=http://ca-proxy.cern.ch:3128) will be considered for COOL data
+DBReplicaSvc         INFO Read replica configuration from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/share/dbreplica.config
+DBReplicaSvc         INFO Total of 10 servers found for host lxplus943.cern.ch [ATLF ATLAS_COOLPROD atlas_dd ATLAS_CONFIG INT8R INTR ATONR_COOL ATONR_CONF DEVDB11 ATLF ]
+PoolSvc              INFO Successfully setup replica sorting algorithm
+PoolSvc              INFO Setting up APR FileCatalog and Streams
+PoolSvc              INFO POOL WriteCatalog is xmlcatalog_file:PoolFileCatalog.xml
+DbSession            INFO     Open     DbSession    
+Domain[ROOT_All]     INFO >   Access   DbDomain     READ      [ROOT_All] 
+MetaDataSvc          INFO Found MetaDataTools = PublicToolHandleArray(['IOVDbMetaDataTool'])
+EventSelector        INFO EventSelection with query 
+Domain[ROOT_All]     INFO ->  Access   DbDatabase   READ      [ROOT_All] B1AA543B-1781-5E4A-953D-CCED4F229CE1
+Domain[ROOT_All]     INFO                           /eos/user/m/marsella/EVNT.29331034._003002.pool.root.1
+RootDatabase.open    INFO /eos/user/m/marsella/EVNT.29331034._003002.pool.root.1 File version:60806
+ClassIDSvc           INFO getRegistryEntries: read 1880 CLIDRegistry entries for module ALL
+EventPersistenc...   INFO Added successfully Conversion service AthenaPoolCnvSvc
+ClassIDSvc           INFO getRegistryEntries: read 161 CLIDRegistry entries for module ALL
+MetaDataSvc          INFO   AlgTool: ToolSvc.IOVDbMetaDataTool
+Rivet_i              INFO Using Rivet version 4.0.2
+Rivet_i.xAODtoH...   INFO Initializing xAODtoHepMCTool Rivet_i.xAODtoHepMCTool...
+Rivet_i.xAODtoH...   INFO SignalOnly         =  'SignalOnly':True
+Rivet_i           WARNING $CMTPATH variable not set: finding the main analysis plugin directory will be difficult...
+Rivet_i              INFO Loading Rivet analysis MC_HFJETS
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'ATLAS_2024_I2768921'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_HFDECAYS'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_HFJETS'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+AthenaEventLoopMgr   INFO Setup EventSelector service EventSelector
+ApplicationMgr       INFO Application Manager Initialized successfully
+/eos/user/m/mar...   INFO Database being retired...
+Domain[ROOT_All]     INFO ->  Deaccess DbDatabase   READ      [ROOT_All] B1AA543B-1781-5E4A-953D-CCED4F229CE1
+Domain[ROOT_All]     INFO >   Deaccess DbDomain     READ      [ROOT_All] 
+DbSession            INFO     Open     DbSession    
+Domain[ROOT_All]     INFO >   Access   DbDomain     READ      [ROOT_All] 
+Domain[ROOT_All]     INFO ->  Access   DbDatabase   READ      [ROOT_All] B1AA543B-1781-5E4A-953D-CCED4F229CE1
+Domain[ROOT_All]     INFO                           /eos/user/m/marsella/EVNT.29331034._003002.pool.root.1
+RootDatabase.open    INFO /eos/user/m/marsella/EVNT.29331034._003002.pool.root.1 File version:60806
+ApplicationMgr       INFO Application Manager Started successfully
+ClassIDSvc           INFO getRegistryEntries: read 129 CLIDRegistry entries for module ALL
+AlgResourcePool      INFO TopAlg list empty. Recovering the one of Application Manager
+AthenaPoolConve...   INFO massageEventInfo: unable to get OverrideRunNumberFromInput property from EventSelector 
+AthenaEventLoopMgr   INFO   ===>>>  start of run 601356    <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825001, run #601356 0 events processed so far  <<<===
+ClassIDSvc           INFO getRegistryEntries: read 337 CLIDRegistry entries for module ALL
+HepMCWeightSvc       INFO   AlgTool: ToolSvc.IOVDbMetaDataTool
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825001, run #601356 1 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825002, run #601356 1 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825002, run #601356 2 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825003, run #601356 2 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825003, run #601356 3 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825004, run #601356 3 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825004, run #601356 4 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825005, run #601356 4 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825005, run #601356 5 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825006, run #601356 5 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825006, run #601356 6 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825007, run #601356 6 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825007, run #601356 7 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825008, run #601356 7 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825008, run #601356 8 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825009, run #601356 8 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825009, run #601356 9 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  start processing event #19825010, run #601356 9 events processed so far  <<<===
+AthenaEventLoopMgr   INFO   ===>>>  done processing event #19825010, run #601356 10 events processed so far  <<<===
+/eos/user/m/mar...   INFO Database being retired...
+Domain[ROOT_All]     INFO ->  Deaccess DbDatabase   READ      [ROOT_All] B1AA543B-1781-5E4A-953D-CCED4F229CE1
+ApplicationMgr       INFO Application Manager Stopped successfully
+Rivet_i              INFO Rivet_i finalizing
+Domain[ROOT_All]     INFO >   Deaccess DbDomain     READ      [ROOT_All] 
+AthenaPoolCnvSvc     INFO PerfStats ----------------------------------------
+AthenaPoolCnvSvc     INFO PerfStats Timing Measurements for AthenaPoolCnvSvc
+AthenaPoolCnvSvc     INFO PerfStats ----------------------------------------
+AthenaPoolCnvSvc     INFO PerfStats | cObjR_ALL       |              58 ms |
+AthenaPoolCnvSvc     INFO PerfStats | cObj_ALL        |              99 ms |
+AthenaPoolCnvSvc     INFO PerfStats ----------------------------------------
+AthDictLoaderSvc     INFO in finalize...
+ToolSvc              INFO Removing all tools created by ToolSvc
+Rivet_i.xAODtoH...   INFO ==============================================================
+Rivet_i.xAODtoH...   INFO ==========    xAOD -> HepMC Tool :: Run Summary     ==========
+Rivet_i.xAODtoH...   INFO ==============================================================
+Rivet_i.xAODtoH...   INFO No missing production vertices
+Rivet_i.xAODtoH...   INFO No events with undefined beams.
+Rivet_i.xAODtoH...   INFO ==============================================================
+Rivet_i.xAODtoH...   INFO ===================    End Run Summary     ===================
+Rivet_i.xAODtoH...   INFO ==============================================================
+ApplicationMgr       INFO Application Manager Finalized successfully
+ApplicationMgr       INFO Application Manager Terminated successfully
+Py:Athena            INFO leaving with code 0: "successful run"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!-- Edited By POOL -->
+<!DOCTYPE POOLFILECATALOG SYSTEM "InMemory">
+<POOLFILECATALOG>
+  <File ID="9B4D173F-B6A2-AC46-BA90-90C9AE7C3BF7">
+    <physical>
+      <pfn filetype="ROOT_All" name="EVNT.38750384._005106.pool.root.1"/>
+      <pfn filetype="ROOT_All" name="/eos/user/m/marsella/EVNT.38750384._005106.pool.root.1"/></physical>
+    <logical/>
+  </File>
+
+  <File ID="CF6764BA-AD67-5742-9435-D845235F5898">
+    <physical>
+      <pfn filetype="ROOT_All" name="/eos/user/m/marsella/EVNT.48024315._005001.pool.root.1"/>
+    </physical>
+    <logical/>
+  </File>
+
+  <File ID="6744C865-B588-B340-A92D-5EFDA60944D7">
+    <physical>
+      <pfn filetype="ROOT_All" name="/eos/user/m/marsella/EVNT.33856989._004982.pool.root.1"/>
+    </physical>
+    <logical/>
+  </File>
+
+  <File ID="B1AA543B-1781-5E4A-953D-CCED4F229CE1">
+    <physical>
+      <pfn filetype="ROOT_All" name="/eos/user/m/marsella/EVNT.29331034._003002.pool.root.1"/>
+    </physical>
+    <logical/>
+  </File>
+
+  <File ID="EE675C9B-4894-4D46-A359-D3FA7FDD45B7">
+    <physical>
+      <pfn filetype="ROOT_All" name="/eos/user/m/marsella/EVNT.12458444._006005.pool.root.1"/>
+    </physical>
+    <logical/>
+  </File>
+
+</POOLFILECATALOG>

@@ -1,0 +1,641 @@
+<html>
+<head>
+<title>Plots from Rivet analyses &ndash; MC_HFDECAYS</title>
+<style>
+          html { font-family: arial black, sans-serif; color: #333333; }
+          img { border: 0; }
+          a { text-decoration: none; font-weight: bold; }
+          footer { clear:both; margin-top:2em; margin-bottom:2em; padding-top:2em; color: #999999; }
+
+          .anasumm, .indexanasumm { margin-bottom: 2.5em; line-height: 1.4; font-size: 120%; font-family: georgia, palatino, serif; }
+          .back, .back a { font-weight: bold; color: gray; font-variant: small-caps; text-transform: uppercase; margin-bottom: 2em; }
+
+          .filterform { position: fixed; top: 1em; right: 1em; background: white; opacity: 0.2; }
+          .filterform { padding: 1em; padding-bottom: 0.1em; border: 2px solid gray; border-radius: 0.7em; }
+          .filterform:hover, .filterform:focus-within { opacity: 1.0; -webkit-transition: opacity 1s; transition: opacity 1s; drop-shadow(gray 0.5em 0.5em 10px); }
+          .filterpatt { padding: 0.3em; font-size: 100%; border: 1px solid #85C1E9; border-radius: 0.1em; }
+          .filterbutton { padding: 0.3em; font-size: 100%; border: 2px solid #85C1E9; background:#D6EAF8; border-radius: 0.3em; }
+          @media print {
+            .filterform { display:none; }
+          }
+        </style>
+                    <script type="text/javascript">
+              window.MathJax = { tex: { inlineMath: [['$','$']] },
+                                 options: { menuOptions: { settings: { inTabOrder: false } } } };
+            </script>
+            <script type="text/javascript" id="MathJax-script" async
+                src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml-full.min.js">
+            </script>
+            
+
+            <script type="text/javascript">
+                function filterPlots(ana, patt) {
+                    var regex = new RegExp(patt);
+                    var sec = document.getElementById('ana_'+ana);
+                    var plots = sec.getElementsByClassName('plot');
+                    var i; for (i = 0; i < plots.length; ++i) {
+                        // var viz = (regex.test(plots[i].id)) ? 'visible' : 'hidden';
+                        // plots[i].style.visibility = viz;
+                        var dis = (regex.test(plots[i].id)) ? 'block' : 'none';
+                        plots[i].style.display = dis;
+                    }
+                    return false;
+               }
+            </script>
+            </head>
+<body>
+<section id="ana_MC_HFDECAYS">
+<p class="back"><a href="../index.html" title="Return to index page">&larrhk; Index</a></p>
+<h2>MC_HFDECAYS</h2>
+<p class="anasumm">
+  Jets with $p_\perp&gt;25$ GeV are constructed with an anti-$k_\perp$ jet finder with $R=0.4$ and projected onto many different observables sensitive to the decays of $b$- and $c$-hadrons in the heavy-flavour-tagged jet.
+</p>
+<div class="filterform"><form onsubmit="var patt = document.getElementById('patt_MC_HFDECAYS').value; filterPlots('MC_HFDECAYS', patt); return false;">
+<span><b>Filter plots:</b>&emsp;</span><input class="filterpatt" id="patt_MC_HFDECAYS" type="search" accesskey="s" title="Filter: Alt+s">
+<input class="filterbutton" type="submit" value="Filter">
+</form></div>
+
+  <div class="plot" id="plot_B0S_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-B0S_charged_mult">&#9875;</a><a href="B0S_charged_mult.py">&#8984;</a><a href="B0S_charged_mult__data.py">&#128202;</a> B0S_charged_mult:<br/>
+    <a name="MC_HFDECAYS-B0S_charged_mult"><a href="B0S_charged_mult.pdf">
+      <img src="B0S_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_B0S_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-B0S_pT">&#9875;</a><a href="B0S_pT.py">&#8984;</a><a href="B0S_pT__data.py">&#128202;</a> B0S_pT:<br/>
+    <a name="MC_HFDECAYS-B0S_pT"><a href="B0S_pT.pdf">
+      <img src="B0S_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_B0S_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-B0S_stable_mult">&#9875;</a><a href="B0S_stable_mult.py">&#8984;</a><a href="B0S_stable_mult__data.py">&#128202;</a> B0S_stable_mult:<br/>
+    <a name="MC_HFDECAYS-B0S_stable_mult"><a href="B0S_stable_mult.pdf">
+      <img src="B0S_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_B0_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-B0_charged_mult">&#9875;</a><a href="B0_charged_mult.py">&#8984;</a><a href="B0_charged_mult__data.py">&#128202;</a> B0_charged_mult:<br/>
+    <a name="MC_HFDECAYS-B0_charged_mult"><a href="B0_charged_mult.pdf">
+      <img src="B0_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_B0_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-B0_pT">&#9875;</a><a href="B0_pT.py">&#8984;</a><a href="B0_pT__data.py">&#128202;</a> B0_pT:<br/>
+    <a name="MC_HFDECAYS-B0_pT"><a href="B0_pT.pdf">
+      <img src="B0_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_B0_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-B0_stable_mult">&#9875;</a><a href="B0_stable_mult.py">&#8984;</a><a href="B0_stable_mult__data.py">&#128202;</a> B0_stable_mult:<br/>
+    <a name="MC_HFDECAYS-B0_stable_mult"><a href="B0_stable_mult.pdf">
+      <img src="B0_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_BPLUS_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-BPLUS_charged_mult">&#9875;</a><a href="BPLUS_charged_mult.py">&#8984;</a><a href="BPLUS_charged_mult__data.py">&#128202;</a> BPLUS_charged_mult:<br/>
+    <a name="MC_HFDECAYS-BPLUS_charged_mult"><a href="BPLUS_charged_mult.pdf">
+      <img src="BPLUS_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_BPLUS_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-BPLUS_pT">&#9875;</a><a href="BPLUS_pT.py">&#8984;</a><a href="BPLUS_pT__data.py">&#128202;</a> BPLUS_pT:<br/>
+    <a name="MC_HFDECAYS-BPLUS_pT"><a href="BPLUS_pT.pdf">
+      <img src="BPLUS_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_BPLUS_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-BPLUS_stable_mult">&#9875;</a><a href="BPLUS_stable_mult.py">&#8984;</a><a href="BPLUS_stable_mult__data.py">&#128202;</a> BPLUS_stable_mult:<br/>
+    <a name="MC_HFDECAYS-BPLUS_stable_mult"><a href="BPLUS_stable_mult.pdf">
+      <img src="BPLUS_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_D0_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-D0_charged_mult">&#9875;</a><a href="D0_charged_mult.py">&#8984;</a><a href="D0_charged_mult__data.py">&#128202;</a> D0_charged_mult:<br/>
+    <a name="MC_HFDECAYS-D0_charged_mult"><a href="D0_charged_mult.pdf">
+      <img src="D0_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_D0_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-D0_pT">&#9875;</a><a href="D0_pT.py">&#8984;</a><a href="D0_pT__data.py">&#128202;</a> D0_pT:<br/>
+    <a name="MC_HFDECAYS-D0_pT"><a href="D0_pT.pdf">
+      <img src="D0_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_D0_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-D0_stable_mult">&#9875;</a><a href="D0_stable_mult.py">&#8984;</a><a href="D0_stable_mult__data.py">&#128202;</a> D0_stable_mult:<br/>
+    <a name="MC_HFDECAYS-D0_stable_mult"><a href="D0_stable_mult.pdf">
+      <img src="D0_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_DPLUS_charged_multh" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-DPLUS_charged_multh">&#9875;</a><a href="DPLUS_charged_multh.py">&#8984;</a><a href="DPLUS_charged_multh__data.py">&#128202;</a> DPLUS_charged_multh:<br/>
+    <a name="MC_HFDECAYS-DPLUS_charged_multh"><a href="DPLUS_charged_multh.pdf">
+      <img src="DPLUS_charged_multh.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_DPLUS_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-DPLUS_pT">&#9875;</a><a href="DPLUS_pT.py">&#8984;</a><a href="DPLUS_pT__data.py">&#128202;</a> DPLUS_pT:<br/>
+    <a name="MC_HFDECAYS-DPLUS_pT"><a href="DPLUS_pT.pdf">
+      <img src="DPLUS_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_DPLUS_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-DPLUS_stable_mult">&#9875;</a><a href="DPLUS_stable_mult.py">&#8984;</a><a href="DPLUS_stable_mult__data.py">&#128202;</a> DPLUS_stable_mult:<br/>
+    <a name="MC_HFDECAYS-DPLUS_stable_mult"><a href="DPLUS_stable_mult.pdf">
+      <img src="DPLUS_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_DSPLUS_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-DSPLUS_charged_mult">&#9875;</a><a href="DSPLUS_charged_mult.py">&#8984;</a><a href="DSPLUS_charged_mult__data.py">&#128202;</a> DSPLUS_charged_mult:<br/>
+    <a name="MC_HFDECAYS-DSPLUS_charged_mult"><a href="DSPLUS_charged_mult.pdf">
+      <img src="DSPLUS_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_DSPLUS_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-DSPLUS_pT">&#9875;</a><a href="DSPLUS_pT.py">&#8984;</a><a href="DSPLUS_pT__data.py">&#128202;</a> DSPLUS_pT:<br/>
+    <a name="MC_HFDECAYS-DSPLUS_pT"><a href="DSPLUS_pT.pdf">
+      <img src="DSPLUS_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_DSPLUS_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-DSPLUS_stable_mult">&#9875;</a><a href="DSPLUS_stable_mult.py">&#8984;</a><a href="DSPLUS_stable_mult__data.py">&#128202;</a> DSPLUS_stable_mult:<br/>
+    <a name="MC_HFDECAYS-DSPLUS_stable_mult"><a href="DSPLUS_stable_mult.pdf">
+      <img src="DSPLUS_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_LAMBDAB_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-LAMBDAB_charged_mult">&#9875;</a><a href="LAMBDAB_charged_mult.py">&#8984;</a><a href="LAMBDAB_charged_mult__data.py">&#128202;</a> LAMBDAB_charged_mult:<br/>
+    <a name="MC_HFDECAYS-LAMBDAB_charged_mult"><a href="LAMBDAB_charged_mult.pdf">
+      <img src="LAMBDAB_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_LAMBDAB_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-LAMBDAB_pT">&#9875;</a><a href="LAMBDAB_pT.py">&#8984;</a><a href="LAMBDAB_pT__data.py">&#128202;</a> LAMBDAB_pT:<br/>
+    <a name="MC_HFDECAYS-LAMBDAB_pT"><a href="LAMBDAB_pT.pdf">
+      <img src="LAMBDAB_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_LAMBDAB_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-LAMBDAB_stable_mult">&#9875;</a><a href="LAMBDAB_stable_mult.py">&#8984;</a><a href="LAMBDAB_stable_mult__data.py">&#128202;</a> LAMBDAB_stable_mult:<br/>
+    <a name="MC_HFDECAYS-LAMBDAB_stable_mult"><a href="LAMBDAB_stable_mult.pdf">
+      <img src="LAMBDAB_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_LAMBDACPLUS_charged_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-LAMBDACPLUS_charged_mult">&#9875;</a><a href="LAMBDACPLUS_charged_mult.py">&#8984;</a><a href="LAMBDACPLUS_charged_mult__data.py">&#128202;</a> LAMBDACPLUS_charged_mult:<br/>
+    <a name="MC_HFDECAYS-LAMBDACPLUS_charged_mult"><a href="LAMBDACPLUS_charged_mult.pdf">
+      <img src="LAMBDACPLUS_charged_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_LAMBDACPLUS_pT" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-LAMBDACPLUS_pT">&#9875;</a><a href="LAMBDACPLUS_pT.py">&#8984;</a><a href="LAMBDACPLUS_pT__data.py">&#128202;</a> LAMBDACPLUS_pT:<br/>
+    <a name="MC_HFDECAYS-LAMBDACPLUS_pT"><a href="LAMBDACPLUS_pT.pdf">
+      <img src="LAMBDACPLUS_pT.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_LAMBDACPLUS_stable_mult" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-LAMBDACPLUS_stable_mult">&#9875;</a><a href="LAMBDACPLUS_stable_mult.py">&#8984;</a><a href="LAMBDACPLUS_stable_mult__data.py">&#128202;</a> LAMBDACPLUS_stable_mult:<br/>
+    <a name="MC_HFDECAYS-LAMBDACPLUS_stable_mult"><a href="LAMBDACPLUS_stable_mult.pdf">
+      <img src="LAMBDACPLUS_stable_mult.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_100_150" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_100_150">&#9875;</a><a href="avg_B_jet_ch_mult_100_150.py">&#8984;</a><a href="avg_B_jet_ch_mult_100_150__data.py">&#128202;</a> avg_B_jet_ch_mult_100_150:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_100_150"><a href="avg_B_jet_ch_mult_100_150.pdf">
+      <img src="avg_B_jet_ch_mult_100_150.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_150_300" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_150_300">&#9875;</a><a href="avg_B_jet_ch_mult_150_300.py">&#8984;</a><a href="avg_B_jet_ch_mult_150_300__data.py">&#128202;</a> avg_B_jet_ch_mult_150_300:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_150_300"><a href="avg_B_jet_ch_mult_150_300.pdf">
+      <img src="avg_B_jet_ch_mult_150_300.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_25_30" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_25_30">&#9875;</a><a href="avg_B_jet_ch_mult_25_30.py">&#8984;</a><a href="avg_B_jet_ch_mult_25_30__data.py">&#128202;</a> avg_B_jet_ch_mult_25_30:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_25_30"><a href="avg_B_jet_ch_mult_25_30.pdf">
+      <img src="avg_B_jet_ch_mult_25_30.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_300_500" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_300_500">&#9875;</a><a href="avg_B_jet_ch_mult_300_500.py">&#8984;</a><a href="avg_B_jet_ch_mult_300_500__data.py">&#128202;</a> avg_B_jet_ch_mult_300_500:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_300_500"><a href="avg_B_jet_ch_mult_300_500.pdf">
+      <img src="avg_B_jet_ch_mult_300_500.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_30_50" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_30_50">&#9875;</a><a href="avg_B_jet_ch_mult_30_50.py">&#8984;</a><a href="avg_B_jet_ch_mult_30_50__data.py">&#128202;</a> avg_B_jet_ch_mult_30_50:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_30_50"><a href="avg_B_jet_ch_mult_30_50.pdf">
+      <img src="avg_B_jet_ch_mult_30_50.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_500_1000" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_500_1000">&#9875;</a><a href="avg_B_jet_ch_mult_500_1000.py">&#8984;</a><a href="avg_B_jet_ch_mult_500_1000__data.py">&#128202;</a> avg_B_jet_ch_mult_500_1000:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_500_1000"><a href="avg_B_jet_ch_mult_500_1000.pdf">
+      <img src="avg_B_jet_ch_mult_500_1000.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_50_70" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_50_70">&#9875;</a><a href="avg_B_jet_ch_mult_50_70.py">&#8984;</a><a href="avg_B_jet_ch_mult_50_70__data.py">&#128202;</a> avg_B_jet_ch_mult_50_70:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_50_70"><a href="avg_B_jet_ch_mult_50_70.pdf">
+      <img src="avg_B_jet_ch_mult_50_70.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_ch_mult_70_100" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_ch_mult_70_100">&#9875;</a><a href="avg_B_jet_ch_mult_70_100.py">&#8984;</a><a href="avg_B_jet_ch_mult_70_100__data.py">&#128202;</a> avg_B_jet_ch_mult_70_100:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_ch_mult_70_100"><a href="avg_B_jet_ch_mult_70_100.pdf">
+      <img src="avg_B_jet_ch_mult_70_100.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_100_150" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_100_150">&#9875;</a><a href="avg_B_jet_l_pTrel_100_150.py">&#8984;</a><a href="avg_B_jet_l_pTrel_100_150__data.py">&#128202;</a> avg_B_jet_l_pTrel_100_150:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_100_150"><a href="avg_B_jet_l_pTrel_100_150.pdf">
+      <img src="avg_B_jet_l_pTrel_100_150.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_150_300" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_150_300">&#9875;</a><a href="avg_B_jet_l_pTrel_150_300.py">&#8984;</a><a href="avg_B_jet_l_pTrel_150_300__data.py">&#128202;</a> avg_B_jet_l_pTrel_150_300:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_150_300"><a href="avg_B_jet_l_pTrel_150_300.pdf">
+      <img src="avg_B_jet_l_pTrel_150_300.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_25_30" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_25_30">&#9875;</a><a href="avg_B_jet_l_pTrel_25_30.py">&#8984;</a><a href="avg_B_jet_l_pTrel_25_30__data.py">&#128202;</a> avg_B_jet_l_pTrel_25_30:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_25_30"><a href="avg_B_jet_l_pTrel_25_30.pdf">
+      <img src="avg_B_jet_l_pTrel_25_30.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_300_500" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_300_500">&#9875;</a><a href="avg_B_jet_l_pTrel_300_500.py">&#8984;</a><a href="avg_B_jet_l_pTrel_300_500__data.py">&#128202;</a> avg_B_jet_l_pTrel_300_500:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_300_500"><a href="avg_B_jet_l_pTrel_300_500.pdf">
+      <img src="avg_B_jet_l_pTrel_300_500.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_30_50" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_30_50">&#9875;</a><a href="avg_B_jet_l_pTrel_30_50.py">&#8984;</a><a href="avg_B_jet_l_pTrel_30_50__data.py">&#128202;</a> avg_B_jet_l_pTrel_30_50:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_30_50"><a href="avg_B_jet_l_pTrel_30_50.pdf">
+      <img src="avg_B_jet_l_pTrel_30_50.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_500_1000" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_500_1000">&#9875;</a><a href="avg_B_jet_l_pTrel_500_1000.py">&#8984;</a><a href="avg_B_jet_l_pTrel_500_1000__data.py">&#128202;</a> avg_B_jet_l_pTrel_500_1000:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_500_1000"><a href="avg_B_jet_l_pTrel_500_1000.pdf">
+      <img src="avg_B_jet_l_pTrel_500_1000.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_50_70" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_50_70">&#9875;</a><a href="avg_B_jet_l_pTrel_50_70.py">&#8984;</a><a href="avg_B_jet_l_pTrel_50_70__data.py">&#128202;</a> avg_B_jet_l_pTrel_50_70:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_50_70"><a href="avg_B_jet_l_pTrel_50_70.pdf">
+      <img src="avg_B_jet_l_pTrel_50_70.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_l_pTrel_70_100" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_l_pTrel_70_100">&#9875;</a><a href="avg_B_jet_l_pTrel_70_100.py">&#8984;</a><a href="avg_B_jet_l_pTrel_70_100__data.py">&#128202;</a> avg_B_jet_l_pTrel_70_100:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_l_pTrel_70_100"><a href="avg_B_jet_l_pTrel_70_100.pdf">
+      <img src="avg_B_jet_l_pTrel_70_100.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_100_150" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_100_150">&#9875;</a><a href="avg_B_jet_rho_100_150.py">&#8984;</a><a href="avg_B_jet_rho_100_150__data.py">&#128202;</a> avg_B_jet_rho_100_150:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_100_150"><a href="avg_B_jet_rho_100_150.pdf">
+      <img src="avg_B_jet_rho_100_150.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_150_300" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_150_300">&#9875;</a><a href="avg_B_jet_rho_150_300.py">&#8984;</a><a href="avg_B_jet_rho_150_300__data.py">&#128202;</a> avg_B_jet_rho_150_300:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_150_300"><a href="avg_B_jet_rho_150_300.pdf">
+      <img src="avg_B_jet_rho_150_300.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_25_30" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_25_30">&#9875;</a><a href="avg_B_jet_rho_25_30.py">&#8984;</a><a href="avg_B_jet_rho_25_30__data.py">&#128202;</a> avg_B_jet_rho_25_30:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_25_30"><a href="avg_B_jet_rho_25_30.pdf">
+      <img src="avg_B_jet_rho_25_30.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_300_500" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_300_500">&#9875;</a><a href="avg_B_jet_rho_300_500.py">&#8984;</a><a href="avg_B_jet_rho_300_500__data.py">&#128202;</a> avg_B_jet_rho_300_500:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_300_500"><a href="avg_B_jet_rho_300_500.pdf">
+      <img src="avg_B_jet_rho_300_500.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_30_50" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_30_50">&#9875;</a><a href="avg_B_jet_rho_30_50.py">&#8984;</a><a href="avg_B_jet_rho_30_50__data.py">&#128202;</a> avg_B_jet_rho_30_50:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_30_50"><a href="avg_B_jet_rho_30_50.pdf">
+      <img src="avg_B_jet_rho_30_50.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_500_1000" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_500_1000">&#9875;</a><a href="avg_B_jet_rho_500_1000.py">&#8984;</a><a href="avg_B_jet_rho_500_1000__data.py">&#128202;</a> avg_B_jet_rho_500_1000:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_500_1000"><a href="avg_B_jet_rho_500_1000.pdf">
+      <img src="avg_B_jet_rho_500_1000.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_50_70" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_50_70">&#9875;</a><a href="avg_B_jet_rho_50_70.py">&#8984;</a><a href="avg_B_jet_rho_50_70__data.py">&#128202;</a> avg_B_jet_rho_50_70:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_50_70"><a href="avg_B_jet_rho_50_70.pdf">
+      <img src="avg_B_jet_rho_50_70.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_B_jet_rho_70_100" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_B_jet_rho_70_100">&#9875;</a><a href="avg_B_jet_rho_70_100.py">&#8984;</a><a href="avg_B_jet_rho_70_100__data.py">&#128202;</a> avg_B_jet_rho_70_100:<br/>
+    <a name="MC_HFDECAYS-avg_B_jet_rho_70_100"><a href="avg_B_jet_rho_70_100.pdf">
+      <img src="avg_B_jet_rho_70_100.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_100_150" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_100_150">&#9875;</a><a href="avg_C_jet_ch_mult_100_150.py">&#8984;</a><a href="avg_C_jet_ch_mult_100_150__data.py">&#128202;</a> avg_C_jet_ch_mult_100_150:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_100_150"><a href="avg_C_jet_ch_mult_100_150.pdf">
+      <img src="avg_C_jet_ch_mult_100_150.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_150_300" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_150_300">&#9875;</a><a href="avg_C_jet_ch_mult_150_300.py">&#8984;</a><a href="avg_C_jet_ch_mult_150_300__data.py">&#128202;</a> avg_C_jet_ch_mult_150_300:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_150_300"><a href="avg_C_jet_ch_mult_150_300.pdf">
+      <img src="avg_C_jet_ch_mult_150_300.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_25_30" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_25_30">&#9875;</a><a href="avg_C_jet_ch_mult_25_30.py">&#8984;</a><a href="avg_C_jet_ch_mult_25_30__data.py">&#128202;</a> avg_C_jet_ch_mult_25_30:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_25_30"><a href="avg_C_jet_ch_mult_25_30.pdf">
+      <img src="avg_C_jet_ch_mult_25_30.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_300_500" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_300_500">&#9875;</a><a href="avg_C_jet_ch_mult_300_500.py">&#8984;</a><a href="avg_C_jet_ch_mult_300_500__data.py">&#128202;</a> avg_C_jet_ch_mult_300_500:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_300_500"><a href="avg_C_jet_ch_mult_300_500.pdf">
+      <img src="avg_C_jet_ch_mult_300_500.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_30_50" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_30_50">&#9875;</a><a href="avg_C_jet_ch_mult_30_50.py">&#8984;</a><a href="avg_C_jet_ch_mult_30_50__data.py">&#128202;</a> avg_C_jet_ch_mult_30_50:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_30_50"><a href="avg_C_jet_ch_mult_30_50.pdf">
+      <img src="avg_C_jet_ch_mult_30_50.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_500_1000" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_500_1000">&#9875;</a><a href="avg_C_jet_ch_mult_500_1000.py">&#8984;</a><a href="avg_C_jet_ch_mult_500_1000__data.py">&#128202;</a> avg_C_jet_ch_mult_500_1000:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_500_1000"><a href="avg_C_jet_ch_mult_500_1000.pdf">
+      <img src="avg_C_jet_ch_mult_500_1000.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_50_70" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_50_70">&#9875;</a><a href="avg_C_jet_ch_mult_50_70.py">&#8984;</a><a href="avg_C_jet_ch_mult_50_70__data.py">&#128202;</a> avg_C_jet_ch_mult_50_70:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_50_70"><a href="avg_C_jet_ch_mult_50_70.pdf">
+      <img src="avg_C_jet_ch_mult_50_70.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_ch_mult_70_100" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_ch_mult_70_100">&#9875;</a><a href="avg_C_jet_ch_mult_70_100.py">&#8984;</a><a href="avg_C_jet_ch_mult_70_100__data.py">&#128202;</a> avg_C_jet_ch_mult_70_100:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_ch_mult_70_100"><a href="avg_C_jet_ch_mult_70_100.pdf">
+      <img src="avg_C_jet_ch_mult_70_100.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_100_150" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_100_150">&#9875;</a><a href="avg_C_jet_l_pTrel_100_150.py">&#8984;</a><a href="avg_C_jet_l_pTrel_100_150__data.py">&#128202;</a> avg_C_jet_l_pTrel_100_150:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_100_150"><a href="avg_C_jet_l_pTrel_100_150.pdf">
+      <img src="avg_C_jet_l_pTrel_100_150.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_150_300" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_150_300">&#9875;</a><a href="avg_C_jet_l_pTrel_150_300.py">&#8984;</a><a href="avg_C_jet_l_pTrel_150_300__data.py">&#128202;</a> avg_C_jet_l_pTrel_150_300:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_150_300"><a href="avg_C_jet_l_pTrel_150_300.pdf">
+      <img src="avg_C_jet_l_pTrel_150_300.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_25_30" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_25_30">&#9875;</a><a href="avg_C_jet_l_pTrel_25_30.py">&#8984;</a><a href="avg_C_jet_l_pTrel_25_30__data.py">&#128202;</a> avg_C_jet_l_pTrel_25_30:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_25_30"><a href="avg_C_jet_l_pTrel_25_30.pdf">
+      <img src="avg_C_jet_l_pTrel_25_30.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_300_500" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_300_500">&#9875;</a><a href="avg_C_jet_l_pTrel_300_500.py">&#8984;</a><a href="avg_C_jet_l_pTrel_300_500__data.py">&#128202;</a> avg_C_jet_l_pTrel_300_500:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_300_500"><a href="avg_C_jet_l_pTrel_300_500.pdf">
+      <img src="avg_C_jet_l_pTrel_300_500.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_30_50" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_30_50">&#9875;</a><a href="avg_C_jet_l_pTrel_30_50.py">&#8984;</a><a href="avg_C_jet_l_pTrel_30_50__data.py">&#128202;</a> avg_C_jet_l_pTrel_30_50:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_30_50"><a href="avg_C_jet_l_pTrel_30_50.pdf">
+      <img src="avg_C_jet_l_pTrel_30_50.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_500_1000" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_500_1000">&#9875;</a><a href="avg_C_jet_l_pTrel_500_1000.py">&#8984;</a><a href="avg_C_jet_l_pTrel_500_1000__data.py">&#128202;</a> avg_C_jet_l_pTrel_500_1000:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_500_1000"><a href="avg_C_jet_l_pTrel_500_1000.pdf">
+      <img src="avg_C_jet_l_pTrel_500_1000.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_50_70" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_50_70">&#9875;</a><a href="avg_C_jet_l_pTrel_50_70.py">&#8984;</a><a href="avg_C_jet_l_pTrel_50_70__data.py">&#128202;</a> avg_C_jet_l_pTrel_50_70:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_50_70"><a href="avg_C_jet_l_pTrel_50_70.pdf">
+      <img src="avg_C_jet_l_pTrel_50_70.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_l_pTrel_70_100" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_l_pTrel_70_100">&#9875;</a><a href="avg_C_jet_l_pTrel_70_100.py">&#8984;</a><a href="avg_C_jet_l_pTrel_70_100__data.py">&#128202;</a> avg_C_jet_l_pTrel_70_100:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_l_pTrel_70_100"><a href="avg_C_jet_l_pTrel_70_100.pdf">
+      <img src="avg_C_jet_l_pTrel_70_100.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_100_150" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_100_150">&#9875;</a><a href="avg_C_jet_rho_100_150.py">&#8984;</a><a href="avg_C_jet_rho_100_150__data.py">&#128202;</a> avg_C_jet_rho_100_150:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_100_150"><a href="avg_C_jet_rho_100_150.pdf">
+      <img src="avg_C_jet_rho_100_150.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_150_300" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_150_300">&#9875;</a><a href="avg_C_jet_rho_150_300.py">&#8984;</a><a href="avg_C_jet_rho_150_300__data.py">&#128202;</a> avg_C_jet_rho_150_300:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_150_300"><a href="avg_C_jet_rho_150_300.pdf">
+      <img src="avg_C_jet_rho_150_300.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_25_30" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_25_30">&#9875;</a><a href="avg_C_jet_rho_25_30.py">&#8984;</a><a href="avg_C_jet_rho_25_30__data.py">&#128202;</a> avg_C_jet_rho_25_30:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_25_30"><a href="avg_C_jet_rho_25_30.pdf">
+      <img src="avg_C_jet_rho_25_30.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_300_500" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_300_500">&#9875;</a><a href="avg_C_jet_rho_300_500.py">&#8984;</a><a href="avg_C_jet_rho_300_500__data.py">&#128202;</a> avg_C_jet_rho_300_500:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_300_500"><a href="avg_C_jet_rho_300_500.pdf">
+      <img src="avg_C_jet_rho_300_500.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_30_50" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_30_50">&#9875;</a><a href="avg_C_jet_rho_30_50.py">&#8984;</a><a href="avg_C_jet_rho_30_50__data.py">&#128202;</a> avg_C_jet_rho_30_50:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_30_50"><a href="avg_C_jet_rho_30_50.pdf">
+      <img src="avg_C_jet_rho_30_50.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_500_1000" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_500_1000">&#9875;</a><a href="avg_C_jet_rho_500_1000.py">&#8984;</a><a href="avg_C_jet_rho_500_1000__data.py">&#128202;</a> avg_C_jet_rho_500_1000:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_500_1000"><a href="avg_C_jet_rho_500_1000.pdf">
+      <img src="avg_C_jet_rho_500_1000.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_50_70" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_50_70">&#9875;</a><a href="avg_C_jet_rho_50_70.py">&#8984;</a><a href="avg_C_jet_rho_50_70__data.py">&#128202;</a> avg_C_jet_rho_50_70:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_50_70"><a href="avg_C_jet_rho_50_70.pdf">
+      <img src="avg_C_jet_rho_50_70.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_C_jet_rho_70_100" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_C_jet_rho_70_100">&#9875;</a><a href="avg_C_jet_rho_70_100.py">&#8984;</a><a href="avg_C_jet_rho_70_100__data.py">&#128202;</a> avg_C_jet_rho_70_100:<br/>
+    <a name="MC_HFDECAYS-avg_C_jet_rho_70_100"><a href="avg_C_jet_rho_70_100.pdf">
+      <img src="avg_C_jet_rho_70_100.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_psi_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_psi_B_jet">&#9875;</a><a href="avg_psi_B_jet.py">&#8984;</a><a href="avg_psi_B_jet__data.py">&#128202;</a> avg_psi_B_jet:<br/>
+    <a name="MC_HFDECAYS-avg_psi_B_jet"><a href="avg_psi_B_jet.pdf">
+      <img src="avg_psi_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_psi_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_psi_C_jet">&#9875;</a><a href="avg_psi_C_jet.py">&#8984;</a><a href="avg_psi_C_jet__data.py">&#128202;</a> avg_psi_C_jet:<br/>
+    <a name="MC_HFDECAYS-avg_psi_C_jet"><a href="avg_psi_C_jet.pdf">
+      <img src="avg_psi_C_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_rho_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_rho_B_jet">&#9875;</a><a href="avg_rho_B_jet.py">&#8984;</a><a href="avg_rho_B_jet__data.py">&#128202;</a> avg_rho_B_jet:<br/>
+    <a name="MC_HFDECAYS-avg_rho_B_jet"><a href="avg_rho_B_jet.pdf">
+      <img src="avg_rho_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_avg_rho_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-avg_rho_C_jet">&#9875;</a><a href="avg_rho_C_jet.py">&#8984;</a><a href="avg_rho_C_jet__data.py">&#128202;</a> avg_rho_C_jet:<br/>
+    <a name="MC_HFDECAYS-avg_rho_C_jet"><a href="avg_rho_C_jet.pdf">
+      <img src="avg_rho_C_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_charged_mult_B_jets" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-charged_mult_B_jets">&#9875;</a><a href="charged_mult_B_jets.py">&#8984;</a><a href="charged_mult_B_jets__data.py">&#128202;</a> charged_mult_B_jets:<br/>
+    <a name="MC_HFDECAYS-charged_mult_B_jets"><a href="charged_mult_B_jets.pdf">
+      <img src="charged_mult_B_jets.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_charged_mult_C_jets" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-charged_mult_C_jets">&#9875;</a><a href="charged_mult_C_jets.py">&#8984;</a><a href="charged_mult_C_jets__data.py">&#128202;</a> charged_mult_C_jets:<br/>
+    <a name="MC_HFDECAYS-charged_mult_C_jets"><a href="charged_mult_C_jets.pdf">
+      <img src="charged_mult_C_jets.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_frag_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-frag_B_jet">&#9875;</a><a href="frag_B_jet.py">&#8984;</a><a href="frag_B_jet__data.py">&#128202;</a> frag_B_jet:<br/>
+    <a name="MC_HFDECAYS-frag_B_jet"><a href="frag_B_jet.pdf">
+      <img src="frag_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_frag_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-frag_C_jet">&#9875;</a><a href="frag_C_jet.py">&#8984;</a><a href="frag_C_jet__data.py">&#128202;</a> frag_C_jet:<br/>
+    <a name="MC_HFDECAYS-frag_C_jet"><a href="frag_C_jet.pdf">
+      <img src="frag_C_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_high_pT_frag_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-high_pT_frag_B_jet">&#9875;</a><a href="high_pT_frag_B_jet.py">&#8984;</a><a href="high_pT_frag_B_jet__data.py">&#128202;</a> high_pT_frag_B_jet:<br/>
+    <a name="MC_HFDECAYS-high_pT_frag_B_jet"><a href="high_pT_frag_B_jet.pdf">
+      <img src="high_pT_frag_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_high_pT_frag_B_jet_1H" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-high_pT_frag_B_jet_1H">&#9875;</a><a href="high_pT_frag_B_jet_1H.py">&#8984;</a><a href="high_pT_frag_B_jet_1H__data.py">&#128202;</a> high_pT_frag_B_jet_1H:<br/>
+    <a name="MC_HFDECAYS-high_pT_frag_B_jet_1H"><a href="high_pT_frag_B_jet_1H.pdf">
+      <img src="high_pT_frag_B_jet_1H.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_high_pT_frag_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-high_pT_frag_C_jet">&#9875;</a><a href="high_pT_frag_C_jet.py">&#8984;</a><a href="high_pT_frag_C_jet__data.py">&#128202;</a> high_pT_frag_C_jet:<br/>
+    <a name="MC_HFDECAYS-high_pT_frag_C_jet"><a href="high_pT_frag_C_jet.pdf">
+      <img src="high_pT_frag_C_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_high_pT_frag_C_jet_1H" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-high_pT_frag_C_jet_1H">&#9875;</a><a href="high_pT_frag_C_jet_1H.py">&#8984;</a><a href="high_pT_frag_C_jet_1H__data.py">&#128202;</a> high_pT_frag_C_jet_1H:<br/>
+    <a name="MC_HFDECAYS-high_pT_frag_C_jet_1H"><a href="high_pT_frag_C_jet_1H.pdf">
+      <img src="high_pT_frag_C_jet_1H.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_lepton_pT_B_jets" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-lepton_pT_B_jets">&#9875;</a><a href="lepton_pT_B_jets.py">&#8984;</a><a href="lepton_pT_B_jets__data.py">&#128202;</a> lepton_pT_B_jets:<br/>
+    <a name="MC_HFDECAYS-lepton_pT_B_jets"><a href="lepton_pT_B_jets.pdf">
+      <img src="lepton_pT_B_jets.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_lepton_pT_C_jets" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-lepton_pT_C_jets">&#9875;</a><a href="lepton_pT_C_jets.py">&#8984;</a><a href="lepton_pT_C_jets__data.py">&#128202;</a> lepton_pT_C_jets:<br/>
+    <a name="MC_HFDECAYS-lepton_pT_C_jets"><a href="lepton_pT_C_jets.pdf">
+      <img src="lepton_pT_C_jets.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_lepton_pTrel_B_jets" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-lepton_pTrel_B_jets">&#9875;</a><a href="lepton_pTrel_B_jets.py">&#8984;</a><a href="lepton_pTrel_B_jets__data.py">&#128202;</a> lepton_pTrel_B_jets:<br/>
+    <a name="MC_HFDECAYS-lepton_pTrel_B_jets"><a href="lepton_pTrel_B_jets.pdf">
+      <img src="lepton_pTrel_B_jets.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_lepton_pTrel_C_jets" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-lepton_pTrel_C_jets">&#9875;</a><a href="lepton_pTrel_C_jets.py">&#8984;</a><a href="lepton_pTrel_C_jets__data.py">&#128202;</a> lepton_pTrel_C_jets:<br/>
+    <a name="MC_HFDECAYS-lepton_pTrel_C_jets"><a href="lepton_pTrel_C_jets.pdf">
+      <img src="lepton_pTrel_C_jets.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_pT_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-pT_B_jet">&#9875;</a><a href="pT_B_jet.py">&#8984;</a><a href="pT_B_jet__data.py">&#128202;</a> pT_B_jet:<br/>
+    <a name="MC_HFDECAYS-pT_B_jet"><a href="pT_B_jet.pdf">
+      <img src="pT_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_pT_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-pT_C_jet">&#9875;</a><a href="pT_C_jet.py">&#8984;</a><a href="pT_C_jet__data.py">&#128202;</a> pT_C_jet:<br/>
+    <a name="MC_HFDECAYS-pT_C_jet"><a href="pT_C_jet.pdf">
+      <img src="pT_C_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_pThad_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-pThad_B_jet">&#9875;</a><a href="pThad_B_jet.py">&#8984;</a><a href="pThad_B_jet__data.py">&#128202;</a> pThad_B_jet:<br/>
+    <a name="MC_HFDECAYS-pThad_B_jet"><a href="pThad_B_jet.pdf">
+      <img src="pThad_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_pThad_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-pThad_C_jet">&#9875;</a><a href="pThad_C_jet.py">&#8984;</a><a href="pThad_C_jet__data.py">&#128202;</a> pThad_C_jet:<br/>
+    <a name="MC_HFDECAYS-pThad_C_jet"><a href="pThad_C_jet.pdf">
+      <img src="pThad_C_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_prod_frac_B" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-prod_frac_B">&#9875;</a><a href="prod_frac_B.py">&#8984;</a><a href="prod_frac_B__data.py">&#128202;</a> prod_frac_B:<br/>
+    <a name="MC_HFDECAYS-prod_frac_B"><a href="prod_frac_B.pdf">
+      <img src="prod_frac_B.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_prod_frac_C" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-prod_frac_C">&#9875;</a><a href="prod_frac_C.py">&#8984;</a><a href="prod_frac_C__data.py">&#128202;</a> prod_frac_C:<br/>
+    <a name="MC_HFDECAYS-prod_frac_C"><a href="prod_frac_C.pdf">
+      <img src="prod_frac_C.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_width_B_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-width_B_jet">&#9875;</a><a href="width_B_jet.py">&#8984;</a><a href="width_B_jet__data.py">&#128202;</a> width_B_jet:<br/>
+    <a name="MC_HFDECAYS-width_B_jet"><a href="width_B_jet.pdf">
+      <img src="width_B_jet.png">
+    </a></a>
+  </div>
+  <div class="plot" id="plot_width_C_jet" style="float:left; font-size:smaller; font-weight:bold;">
+    <a href="#MC_HFDECAYS-width_C_jet">&#9875;</a><a href="width_C_jet.py">&#8984;</a><a href="width_C_jet__data.py">&#128202;</a> width_C_jet:<br/>
+    <a name="MC_HFDECAYS-width_C_jet"><a href="width_C_jet.pdf">
+      <img src="width_C_jet.png">
+    </a></a>
+  </div>
+</section>
+
+<footer>
+<p id="timestamp">Generated at Friday, 24. July 2026 04:39PM</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+Sun Jul 26 11:46:20 CEST 2026
+Preloading tcmalloc_minimal.so
+Preloading libexcabort.so
+Py:Athena           DEBUG located AthenaCommon/Preparation.py as /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/jobOptions/AthenaCommon/Preparation.py
+Py:Athena            INFO including file "AthenaCommon/Preparation.py"
+Py:Athena            INFO using release [AthGeneration-23.6.40] [x86_64-el9-gcc13-opt] [main/bb522d41163] -- built on [2024-11-19T2126]
+Py:Athena            INFO executing ROOT6Setup
+Py:Athena           DEBUG located AthenaCommon/Execution.py as /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/jobOptions/AthenaCommon/Execution.py
+Py:Athena            INFO including file "AthenaCommon/Execution.py"
+Py:Athena           DEBUG located local_jo.py as ./local_jo.py
+Py:Athena            INFO including file "local_jo.py"
+Traceback (most recent call last):
+  File "/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/jobOptions/AthenaCommon/Execution.py", line 4, in <module>
+    include( script )
+  File "/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/python/AthenaCommon/Include.py", line 172, in __call__
+    exec(compile(open(name).read(), name, 'exec'), self._workspace, self._workspace)
+  File "./local_jo.py", line 4, in <module>
+    raise RuntimeError("STO LEGGENDO QUESTO LOCAL_JO")
+RuntimeError: STO LEGGENDO QUESTO LOCAL_JO
+Py:Athena            INFO leaving with code 8: "an unknown exception occurred"

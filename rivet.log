@@ -1,0 +1,1087 @@
+Mon Aug 10 11:39:58 CEST 2026
+Preloading tcmalloc_minimal.so
+Preloading libexcabort.so
+Py:Athena            INFO including file "AthenaCommon/Preparation.py"
+Py:Athena            INFO using release [AthGeneration-23.6.40] [x86_64-el9-gcc13-opt] [main/bb522d41163] -- built on [2024-11-19T2126]
+Py:Athena            INFO executing ROOT6Setup
+Py:Athena            INFO including file "AthenaCommon/Execution.py"
+Py:Athena            INFO including file "local_jo.py"
+========== LOCAL_JO LOADED ==========
+Py:ConfigurableDb    INFO Read module info for 478 configurables from 2 genConfDb files
+Py:ConfigurableDb    INFO No duplicates have been found: that's good !
+INPUT = ['/eos/user/m/marsella/EVNT.33856989._004982.pool.root.1']
+['/eos/user/m/marsella/EVNT.33856989._004982.pool.root.1']
+Py:Athena            INFO including file "AthenaCommon/runbatch.py"
+Warning in <TInterpreter::ReadRootmapFile>: While processing /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/AthGeneration.rootmap, class HepMC3::FourVector was found to be associated to libGeneratorObjectsDict.so although it is already associated to libHepMC3rootIO.so
+Warning in <TInterpreter::ReadRootmapFile>: While processing /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/AthGeneration.rootmap, class HepMC::FourVector was found to be associated to libGeneratorObjectsDict.so although it is already associated to libHepMC3rootIO.so
+# setting LC_ALL to "C"
+ApplicationMgr    SUCCESS 
+====================================================================================================================================
+                                                   Welcome to ApplicationMgr (GaudiCoreSvc v39r1)
+                                          running on lxplus921.cern.ch on Mon Aug 10 11:46:29 2026
+====================================================================================================================================
+ApplicationMgr       INFO Application Manager Configured successfully
+EventSelector       DEBUG Property update for OutputLevel : new value = 2
+EventSelector       DEBUG Initializing EventSelector
+EventSelector       DEBUG Service base class initialized successfully
+EventSelector       DEBUG reinitialization...
+EventSelector        INFO EventSelection with query 
+EventSelector       DEBUG Try item: "/eos/user/m/marsella/EVNT.33856989._004982.pool.root.1" from the collection list.
+Rivet_i           WARNING $CMTPATH variable not set: finding the main analysis plugin directory will be difficult...
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'ATLAS_2024_I2768921'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'ATLAS_2013_I1243871'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_HFDECAYS'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_HFJETS'
+Rivet.AnalysisLoader: WARN  Ignoring duplicate plugin analysis called 'MC_TTBAR'
+ApplicationMgr       INFO Application Manager Initialized successfully
+EventSelector       DEBUG Try item: "/eos/user/m/marsella/EVNT.33856989._004982.pool.root.1" from the collection list.
+ApplicationMgr       INFO Application Manager Started successfully
+EventSelector       DEBUG Get AttributeList from the collection
+EventSelector       DEBUG AttributeList size 0
+EventSelector       DEBUG record AthenaAttribute, name = Token = [DB=6744C865-B588-B340-A92D-5EFDA60944D7][CNT=POOLContainer(DataHeader)][CLID=D82968A1-CF91-4320-B2DD-E0F739CBC7E6][TECH=00000202][OID=0000000000000006-0000000000000000].
+EventSelector       DEBUG record AthenaAttribute, name = eventRef = [DB=6744C865-B588-B340-A92D-5EFDA60944D7][CNT=POOLContainer(DataHeader)][CLID=D82968A1-CF91-4320-B2DD-E0F739CBC7E6][TECH=00000202][OID=0000000000000006-0000000000000000].
+EventSelector       DEBUG found AthenaAttribute, name = eventRef = [DB=6744C865-B588-B340-A92D-5EFDA60944D7][CNT=POOLContainer(DataHeader)][CLID=D82968A1-CF91-4320-B2DD-E0F739CBC7E6][TECH=00000202][OID=0000000000000006-0000000000000000]
+-------------------------------------------------------------------------------------
+Producing (fast) stack trace...
+-------------------------------------------------------------------------------------
+
+(pid=3791288 ppid=3381694) received fatal signal 11 (Segmentation fault)
+signal context:
+  signo  = 11, errno = 0, code = 1 (address not mapped to object)
+  pid    = 0, uid = 0
+  value  = (0, (nil))
+  addr   = (nil)
+  stack  = (0, 2034c0, 0x1c168000)
+
+  rip: 0033:00007f62654b00c5           eflags: 0000000000010246
+  rax: 0000000026a62580   rbx: 000000002bd7d680
+  rcx: 0000000000000003   rdx: 00000000252b9b20
+  r08: 00000000023d5040   r09: 000000000000295c
+  r10: 0000000000010000   r11: 00007f62716abdd0
+  r12: 0000000000000000   r13: 0000000020cff8c0
+  r14: 0000000000000000   r15: 00007fff1b0193c0
+  rsi: 00000000023d50a0   rdi: 0000000000000000
+  rbp: 000000001d17d530   rsp: 00007fff1b019180
+   gs: 0000     fs: 0000
+
+  trap: 14/4  oldmask:                0   cr2: 0000000000000000
+
+  FPU:  control = 037f
+        status  = 0020
+        tag     = 00
+        op      = 0000
+        ip      = 0000000000000000
+        data    = 0000000000000000
+        mxcsr   = 00001fa1
+        mxcr_mask= 0002ffff
+    %fp0 = [0000:0000000000000000]
+    %fp1 = [0000:0000000000000000]
+    %fp2 = [0000:0000000000000000]
+    %fp3 = [0000:0000000000000000]
+    %fp4 = [0000:0000000000000000]
+    %fp5 = [3fee:0000000000008000]
+    %fp6 = [3ffc:20001130dac29140]
+    %fp7 = [3ffc:20001130dac29140]
+    %xmm00 = [81cf6015 404e1c12 00000000 00000000]
+    %xmm01 = [00000000 3ff00000 00000000 00000000]
+    %xmm02 = [00000000 3ff00000 00000000 00000000]
+    %xmm03 = [00000000 40390000 00000000 00000000]
+    %xmm04 = [daf98494 bffa9222 00000000 00000000]
+    %xmm05 = [ffffffff 7fefffff 00000000 00000000]
+    %xmm06 = [1aed2572 404e53d8 00000000 00000000]
+    %xmm07 = [00000000 bff00000 00000000 00000000]
+    %xmm08 = [66dd0120 3f565661 00000000 00000000]
+    %xmm09 = [00000000 00000000 00000000 00000000]
+    %xmm10 = [00000000 00000000 00000000 00000000]
+    %xmm11 = [99999999 99999999 99999999 99999999]
+    %xmm12 = [20202020 20202020 20202020 20202020]
+    %xmm13 = [00000001 00000000 aa6c7280 00007f62]
+    %xmm14 = [a9f5efcf 00007f62 00000000 00000000]
+    %xmm15 = [00000000 00000000 00000000 00000000]
+
+stack trace:
+ 0x7f629065c152 CxxUtils::backtraceByUnwind(void (*)(int, unsigned long), int) ??:0   + 0x32 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libCxxUtils.so D[0x25152]]
+ 0x7f629065a3c3 Athena::Signal::fatalDump(int, siginfo_t*, void*, int, unsigned int) ??:0   + 0x1e3 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libCxxUtils.so D[0x233c3]]
+ 0x7f628b4c4e94 CoreDumpSvcHandler::action(int, siginfo_t*, void*) ??:0   + 0x364 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so D[0x2c4e94]]
+ 0x7f62ad43fc60 __restore_rt ??:0   + 0x7f62ad43fc60 [/lib64/libc.so.6 D[0x3fc60]]
+ 0x7f62654b00c5 Rivet::MC_HFDECAYS::analyze(Rivet::Event const&) ??:0   + 0x22d5 [/afs/cern.ch/user/m/marsella/public/recoil/RivetMC_HFDECAYS.so D[0x560c5]]
+ 0x7f62715c41ce Rivet::AnalysisHandler::analyze(HepMC3::GenEvent&) ??:0   + 0x47e [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/MCGenerators/rivet/4.0.2-f735a/x86_64-el9-gcc13-opt/lib/libRivet.so D[0x1c41ce]]
+ 0x7f628a6edb44 Rivet_i::execute() ??:0   + 0x304 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libRivet_i.so D[0x50b44]]
+ 0x7f628ee52d90 Gaudi::Algorithm::sysExecute(EventContext const&) ??:0   + 0x180 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so D[0x252d90]]
+ 0x7f628a7ac85f AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const ??:0   + 0x2f [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7a85f]]
+ 0x7f628a7acc56 AthSequencer::execute(EventContext const&) const ??:0   + 0x206 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7ac56]]
+ 0x7f628ee52d90 Gaudi::Algorithm::sysExecute(EventContext const&) ??:0   + 0x180 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so D[0x252d90]]
+ 0x7f628a7ac85f AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const ??:0   + 0x2f [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7a85f]]
+ 0x7f628a7acc56 AthSequencer::execute(EventContext const&) const ??:0   + 0x206 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7ac56]]
+ 0x7f628ee52d90 Gaudi::Algorithm::sysExecute(EventContext const&) ??:0   + 0x180 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so D[0x252d90]]
+ 0x7f628a7ac85f AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const ??:0   + 0x2f [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7a85f]]
+ 0x7f628a7acc56 AthSequencer::execute(EventContext const&) const ??:0   + 0x206 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7ac56]]
+ 0x7f628ee52d90 Gaudi::Algorithm::sysExecute(EventContext const&) ??:0   + 0x180 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so D[0x252d90]]
+ 0x7f628a7ac85f AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const ??:0   + 0x2f [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7a85f]]
+ 0x7f628a7acc56 AthSequencer::execute(EventContext const&) const ??:0   + 0x206 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so D[0x7ac56]]
+ 0x7f628ee52d90 Gaudi::Algorithm::sysExecute(EventContext const&) ??:0   + 0x180 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so D[0x252d90]]
+ 0x7f628b44423f AthenaEventLoopMgr::executeAlgorithms(EventContext const&) ??:0   + 0x3f [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so D[0x24423f]]
+ 0x7f628b44c207 AthenaEventLoopMgr::executeEvent(EventContext&&) ??:0   + 0xa37 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so D[0x24c207]]
+ 0x7f628b449fd0 AthenaEventLoopMgr::nextEvent(int) ??:0   + 0x2a0 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so D[0x249fd0]]
+ 0x7f628b44563d AthenaEventLoopMgr::executeRun(int) ??:0   + 0x1d [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so D[0x24563d]]
+ 0x7f628b9a81b5 ApplicationMgr::executeRun(int) ??:0   + 0x1f5 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiCoreSvc.so D[0x1a81b5]]
+ 0x7f626f033017 <unknown function>
+ 0x7f62ad63bd35 WrapperCall(long, unsigned long, void*, void*, void*) ??:0   + 0x7f62ad63bd35 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so D[0xfd35]]
+ 0x7f62ad63cab0 Cppyy::CallO(long, void*, unsigned long, void*, unsigned long) ??:0   + 0x80 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so D[0x10ab0]]
+ 0x7f629000c982 CPyCppyy::(anonymous namespace)::InstanceExecutor::Execute(long, void*, CPyCppyy::CallContext*) ??:0   + 0x7f629000c982 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so D[0x9f982]]
+ 0x7f628fff1677 CPyCppyy::CPPMethod::ExecuteFast(void*, long, CPyCppyy::CallContext*) [clone .isra.0] ??:0   + 0x7f628fff1677 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so D[0x84677]]
+ 0x7f628fff16e6 CPyCppyy::CPPMethod::Execute(void*, long, CPyCppyy::CallContext*) ??:0   + 0x56 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so D[0x846e6]]
+ 0x7f628fff180b CPyCppyy::CPPMethod::Call(CPyCppyy::CPPInstance*&, _object* const*, unsigned long, _object*, CPyCppyy::CallContext*) ??:0   + 0xfb [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so D[0x8480b]]
+ 0x7f628fff938c CPyCppyy::(anonymous namespace)::mp_vectorcall(CPyCppyy::CPPOverload*, _object* const*, unsigned long, _object*) ??:0   + 0x7f628fff938c [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so D[0x8c38c]]
+ 0x7f62ad958ae3 PyObject_Vectorcall /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:301:1   + 0x33 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x158ae3]]
+ 0x7f62ad8fd86f _PyEval_EvalFrameDefault /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769:23   + 0x2aff [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0xfd86f]]
+ 0x7f62ada4f754 _PyEval_EvalFrame inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434:24 in PyEval_EvalCode /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73:16   + 0x224 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24f754]]
+ 0x7f62ada4a620 builtin_exec_impl inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465:20 in builtin_exec /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077:17   + 0x7f62ada4a620 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24a620]]
+ 0x7f62ad9a78f2 _Py_LeaveRecursiveCallTstate inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:444:5 in cfunction_vectorcall_FASTCALL_KEYWORDS /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:123:32   + 0x7f62ad9a78f2 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1a78f2]]
+ 0x7f62ad958ae3 PyObject_Vectorcall /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:301:1   + 0x33 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x158ae3]]
+ 0x7f62ad8fd86f _PyEval_EvalFrameDefault /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769:23   + 0x2aff [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0xfd86f]]
+ 0x7f62ada4f8b0 _PyEval_EvalFrame inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434:24 in _PyEval_Vector /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73:16   + 0x7f62ada4f8b0 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24f8b0]]
+ 0x7f62ad9586c6 _PyObject_FastCallDictTstate /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141:15   + 0x56 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1586c6]]
+ 0x7f62ad9589b0 _PyObject_Call_Prepend /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482:24   + 0xe0 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1589b0]]
+ 0x7f62ad9c8c28 Py_DECREF inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7630:5 in slot_tp_call /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/object.h:537:8   + 0x7f62ad9c8c28 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1c8c28]]
+ 0x7f62ad95855d _Py_LeaveRecursiveCallTstate inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:216:9 in _PyObject_MakeTpCall /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:123:32   + 0x7d [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x15855d]]
+ 0x7f62ad8fd86f _PyEval_EvalFrameDefault /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769:23   + 0x2aff [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0xfd86f]]
+ 0x7f62ada4f754 _PyEval_EvalFrame inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434:24 in PyEval_EvalCode /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73:16   + 0x224 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24f754]]
+ 0x7f62ada4a620 builtin_exec_impl inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465:20 in builtin_exec /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077:17   + 0x7f62ada4a620 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24a620]]
+ 0x7f62ad9a78f2 _Py_LeaveRecursiveCallTstate inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:444:5 in cfunction_vectorcall_FASTCALL_KEYWORDS /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:123:32   + 0x7f62ad9a78f2 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1a78f2]]
+ 0x7f62ad958ae3 PyObject_Vectorcall /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:301:1   + 0x33 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x158ae3]]
+ 0x7f62ad8fd86f _PyEval_EvalFrameDefault /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769:23   + 0x2aff [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0xfd86f]]
+ 0x7f62ada4f8b0 _PyEval_EvalFrame inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434:24 in _PyEval_Vector /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73:16   + 0x7f62ada4f8b0 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24f8b0]]
+ 0x7f62ad9586c6 _PyObject_FastCallDictTstate /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141:15   + 0x56 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1586c6]]
+ 0x7f62ad9589b0 _PyObject_Call_Prepend /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482:24   + 0xe0 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1589b0]]
+ 0x7f62ad9c8c28 Py_DECREF inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7630:5 in slot_tp_call /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/object.h:537:8   + 0x7f62ad9c8c28 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x1c8c28]]
+ 0x7f62ad95855d _Py_LeaveRecursiveCallTstate inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:216:9 in _PyObject_MakeTpCall /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:123:32   + 0x7d [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x15855d]]
+ 0x7f62ad8fd86f _PyEval_EvalFrameDefault /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769:23   + 0x2aff [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0xfd86f]]
+ 0x7f62ada4f754 _PyEval_EvalFrame inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434:24 in PyEval_EvalCode /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73:16   + 0x224 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x24f754]]
+ 0x7f62ada97df9 run_eval_code_obj inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1762:19 in run_mod /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1742:8   + 0x7f62ada97df9 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x297df9]]
+ 0x7f62ada9969a pyrun_file inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:440:13 in _PyRun_SimpleFileObject /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1662:5   + 0x15a [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x29969a]]
+ 0x7f62ada99d0c _PyRun_AnyFileObject /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:79:15   + 0x3c [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x299d0c]]
+ 0x7f62adab9bc0 pymain_run_file_obj inlined at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:379:15 in Py_RunMain /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:361:17   + 0x860 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x2b9bc0]]
+ 0x7f62adaba117 Py_BytesMain /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:735:1   + 0x47 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/Python/3.11.9-2924c/x86_64-el9-gcc13-opt/bin/../lib/libpython3.11.so.1.0 D[0x2ba117]]
+ 0x7f62ad42a610 __libc_start_call_main ??:0   + 0x7f62ad42a610 [/lib64/libc.so.6 D[0x2a610]]
+ 0x7f62ad42a6c0 __libc_start_main@@GLIBC_2.34 ??:0   + 0x80 [/lib64/libc.so.6 D[0x2a6c0]]
+ 0x00401075 _start ??:0   + 0x25 [/cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/Python/3.11.9/x86_64-el9-gcc13-opt/bin/python D[0x401075]]
+
+CoreDumpSvc   FATAL Caught fatal signal. Printing details to stdout.
+CoreDumpSvc       WARNING AlgExecStateSvc or AlgContextSvc not available. Cannot determine current algorithm.
+-------------------------------------------------------------------------------------
+Core dump from CoreDumpSvc on lxplus921.cern.ch at Mon Aug 10 11:49:53 2026
+
+Caught signal 11(Segmentation fault). Details: 
+  errno = 0, code = 1 (address not mapped to object)
+  pid   = 0, uid = 0
+  value = (0, 0)
+  vmem = 1898.23 MB
+  rss  = 1098.52 MB
+  total-ram = 58587.3 MB
+  free-ram  = 875.816 MB
+  buffer-ram= 109.715 MB
+  total-swap= 29293.7 MB
+  free-swap = 20447.4 MB
+  addr  = 0
+
+Event counter: 1
+Slot   0 : Current algorithm = <NONE>
+         : Last Incident = BeginIncFiringAlg:BeginEvent
+         : Event ID      = [601357,42990001,t:0,l:0]
+-------------------------------------------------------------------------------------
+| AtlasBaseDir :                         /cvmfs/atlas.cern.ch/repo/sw/software/23.6 |
+| AtlasVersion :                                                            23.6.40 |
+| BINARY_TAG   :                                               x86_64-el9-gcc13-opt |
+-------------------------------------------------------------------------------------
+ Note: to see line numbers in below stacktrace you might consider running following :
+  atlasAddress2Line --file <logfile>
+-------------------------------------------------------------------------------------
+Invoking previous signal handler (can be slow, check gdb process)...
+-------------------------------------------------------------------------------------
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 15 (Thread 0x7f62675de640 (LWP 3815937) "athena.py"):
+#0  0x00007f62ad48867a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007f62ad4937d8 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x00007f626e388406 in XrdSysSemaphore::Wait (this=0x1c7bc580) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.hh:509
+#3  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x1c7a0768) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClSyncQueue.hh:66
+#4  XrdCl::JobManager::RunJobs (this=0x1c7a0750) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:151
+#5  0x00007f626e3884b9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:34
+#6  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#7  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 14 (Thread 0x7f6267ddf640 (LWP 3815936) "athena.py"):
+#0  0x00007f62ad48867a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007f62ad4937d8 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x00007f626e388406 in XrdSysSemaphore::Wait (this=0x1c7bc580) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.hh:509
+#3  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x1c7a0768) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClSyncQueue.hh:66
+#4  XrdCl::JobManager::RunJobs (this=0x1c7a0750) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:151
+#5  0x00007f626e3884b9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:34
+#6  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#7  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 13 (Thread 0x7f62685e0640 (LWP 3815935) "athena.py"):
+#0  0x00007f62ad48867a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007f62ad4937d8 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x00007f626e388406 in XrdSysSemaphore::Wait (this=0x1c7bc580) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.hh:509
+#3  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x1c7a0768) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClSyncQueue.hh:66
+#4  XrdCl::JobManager::RunJobs (this=0x1c7a0750) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:151
+#5  0x00007f626e3884b9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:34
+#6  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#7  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 12 (Thread 0x7f6268de1640 (LWP 3815934) "athena.py"):
+#0  0x00007f62ad4d5c65 in clock_nanosleep
+GLIBC_2.2.5 () from /lib64/libc.so.6
+#1  0x00007f62ad4da717 in nanosleep () from /lib64/libc.so.6
+#2  0x00007f626e4cd7e8 in XrdSysTimer::Wait (mills=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysTimer.cc:239
+#3  0x00007f626e306df6 in XrdCl::TaskManager::RunTasks (this=0xee6d4a0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClTaskManager.cc:246
+#4  0x00007f626e306ef9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClTaskManager.cc:38
+#5  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#6  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 11 (Thread 0x7f62695e2640 (LWP 3815933) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0c30, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bcc40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 10 (Thread 0x7f6269de3640 (LWP 3815931) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0b60, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bc860) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 9 (Thread 0x7f626a5e4640 (LWP 3815930) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0a90, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c775360) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 8 (Thread 0x7f626ade5640 (LWP 3815929) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a09c0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bcd00) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 7 (Thread 0x7f626b5e6640 (LWP 3815928) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0000, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bc600) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 6 (Thread 0x7f626bde7640 (LWP 3815927) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a05b0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c775340) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x7f626c5e8640 (LWP 3815925) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a04e0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7753c0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x7f626cde9640 (LWP 3815924) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0820, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7758e0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x7f626d5ea640 (LWP 3815923) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a08f0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bc680) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x7f626ddeb640 (LWP 3815922) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0680, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c775900) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x7f62ade7eec0 (LWP 3791288) "athena.py"):
+#0  0x00007f62ad4da4cf in wait4 () from /lib64/libc.so.6
+#1  0x00007f62ad44f4b3 in do_system () from /lib64/libc.so.6
+#2  0x00007f62ac513fcb in TUnixSystem::StackTrace() () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x00007f62ad63b603 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#4  0x00007f62ac5137f1 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libCore.so
+#5  0x00007f628b4c4f84 in CoreDumpSvcHandler::action(int, siginfo_t*, void*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#6  <signal handler called>
+#7  0x00007f62654b00c5 in Rivet::MC_HFDECAYS::analyze(Rivet::Event const&) () from /afs/cern.ch/user/m/marsella/public/recoil/RivetMC_HFDECAYS.so
+#8  0x00007f62715c41ce in Rivet::AnalysisHandler::analyze(HepMC3::GenEvent&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/MCGenerators/rivet/4.0.2-f735a/x86_64-el9-gcc13-opt/lib/libRivet.so
+#9  0x00007f628a6edb44 in Rivet_i::execute() () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libRivet_i.so
+#10 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#11 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#12 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#13 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#14 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#15 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#16 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#17 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#18 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#19 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#20 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#21 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#22 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#23 0x00007f628b44423f in AthenaEventLoopMgr::executeAlgorithms(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#24 0x00007f628b44c207 in AthenaEventLoopMgr::executeEvent(EventContext&&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#25 0x00007f628b449fd0 in AthenaEventLoopMgr::nextEvent(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#26 0x00007f628b44563d in AthenaEventLoopMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#27 0x00007f628b9a81b5 in ApplicationMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiCoreSvc.so
+#28 0x00007f626f033017 in ?? ()
+#29 0x00007fff1b01ae50 in ?? ()
+#30 0x00007fff1b01ae50 in ?? ()
+#31 0x0000000000000001 in ?? ()
+#32 0x0000000022ab1000 in ?? ()
+#33 0x0000000000000001 in ?? ()
+#34 0x00007f62ad63bd35 in WrapperCall(long, unsigned long, void*, void*, void*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#35 0x00007f62ad63cab0 in Cppyy::CallO(long, void*, unsigned long, void*, unsigned long) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#36 0x00007f629000c982 in CPyCppyy::(anonymous namespace)::InstanceExecutor::Execute(long, void*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#37 0x00007f628fff1677 in CPyCppyy::CPPMethod::ExecuteFast(void*, long, CPyCppyy::CallContext*) [clone .isra.0] () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#38 0x00007f628fff16e6 in CPyCppyy::CPPMethod::Execute(void*, long, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#39 0x00007f628fff180b in CPyCppyy::CPPMethod::Call(CPyCppyy::CPPInstance*&, _object* const*, unsigned long, _object*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#40 0x00007f628fff938c in CPyCppyy::(anonymous namespace)::mp_vectorcall(CPyCppyy::CPPOverload*, _object* const*, unsigned long, _object*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#41 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99410, callable=0x7f628f36d2c0, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#42 PyObject_Vectorcall (callable=callable
+entry=0x7f628f36d2c0, args=args
+entry=0x7f62adf99410, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#43 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#44 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99308, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#45 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acbd9f80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#46 PyEval_EvalCode (co=co
+entry=0x31a3200, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#47 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x31a3200) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#48 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#49 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf992e0, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#50 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf992e0, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#51 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf992e0, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#52 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#53 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99228, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#54 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#55 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b430, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#56 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62acc08100, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#57 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62acc08100, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#58 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf991e0, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#59 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf991e0, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#60 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#61 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99188, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#62 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acd0d440, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#63 PyEval_EvalCode (co=co
+entry=0x2cbe000, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#64 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x2cbe000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#65 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#66 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf99160, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#67 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf99160, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#68 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf99160, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#69 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#70 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf990a8, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#71 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#72 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b9a0, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#73 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62ad363d60, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#74 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62ad363d60, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#75 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf99078, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#76 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99078, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#77 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#78 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99020, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#79 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62ad32da80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#80 PyEval_EvalCode (co=co
+entry=0x2d0ab00, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#81 0x00007f62ada97df9 in run_eval_code_obj (locals=0x7f62ad312b40, globals=0x7f62ad312b40, co=0x2d0ab00, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1741
+#82 run_mod (mod=<optimized out>, filename=filename
+entry=0x7f62ad32d9d0, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40, flags=flags
+entry=0x7fff1b01bd68, arena=arena
+entry=0x7f62ad71bb70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1762
+#83 0x00007f62ada9969a in pyrun_file (flags=0x7fff1b01bd68, closeit=1, locals=0x7f62ad312b40, globals=0x7f62ad312b40, start=257, filename=0x7f62ad32d9d0, fp=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1657
+#84 _PyRun_SimpleFileObject (fp=fp
+entry=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:440
+#85 0x00007f62ada99d0c in _PyRun_AnyFileObject (fp=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:79
+#86 0x00007f62adab9bc0 in pymain_run_file_obj (skip_source_first_line=0, filename=0x7f62ad32d9d0, program_name=0x7f62ad7598f0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:360
+#87 pymain_run_file (config=0x7f62add606c0 <_PyRuntime+59904>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:379
+#88 pymain_run_python (exitcode=0x7fff1b01bd64) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:601
+#89 Py_RunMain () at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:680
+#90 0x00007f62adaba117 in pymain_main (args=0x7fff1b01be70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:710
+#91 Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:734
+#92 0x00007f62ad42a610 in __libc_start_call_main () from /lib64/libc.so.6
+#93 0x00007f62ad42a6c0 in __libc_start_main_impl () from /lib64/libc.so.6
+#94 0x0000000000401075 in _start ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash. If you see question
+marks as part of the stack trace, try to recompile with debugging information
+enabled and export CLING_DEBUG=1 environment variable before running.
+You may get help by asking at the ROOT forum https://root.cern/forum
+preferably using the command (.forum bug) in the ROOT prompt.
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern/bugs or (preferably) using the command (.gh bug) in
+the ROOT prompt. Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#7  0x00007f62654b00c5 in Rivet::MC_HFDECAYS::analyze(Rivet::Event const&) () from /afs/cern.ch/user/m/marsella/public/recoil/RivetMC_HFDECAYS.so
+#8  0x00007f62715c41ce in Rivet::AnalysisHandler::analyze(HepMC3::GenEvent&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/MCGenerators/rivet/4.0.2-f735a/x86_64-el9-gcc13-opt/lib/libRivet.so
+#9  0x00007f628a6edb44 in Rivet_i::execute() () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libRivet_i.so
+#10 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#11 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#12 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#13 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#14 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#15 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#16 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#17 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#18 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#19 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#20 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#21 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#22 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#23 0x00007f628b44423f in AthenaEventLoopMgr::executeAlgorithms(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#24 0x00007f628b44c207 in AthenaEventLoopMgr::executeEvent(EventContext&&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#25 0x00007f628b449fd0 in AthenaEventLoopMgr::nextEvent(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#26 0x00007f628b44563d in AthenaEventLoopMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#27 0x00007f628b9a81b5 in ApplicationMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiCoreSvc.so
+#28 0x00007f626f033017 in ?? ()
+#29 0x00007fff1b01ae50 in ?? ()
+#30 0x00007fff1b01ae50 in ?? ()
+#31 0x0000000000000001 in ?? ()
+#32 0x0000000022ab1000 in ?? ()
+#33 0x0000000000000001 in ?? ()
+#34 0x00007f62ad63bd35 in WrapperCall(long, unsigned long, void*, void*, void*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#35 0x00007f62ad63cab0 in Cppyy::CallO(long, void*, unsigned long, void*, unsigned long) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#36 0x00007f629000c982 in CPyCppyy::(anonymous namespace)::InstanceExecutor::Execute(long, void*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#37 0x00007f628fff1677 in CPyCppyy::CPPMethod::ExecuteFast(void*, long, CPyCppyy::CallContext*) [clone .isra.0] () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#38 0x00007f628fff16e6 in CPyCppyy::CPPMethod::Execute(void*, long, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#39 0x00007f628fff180b in CPyCppyy::CPPMethod::Call(CPyCppyy::CPPInstance*&, _object* const*, unsigned long, _object*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#40 0x00007f628fff938c in CPyCppyy::(anonymous namespace)::mp_vectorcall(CPyCppyy::CPPOverload*, _object* const*, unsigned long, _object*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#41 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99410, callable=0x7f628f36d2c0, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#42 PyObject_Vectorcall (callable=callable
+entry=0x7f628f36d2c0, args=args
+entry=0x7f62adf99410, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#43 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#44 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99308, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#45 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acbd9f80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#46 PyEval_EvalCode (co=co
+entry=0x31a3200, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#47 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x31a3200) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#48 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#49 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf992e0, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#50 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf992e0, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#51 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf992e0, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#52 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#53 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99228, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#54 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#55 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b430, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#56 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62acc08100, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#57 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62acc08100, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#58 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf991e0, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#59 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf991e0, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#60 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#61 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99188, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#62 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acd0d440, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#63 PyEval_EvalCode (co=co
+entry=0x2cbe000, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#64 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x2cbe000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#65 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#66 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf99160, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#67 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf99160, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#68 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf99160, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#69 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#70 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf990a8, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#71 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#72 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b9a0, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#73 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62ad363d60, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#74 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62ad363d60, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#75 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf99078, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#76 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99078, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#77 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#78 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99020, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#79 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62ad32da80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#80 PyEval_EvalCode (co=co
+entry=0x2d0ab00, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#81 0x00007f62ada97df9 in run_eval_code_obj (locals=0x7f62ad312b40, globals=0x7f62ad312b40, co=0x2d0ab00, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1741
+#82 run_mod (mod=<optimized out>, filename=filename
+entry=0x7f62ad32d9d0, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40, flags=flags
+entry=0x7fff1b01bd68, arena=arena
+entry=0x7f62ad71bb70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1762
+#83 0x00007f62ada9969a in pyrun_file (flags=0x7fff1b01bd68, closeit=1, locals=0x7f62ad312b40, globals=0x7f62ad312b40, start=257, filename=0x7f62ad32d9d0, fp=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1657
+#84 _PyRun_SimpleFileObject (fp=fp
+entry=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:440
+#85 0x00007f62ada99d0c in _PyRun_AnyFileObject (fp=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:79
+#86 0x00007f62adab9bc0 in pymain_run_file_obj (skip_source_first_line=0, filename=0x7f62ad32d9d0, program_name=0x7f62ad7598f0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:360
+#87 pymain_run_file (config=0x7f62add606c0 <_PyRuntime+59904>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:379
+#88 pymain_run_python (exitcode=0x7fff1b01bd64) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:601
+#89 Py_RunMain () at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:680
+#90 0x00007f62adaba117 in pymain_main (args=0x7fff1b01be70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:710
+#91 Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:734
+#92 0x00007f62ad42a610 in __libc_start_call_main () from /lib64/libc.so.6
+#93 0x00007f62ad42a6c0 in __libc_start_main_impl () from /lib64/libc.so.6
+#94 0x0000000000401075 in _start ()
+===========================================================
+
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+
+Thread 15 (Thread 0x7f62675de640 (LWP 3815937) "athena.py"):
+#0  0x00007f62ad48867a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007f62ad4937d8 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x00007f626e388406 in XrdSysSemaphore::Wait (this=0x1c7bc580) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.hh:509
+#3  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x1c7a0768) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClSyncQueue.hh:66
+#4  XrdCl::JobManager::RunJobs (this=0x1c7a0750) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:151
+#5  0x00007f626e3884b9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:34
+#6  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#7  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 14 (Thread 0x7f6267ddf640 (LWP 3815936) "athena.py"):
+#0  0x00007f62ad48867a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007f62ad4937d8 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x00007f626e388406 in XrdSysSemaphore::Wait (this=0x1c7bc580) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.hh:509
+#3  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x1c7a0768) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClSyncQueue.hh:66
+#4  XrdCl::JobManager::RunJobs (this=0x1c7a0750) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:151
+#5  0x00007f626e3884b9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:34
+#6  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#7  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 13 (Thread 0x7f62685e0640 (LWP 3815935) "athena.py"):
+#0  0x00007f62ad48867a in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007f62ad4937d8 in __new_sem_wait_slow64.constprop.0 () from /lib64/libc.so.6
+#2  0x00007f626e388406 in XrdSysSemaphore::Wait (this=0x1c7bc580) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.hh:509
+#3  XrdCl::SyncQueue<XrdCl::JobManager::JobHelper>::Get (this=0x1c7a0768) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClSyncQueue.hh:66
+#4  XrdCl::JobManager::RunJobs (this=0x1c7a0750) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:151
+#5  0x00007f626e3884b9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClJobManager.cc:34
+#6  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#7  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 12 (Thread 0x7f6268de1640 (LWP 3815934) "athena.py"):
+#0  0x00007f62ad4d5c65 in clock_nanosleep
+GLIBC_2.2.5 () from /lib64/libc.so.6
+#1  0x00007f62ad4da717 in nanosleep () from /lib64/libc.so.6
+#2  0x00007f626e4cd7e8 in XrdSysTimer::Wait (mills=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysTimer.cc:239
+#3  0x00007f626e306df6 in XrdCl::TaskManager::RunTasks (this=0xee6d4a0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClTaskManager.cc:246
+#4  0x00007f626e306ef9 in RunRunnerThread (arg=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdCl/XrdClTaskManager.cc:38
+#5  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#6  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 11 (Thread 0x7f62695e2640 (LWP 3815933) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0c30, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bcc40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 10 (Thread 0x7f6269de3640 (LWP 3815931) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0b60, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bc860) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 9 (Thread 0x7f626a5e4640 (LWP 3815930) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0a90, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c775360) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 8 (Thread 0x7f626ade5640 (LWP 3815929) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a09c0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bcd00) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 7 (Thread 0x7f626b5e6640 (LWP 3815928) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0000, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bc600) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 6 (Thread 0x7f626bde7640 (LWP 3815927) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a05b0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c775340) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 5 (Thread 0x7f626c5e8640 (LWP 3815925) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a04e0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7753c0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 4 (Thread 0x7f626cde9640 (LWP 3815924) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0820, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7758e0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 3 (Thread 0x7f626d5ea640 (LWP 3815923) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a08f0, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c7bc680) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 2 (Thread 0x7f626ddeb640 (LWP 3815922) "athena.py"):
+#0  0x00007f62ad50fede in epoll_wait () from /lib64/libc.so.6
+#1  0x00007f626e4c7dca in XrdSys::IOEvents::PollE::Begin (this=0x1c7a0680, syncsem=<optimized out>, retcode=<optimized out>, eTxt=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEventsPollE.icc:211
+#2  0x00007f626e4c3f5d in XrdSys::IOEvents::BootStrap::Start (parg=0x7fff1b012000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysIOEvents.cc:149
+#3  0x00007f626e4ccef7 in XrdSysThread_Xeq (myargs=0x1c775900) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/xrootd-5.7.1/src/xrootd/5.7.1/src/XrdSys/XrdSysPthread.cc:86
+#4  0x00007f62ad48b699 in start_thread () from /lib64/libc.so.6
+#5  0x00007f62ad5108a0 in clone3 () from /lib64/libc.so.6
+
+Thread 1 (Thread 0x7f62ade7eec0 (LWP 3791288) "athena.py"):
+#0  0x00007f62ad4da4cf in wait4 () from /lib64/libc.so.6
+#1  0x00007f62ad44f4b3 in do_system () from /lib64/libc.so.6
+#2  0x00007f62ac513fcb in TUnixSystem::StackTrace() () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libCore.so
+#3  0x00007f62ad63b483 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#4  0x00007f62ac5137f1 in TUnixSystem::DispatchSignals(ESignals) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libCore.so
+#5  0x00007f628b4c4f84 in CoreDumpSvcHandler::action(int, siginfo_t*, void*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#6  <signal handler called>
+#7  0x00007f62654b00c5 in Rivet::MC_HFDECAYS::analyze(Rivet::Event const&) () from /afs/cern.ch/user/m/marsella/public/recoil/RivetMC_HFDECAYS.so
+#8  0x00007f62715c41ce in Rivet::AnalysisHandler::analyze(HepMC3::GenEvent&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/MCGenerators/rivet/4.0.2-f735a/x86_64-el9-gcc13-opt/lib/libRivet.so
+#9  0x00007f628a6edb44 in Rivet_i::execute() () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libRivet_i.so
+#10 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#11 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#12 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#13 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#14 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#15 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#16 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#17 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#18 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#19 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#20 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#21 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#22 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#23 0x00007f628b44423f in AthenaEventLoopMgr::executeAlgorithms(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#24 0x00007f628b44c207 in AthenaEventLoopMgr::executeEvent(EventContext&&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#25 0x00007f628b449fd0 in AthenaEventLoopMgr::nextEvent(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#26 0x00007f628b44563d in AthenaEventLoopMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#27 0x00007f628b9a81b5 in ApplicationMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiCoreSvc.so
+#28 0x00007f626f033017 in ?? ()
+#29 0x00007fff1b01ae50 in ?? ()
+#30 0x00007fff1b01ae50 in ?? ()
+#31 0x0000000000000001 in ?? ()
+#32 0x0000000022ab1000 in ?? ()
+#33 0x0000000000000001 in ?? ()
+#34 0x00007f62ad63bd35 in WrapperCall(long, unsigned long, void*, void*, void*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#35 0x00007f62ad63cab0 in Cppyy::CallO(long, void*, unsigned long, void*, unsigned long) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#36 0x00007f629000c982 in CPyCppyy::(anonymous namespace)::InstanceExecutor::Execute(long, void*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#37 0x00007f628fff1677 in CPyCppyy::CPPMethod::ExecuteFast(void*, long, CPyCppyy::CallContext*) [clone .isra.0] () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#38 0x00007f628fff16e6 in CPyCppyy::CPPMethod::Execute(void*, long, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#39 0x00007f628fff180b in CPyCppyy::CPPMethod::Call(CPyCppyy::CPPInstance*&, _object* const*, unsigned long, _object*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#40 0x00007f628fff938c in CPyCppyy::(anonymous namespace)::mp_vectorcall(CPyCppyy::CPPOverload*, _object* const*, unsigned long, _object*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#41 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99410, callable=0x7f628f36d2c0, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#42 PyObject_Vectorcall (callable=callable
+entry=0x7f628f36d2c0, args=args
+entry=0x7f62adf99410, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#43 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#44 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99308, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#45 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acbd9f80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#46 PyEval_EvalCode (co=co
+entry=0x31a3200, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#47 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x31a3200) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#48 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#49 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf992e0, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#50 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf992e0, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#51 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf992e0, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#52 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#53 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99228, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#54 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#55 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b430, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#56 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62acc08100, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#57 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62acc08100, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#58 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf991e0, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#59 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf991e0, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#60 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#61 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99188, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#62 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acd0d440, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#63 PyEval_EvalCode (co=co
+entry=0x2cbe000, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#64 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x2cbe000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#65 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#66 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf99160, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#67 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf99160, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#68 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf99160, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#69 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#70 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf990a8, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#71 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#72 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b9a0, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#73 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62ad363d60, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#74 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62ad363d60, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#75 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf99078, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#76 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99078, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#77 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#78 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99020, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#79 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62ad32da80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#80 PyEval_EvalCode (co=co
+entry=0x2d0ab00, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#81 0x00007f62ada97df9 in run_eval_code_obj (locals=0x7f62ad312b40, globals=0x7f62ad312b40, co=0x2d0ab00, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1741
+#82 run_mod (mod=<optimized out>, filename=filename
+entry=0x7f62ad32d9d0, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40, flags=flags
+entry=0x7fff1b01bd68, arena=arena
+entry=0x7f62ad71bb70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1762
+#83 0x00007f62ada9969a in pyrun_file (flags=0x7fff1b01bd68, closeit=1, locals=0x7f62ad312b40, globals=0x7f62ad312b40, start=257, filename=0x7f62ad32d9d0, fp=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1657
+#84 _PyRun_SimpleFileObject (fp=fp
+entry=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:440
+#85 0x00007f62ada99d0c in _PyRun_AnyFileObject (fp=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:79
+#86 0x00007f62adab9bc0 in pymain_run_file_obj (skip_source_first_line=0, filename=0x7f62ad32d9d0, program_name=0x7f62ad7598f0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:360
+#87 pymain_run_file (config=0x7f62add606c0 <_PyRuntime+59904>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:379
+#88 pymain_run_python (exitcode=0x7fff1b01bd64) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:601
+#89 Py_RunMain () at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:680
+#90 0x00007f62adaba117 in pymain_main (args=0x7fff1b01be70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:710
+#91 Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:734
+#92 0x00007f62ad42a610 in __libc_start_call_main () from /lib64/libc.so.6
+#93 0x00007f62ad42a6c0 in __libc_start_main_impl () from /lib64/libc.so.6
+#94 0x0000000000401075 in _start ()
+===========================================================
+
+
+The lines below might hint at the cause of the crash. If you see question
+marks as part of the stack trace, try to recompile with debugging information
+enabled and export CLING_DEBUG=1 environment variable before running.
+You may get help by asking at the ROOT forum https://root.cern/forum
+preferably using the command (.forum bug) in the ROOT prompt.
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at https://root.cern/bugs or (preferably) using the command (.gh bug) in
+the ROOT prompt. Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#7  0x00007f62654b00c5 in Rivet::MC_HFDECAYS::analyze(Rivet::Event const&) () from /afs/cern.ch/user/m/marsella/public/recoil/RivetMC_HFDECAYS.so
+#8  0x00007f62715c41ce in Rivet::AnalysisHandler::analyze(HepMC3::GenEvent&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/MCGenerators/rivet/4.0.2-f735a/x86_64-el9-gcc13-opt/lib/libRivet.so
+#9  0x00007f628a6edb44 in Rivet_i::execute() () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libRivet_i.so
+#10 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#11 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#12 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#13 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#14 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#15 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#16 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#17 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#18 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#19 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#20 0x00007f628a7ac85f in AthSequencer::executeAlgorithm(Gaudi::Algorithm*, EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#21 0x00007f628a7acc56 in AthSequencer::execute(EventContext const&) const () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiSequencer.so
+#22 0x00007f628ee52d90 in Gaudi::Algorithm::sysExecute(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiKernel.so
+#23 0x00007f628b44423f in AthenaEventLoopMgr::executeAlgorithms(EventContext const&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#24 0x00007f628b44c207 in AthenaEventLoopMgr::executeEvent(EventContext&&) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#25 0x00007f628b449fd0 in AthenaEventLoopMgr::nextEvent(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#26 0x00007f628b44563d in AthenaEventLoopMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGeneration/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libAthenaServices.so
+#27 0x00007f628b9a81b5 in ApplicationMgr::executeRun(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/AthGenerationExternals/23.6.40/InstallArea/x86_64-el9-gcc13-opt/lib/libGaudiCoreSvc.so
+#28 0x00007f626f033017 in ?? ()
+#29 0x00007fff1b01ae50 in ?? ()
+#30 0x00007fff1b01ae50 in ?? ()
+#31 0x0000000000000001 in ?? ()
+#32 0x0000000022ab1000 in ?? ()
+#33 0x0000000000000001 in ?? ()
+#34 0x00007f62ad63bd35 in WrapperCall(long, unsigned long, void*, void*, void*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#35 0x00007f62ad63cab0 in Cppyy::CallO(long, void*, unsigned long, void*, unsigned long) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
+#36 0x00007f629000c982 in CPyCppyy::(anonymous namespace)::InstanceExecutor::Execute(long, void*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#37 0x00007f628fff1677 in CPyCppyy::CPPMethod::ExecuteFast(void*, long, CPyCppyy::CallContext*) [clone .isra.0] () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#38 0x00007f628fff16e6 in CPyCppyy::CPPMethod::Execute(void*, long, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#39 0x00007f628fff180b in CPyCppyy::CPPMethod::Call(CPyCppyy::CPPInstance*&, _object* const*, unsigned long, _object*, CPyCppyy::CallContext*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#40 0x00007f628fff938c in CPyCppyy::(anonymous namespace)::mp_vectorcall(CPyCppyy::CPPOverload*, _object* const*, unsigned long, _object*) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy.so
+#41 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99410, callable=0x7f628f36d2c0, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#42 PyObject_Vectorcall (callable=callable
+entry=0x7f628f36d2c0, args=args
+entry=0x7f62adf99410, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#43 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#44 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99308, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#45 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acbd9f80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#46 PyEval_EvalCode (co=co
+entry=0x31a3200, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#47 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x31a3200) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#48 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#49 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf992e0, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#50 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf992e0, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#51 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf992e0, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#52 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#53 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99228, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#54 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#55 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b430, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#56 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62acc08100, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#57 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62acc08100, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#58 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf991e0, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#59 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf991e0, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#60 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#61 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99188, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#62 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62acd0d440, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#63 PyEval_EvalCode (co=co
+entry=0x2cbe000, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#64 0x00007f62ada4a620 in builtin_exec_impl (module=<optimized out>, closure=<optimized out>, locals=0x7f62ad312b40, globals=0x7f62ad312b40, source=0x2cbe000) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/bltinmodule.c:1077
+#65 builtin_exec (module=<optimized out>, args=<optimized out>, nargs=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/clinic/bltinmodule.c.h:465
+#66 0x00007f62ad9a78f2 in cfunction_vectorcall_FASTCALL_KEYWORDS (func=0x7f62ad788f90, args=0x7f62adf99160, nargsf=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/methodobject.c:443
+#67 0x00007f62ad958ae3 in _PyObject_VectorcallTstate (kwnames=0x7f62ada4f754 <PyEval_EvalCode+548>, nargsf=<optimized out>, args=0x7f62adf99160, callable=0x7f62ad788f90, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:92
+#68 PyObject_Vectorcall (callable=callable
+entry=0x7f62ad788f90, args=args
+entry=0x7f62adf99160, nargsf=<optimized out>, kwnames=kwnames
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:299
+#69 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#70 0x00007f62ada4f8b0 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf990a8, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#71 _PyEval_Vector (tstate=0x7f62add7a678 <_PyRuntime+166328>, func=<optimized out>, locals=<optimized out>, args=<optimized out>, argcount=<optimized out>, kwnames=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#72 0x00007f62ad9586c6 in _PyObject_FastCallDictTstate (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, args=args
+entry=0x7fff1b01b9a0, nargsf=nargsf
+entry=2, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:141
+#73 0x00007f62ad9589b0 in _PyObject_Call_Prepend (tstate=tstate
+entry=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdfe340, obj=obj
+entry=0x7f62acdf9750, args=args
+entry=0x7f62ad363d60, kwargs=kwargs
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:482
+#74 0x00007f62ad9c8c28 in slot_tp_call (self=0x7f62acdf9750, args=0x7f62ad363d60, kwds=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/typeobject.c:7624
+#75 0x00007f62ad95855d in _PyObject_MakeTpCall (tstate=0x7f62add7a678 <_PyRuntime+166328>, callable=callable
+entry=0x7f62acdf9750, args=args
+entry=0x7f62adf99078, nargs=1, keywords=keywords
+entry=0x0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Objects/call.c:214
+#76 0x00007f62ad958b1f in _PyObject_VectorcallTstate (kwnames=0x0, nargsf=<optimized out>, args=0x7f62adf99078, callable=0x7f62acdf9750, tstate=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_call.h:90
+#77 0x00007f62ad8fd86f in _PyEval_EvalFrameDefault (tstate=<optimized out>, frame=<optimized out>, throwflag=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:4769
+#78 0x00007f62ada4f754 in _PyEval_EvalFrame (throwflag=0, frame=0x7f62adf99020, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Include/internal/pycore_ceval.h:73
+#79 _PyEval_Vector (args=0x0, argcount=0, kwnames=0x0, locals=0x7f62ad312b40, func=0x7f62ad32da80, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:6434
+#80 PyEval_EvalCode (co=co
+entry=0x2d0ab00, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/ceval.c:1148
+#81 0x00007f62ada97df9 in run_eval_code_obj (locals=0x7f62ad312b40, globals=0x7f62ad312b40, co=0x2d0ab00, tstate=0x7f62add7a678 <_PyRuntime+166328>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1741
+#82 run_mod (mod=<optimized out>, filename=filename
+entry=0x7f62ad32d9d0, globals=globals
+entry=0x7f62ad312b40, locals=locals
+entry=0x7f62ad312b40, flags=flags
+entry=0x7fff1b01bd68, arena=arena
+entry=0x7f62ad71bb70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1762
+#83 0x00007f62ada9969a in pyrun_file (flags=0x7fff1b01bd68, closeit=1, locals=0x7f62ad312b40, globals=0x7f62ad312b40, start=257, filename=0x7f62ad32d9d0, fp=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:1657
+#84 _PyRun_SimpleFileObject (fp=fp
+entry=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:440
+#85 0x00007f62ada99d0c in _PyRun_AnyFileObject (fp=0x2baa1e0, filename=filename
+entry=0x7f62ad32d9d0, closeit=closeit
+entry=1, flags=flags
+entry=0x7fff1b01bd68) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Python/pythonrun.c:79
+#86 0x00007f62adab9bc0 in pymain_run_file_obj (skip_source_first_line=0, filename=0x7f62ad32d9d0, program_name=0x7f62ad7598f0) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:360
+#87 pymain_run_file (config=0x7f62add606c0 <_PyRuntime+59904>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:379
+#88 pymain_run_python (exitcode=0x7fff1b01bd64) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:601
+#89 Py_RunMain () at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:680
+#90 0x00007f62adaba117 in pymain_main (args=0x7fff1b01be70) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:710
+#91 Py_BytesMain (argc=<optimized out>, argv=<optimized out>) at /build/jenkins/workspace/lcg_release_pipeline/build/externals/Python-3.11.9/src/Python/3.11.9/Modules/main.c:734
+#92 0x00007f62ad42a610 in __libc_start_call_main () from /lib64/libc.so.6
+#93 0x00007f62ad42a6c0 in __libc_start_main_impl () from /lib64/libc.so.6
+#94 0x0000000000401075 in _start ()
+===========================================================
+
+
