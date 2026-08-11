@@ -102,7 +102,7 @@ namespace Rivet {
         book(_h["c_jet_l_pT"], "lepton_pT_C_jets", 10, 0., 100.);
         //questi due qui sotto li ho aggiunti io:
 	book(_h["jetb_1_cljetl_dR"], "jetb_1_closestlightjet_dR", 35, 0., 7.);
-	book(_h["jetb_2_cljet2_dR"], "jetb_2_closestlightjet_dR", 35, 0., 7.);
+	book(_h["jetb_2_cljetl_dR"], "jetb_2_closestlightjet_dR", 35, 0., 7.);
         // double-differentials
         vector<double> groupEdges = ptaxis.edges(); // includes +/- inf
         groupEdges.erase(groupEdges.begin()); groupEdges.pop_back(); // removes +/- inf
@@ -278,15 +278,7 @@ namespace Rivet {
 	   //Particles ljets = thisJet.lTags(Cuts::pT > 5*GeV);
           //iselect(ljets, deltaRLess(thisJet, 0.3)); //in queste due righe ho dichiarato i light jet
          //non posso usare questo formalismo perché rivet non ha lTags al suo interno: devo definire quindi i lilght jets come getti che non sono né b tagged né c tagged, con questo codice che riadatto da MC_TTBAR:  
-      Jets b_jets, l_jets;
-for (const Jet& jet : jets) {
-    if (jet.bTagged())
-        b_jets += jet;
-    else if (!jet.cTagged())
-        l_jets += jet;
-}  
-//MI è NECESSARIO COSTRUIRE B_JETS OLTRE A L_JETS PERCHè IL BJETS CHE AVEVO PRIMA NON ERA UNA COLLEZIONE DEI BJET DI UN EVENTO MA ERA L'INSIEME DELLE PARTICELLE DI UN JET B-TAGGED, QUINDI appunto era linsieme di cose che costituisce un singolo jet. Dato che devo confrontare pere con pere, è bene avere oggetti analoghi perché sennò rischio che il codice crashi se vado a usare oggetti definiti diversamente. 
-//
+      
           if (bjets.size()) {
             double W_num = 0., W_den = 0.;
             long N_charged = 0;
@@ -331,8 +323,20 @@ for (const Jet& jet : jets) {
               _g["avg_C_jet_ch_mult"]->fill(thisJet.pT()/GeV, (double)N_charged);
             }
           } 
-	  ///qui sto aggiungendo il calcolo del numero di particelle stabili e cariche all'interno dei light jets e altri istogrammi relativi ai light jets:
-	  else if (l_jets.size()) {
+	}
+	///qui sto aggiungendo il calcolo del numero di particelle stabili e cariche all'interno dei light jets e altri istogrammi relativi ai light jets:
+
+Jets b_jets, l_jets;
+for (const Jet& jet : jets) {
+    if (jet.bTagged())
+        b_jets += jet;
+    else if (!jet.cTagged())
+        l_jets += jet;
+}
+//MI è NECESSARIO COSTRUIRE B_JETS OLTRE A L_JETS PERCHè IL BJETS CHE AVEVO PRIMA NON ERA UNA COLLEZIONE DEI BJET DI UN EVENTO MA ERA L'INSIEME DELLE PARTICELLE DI UN JET B-TAGGED, QUINDI appunto era linsieme di cose che costituisce un singolo jet. Dato che devo confrontare pere con pere, è bene avere oggetti analoghi perché sennò rischio che il codice crashi se vado a usare oggetti definiti diversamente.
+	  
+       
+	if (l_jets.size()) {
                  double W_num = 0., W_den = 0.;
             long N_charged = 0;
             for (const Particle& pp : thisJet.particles()) {
@@ -377,23 +381,31 @@ for (const Jet& jet : jets) {
   //    }
        //qui finisce il blocco aggiunto
 
-        }
-      }
-
+}
+ }
+}
       /// Normalise histograms etc., after the run
+     //qui metto una versione modificata di void finalize che mi dia come output NULL HISTOGRAM = nome istogramma problematico. Per il resto dovrebbe essere equivalente al blocco che c'era prima. 
      void finalize() {
-	     for (const auto &hit : _h) {
-               double sf = 1.0;
-       if (hit.first.find("bar_") != string::npos) {  
-	 sf = (hit.second->xMax()-hit.second->xMin())/hit.second->numBins();          }
-	 normalize(hit.second, sf);
-	     }
-		   for (const auto &grp : _g) {
-		      if (grp.second->numEntries() > 0)
-		         normalize(grp.second);
-	  }	      
-		
-			            }
+
+    for (const auto &hit : _h) {
+
+        if (!hit.second) {
+            MSG_WARNING("NULL histogram: " + hit.first);
+            continue;
+        }
+
+        double sf = 1.0;
+
+        if (hit.first.find("bar_") != string::npos) {
+            sf = (hit.second->xMax() - hit.second->xMin())
+               / hit.second->numBins();
+        }
+
+        normalize(hit.second, sf);
+    }
+    normalize(_g);
+}
 
 
     private:
