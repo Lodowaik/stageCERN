@@ -1,11 +1,4 @@
-//MC_HFDECAYS.cc[marsella@lxplus921 recoil]$ grep -E "leaving with code|FATAL|ERROR|Traceback|Exception|Segmentation|abort" rivet.log | tail -30
-Preloading libexcabort.so
-(pid=3791288 ppid=3381694) received fatal signal 11 (Segmentation fault)
-CoreDumpSvc   FATAL Caught fatal signal. Printing details to stdout.
-Caught signal 11(Segmentation fault). Details:
-#3  0x00007f62ad63b603 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
-#3  0x00007f62ad63b483 in (anonymous namespace)::TExceptionHandlerImp::HandleException(int) () from /cvmfs/atlas.cern.ch/repo/sw/software/23.6/sw/lcg/releases/LCG_106a_ATLAS_5/ROOT/6.32.06/x86_64-el9-gcc13-opt/lib/libcppyy_backend.so
-[marsella@lxplus921 recoil]$
+//MC_HFDECAYS.cc (modificato)
 
 //Monte Carlo validation observables for heavy-flavour decays
 //a quanto dice Matilde, sia questa che MC_HFJETS hanno entrambi distribuzioni utili come b fragmentation function e jet shapes
@@ -17,35 +10,12 @@ Caught signal 11(Segmentation fault). Details:
 #include "Rivet/Projections/HeavyHadrons.hh"
 
 namespace Rivet {
-
-
-    class MC_HFDECAYS : public Analysis {
-    public:
-
-      /// Constructor
-//Monte Carlo validation observables for heavy-flavour decays
-//a quanto dice Matilde, sia questa che MC_HFJETS hanno entrambi distribuzioni utili come b fragmentation function e jet shapes
-
-// -*- C++ -*-
-#include "Rivet/Analysis.hh"
-#include "Rivet/Projections/FinalState.hh"
-#include "Rivet/Projections/FastJets.hh"
-#include "Rivet/Projections/HeavyHadrons.hh"
-
-namespace Rivet {
-
 
     class MC_HFDECAYS : public Analysis {
     public:
 
       /// Constructor
       RIVET_DEFAULT_ANALYSIS_CTOR(MC_HFDECAYS);
-
-      const string whoDis(const int pid) const {
-        switch (pid) {
-          case PID::B0:           return "B0";
-          case PID::BPLUS:        return "BPLUS";
-                                                              RIVET_DEFAULT_ANALYSIS_CTOR(MC_HFDECAYS);
 
       const string whoDis(const int pid) const {
         switch (pid) {
@@ -307,17 +277,16 @@ namespace Rivet {
 
 	   //Particles ljets = thisJet.lTags(Cuts::pT > 5*GeV);
           //iselect(ljets, deltaRLess(thisJet, 0.3)); //in queste due righe ho dichiarato i light jet
-         //non posso usare questo formalismo perché rivet non ha lTags al suo interno: devo definire quindi i lilght jets come getti che non sono né b tagged né c tagged, con questo codice che riadatto da MC_TTBAR:
-         Jets heavyjets, ljets;
-      for (const Jet& jet : jets) {
-        if (jet.bTagged() || jet.cTagged())
-          heavyjets += jet;
-        else
-          ljets += jet;
-      }
-//poi di fatto sto heavyjets non lo uso ma è mi serve per comodità
-
-
+         //non posso usare questo formalismo perché rivet non ha lTags al suo interno: devo definire quindi i lilght jets come getti che non sono né b tagged né c tagged, con questo codice che riadatto da MC_TTBAR:  
+      Jets b_jets, l_jets;
+for (const Jet& jet : jets) {
+    if (jet.bTagged())
+        b_jets += jet;
+    else if (!jet.cTagged())
+        l_jets += jet;
+}  
+//MI è NECESSARIO COSTRUIRE B_JETS OLTRE A L_JETS PERCHè IL BJETS CHE AVEVO PRIMA NON ERA UNA COLLEZIONE DEI BJET DI UN EVENTO MA ERA L'INSIEME DELLE PARTICELLE DI UN JET B-TAGGED, QUINDI appunto era linsieme di cose che costituisce un singolo jet. Dato che devo confrontare pere con pere, è bene avere oggetti analoghi perché sennò rischio che il codice crashi se vado a usare oggetti definiti diversamente. 
+//
           if (bjets.size()) {
             double W_num = 0., W_den = 0.;
             long N_charged = 0;
@@ -363,7 +332,7 @@ namespace Rivet {
             }
           } 
 	  ///qui sto aggiungendo il calcolo del numero di particelle stabili e cariche all'interno dei light jets e altri istogrammi relativi ai light jets:
-	  else   {
+	  else if (l_jets.size()) {
                  double W_num = 0., W_den = 0.;
             long N_charged = 0;
             for (const Particle& pp : thisJet.particles()) {
@@ -382,15 +351,15 @@ namespace Rivet {
   }  ///qui finisce il blocco che ho aggiunto io
 
      ///qui inizia un altro blocco che ho aggiunto io
-     if (ljets.size() > 0) {
+     if (l_jets.size() > 0 && b_jets.size()>=2) {
 //codice corretto affinché std::min() funzioni (grazie chat): std::min() vuole due double come argomenti, mentre come lo facevo io il secondo argomento non era esattamente un double. Dichiarare così minDR_b1 vuol dire che all'inizio del ciclo assume il valore massimo possibile per un double. 
   double minDR_b1 = std::numeric_limits<double>::max();
   double minDR_b2 = std::numeric_limits<double>::max();
 
-  for (size_t i = 0; i < ljets.size(); ++i) {
+  for (size_t i = 0; i < l_jets.size(); ++i) {
 
-    double dR1 = deltaR(bjets[0].momentum(), ljets[i].momentum());
-    double dR2 = deltaR(bjets[1].momentum(), ljets[i].momentum());
+    double dR1 = deltaR(b_jets[0].momentum(), l_jets[i].momentum());
+    double dR2 = deltaR(b_jets[1].momentum(), l_jets[i].momentum());
     minDR_b1 = std::min(minDR_b1, dR1);
     minDR_b2 = std::min(minDR_b2, dR2);
   }
