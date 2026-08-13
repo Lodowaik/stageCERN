@@ -11,8 +11,10 @@
 #include "Rivet/Projections/UnstableParticles.hh"
 #include "Rivet/Projections/PrimaryHadrons.hh"
 #include "Rivet/Projections/HeavyHadrons.hh"
+#include "Rivet/Projections/IdentifiedFinalState.hh" //questo serve per elettroni e muoni
 #include <iostream> //questi due mi servono per fare i quadrati
 #include <cmath>
+#include <limits> //serve per inizializzare il chi2 a infinito
 
 namespace Rivet {
 
@@ -48,6 +50,18 @@ namespace Rivet {
       fj.useInvisibles();
       declare(fj, "Jets");
       declare(HeavyHadrons(Cuts::abseta < 5 && Cuts::pT > 500*MeV), "BCHadrons");
+      
+      //blocco aggiunto:
+       /// Get electrons from truth record
+      IdentifiedFinalState elec_fs(Cuts::abseta < 2.47 && Cuts::pT > 25 * GeV);
+      elec_fs.acceptIdPair(PID::ELECTRON);
+      declare(elec_fs, "ELEC_FS");
+
+      /// Get muons which pass the initial kinematic cuts:
+      IdentifiedFinalState muon_fs(Cuts::abseta < 2.5 && Cuts::pT > 20 * GeV);
+      muon_fs.acceptIdPair(PID::MUON);
+      declare(muon_fs, "MUON_FS");
+      //fine blocco aggiunto
 
       book(_h_ptCJetLead ,"ptCJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       book(_h_ptCHadrLead ,"ptCHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
@@ -60,7 +74,8 @@ namespace Rivet {
       book(_h_eFracB ,"efracB", 50, 0, 1.5);
         // BLOCCO AGGIUNTO DA ME 
       for (size_t d = 0; d < 5; ++d) {
-        book(_p_b_rho[d], d + 1, 1, 1);
+        book(_p_b_rho[d], d + 1, 1, 1);//iniziano con p e non con h perché
+	//sono profile1D, non Histogram1D
         book(_p_Wjets_rho[d], d + 1, 2, 1);
         book(_p_b_Psi[d], d + 1, 1, 2);
         book(_p_Wjets_Psi[d], d + 1, 2, 2);
@@ -72,8 +87,9 @@ namespace Rivet {
     void analyze(const Event& event) {
 
       // Get jets and heavy hadrons
-      const Jets& jets = apply<JetFinder>(event, "Jets").jetsByPt();
-      const Particles bhadrons = sortByPt(apply<HeavyHadrons>(event, "BCHadrons").bHadrons());
+    //  const Jets& jets = apply<JetFinder>(event, "Jets").jetsByPt();
+     const Jets& jets = apply<FastJets>(event, "JETS").jetsByPt(Cuts::pT > 7 * GeV);  //aggiunto il requisito sul pt minimo.
+	    const Particles bhadrons = sortByPt(apply<HeavyHadrons>(event, "BCHadrons").bHadrons());
       const Particles chadrons = sortByPt(apply<HeavyHadrons>(event, "BCHadrons").cHadrons());
       MSG_DEBUG("# b hadrons = " << bhadrons.size() << ", # c hadrons = " << chadrons.size());
 
@@ -101,7 +117,7 @@ namespace Rivet {
         }
         // Escape early if we've found both the leading b and c jets
         if (gotLeadingB && gotLeadingC) break;
-      }
+       }
     
     
     //qui inizia il blocco aggiunto da me
@@ -115,7 +131,8 @@ namespace Rivet {
 
       // Get all jets with pT > 7 GeV (ATLAS standard jet collection)
       /// @todo Why rewrite the jets collection as a vector of pointers?
-      const Jets& jets = apply<FastJets>(event, "JETS").jetsByPt(Cuts::pT > 7 * GeV);
+       //const Jets& fastjets = apply<FastJets>(event, "JETS").jetsByPt(Cuts::pT > 7 * GeV); 
+       // //questo lo silenzio perché jets era già stato dichiarato a riga 75 ma senza il requisito sul pt minimo. Metto quindi a riga 75 il requisito del pt minimo e mi tengo jets come nome. 
       vector<const Jet*> allJets;
       for (const Jet& j : jets) allJets.push_back(&j);
 
@@ -180,6 +197,8 @@ namespace Rivet {
       // Select b-jets as those containing a b-hadron
       /// @todo Use built-in dR < 0.3 Jet tagging, avoid HepMC
       vector<const Jet*> b_jets;
+      vector<const Jet*> c_jets;
+      vector<const Jet*> light_jets;
       for (const Jet* j : good_jets) {
         bool isbJet = false;
         for (ConstGenParticlePtr b : b_hadrons) {
@@ -204,125 +223,152 @@ namespace Rivet {
         if (isbJet && !isOverlapped) b_jets.push_back(j);
       }
       MSG_DEBUG(b_jets.size() << " b-jets selected");
+      //ora riempio c_jets e light_jets:
+      for (const Jet* j : good_jets) {
+	      bool isBJet = false;
+              bool isCJet = false;
 
-      //QUI DICHIARO I LIGHT JETS E I C-JETS
-      Jets c_jets, l_jets;
-for (const Jet& jet : good_jets) {
-    if (jet.cTagged())
-        c_jets += jet;
-    else if (!jet.cTagged() && !jet.bTagged)  //o dovrei costruire c_jets così come viene costruito b_jets cioè con c-hadron eccetera? boh intanto provo così
-        l_jets += jet;
+for (ConstGenParticlePtr b : b_hadrons) {
+    if (deltaR(j.momentum(), b->momentum()) < 0.3) {
+        isBJet = true;
+        break;
+    }
 }
 
+if (!isBJet) {
+    for (ConstGenParticlePtr c : c_hadrons) {
+        if (deltaR(j.momentum(), c->momentum()) < 0.3) {
+            isCJet = true;
+            break;
+        }
+    }
+}
 
+if (isBJet)
+    b_jets.push_back(&j);
+else if (isCJet)
+    c_jets.push_back(&j);
+else
+    light_jets.push_back(&j);
+    }
+
+//fin qui con le parentesi dovrebbe essere a posto
       // Select light-jets as the pair of non-b-jets with invariant mass closest to the W mass
      //IO INVECE VOGLIO TUTTI I JET PROVENIENTI DAL W. QUINDI RINOMINO W_JETS QUELLO CHE ERA LIGHT_JETS 
-      /// @todo Use built-in b-tagging (dR < 0.3 defn), avoid HepMC
-      const double nominalW = 80.4 * GeV;
-      const double nominalTop = 172.5 * GeV; //aggiunto da me - verificare che il dataset montecralo che sto usando abbia questo come input per la massa nominale del top.
-      double deltaM = 500 * GeV; //valore che di volta in volta si aggiorna per trovare la coppia di jet la cui massa invariante è la più vicina a quella del W
-      double deltaMass = 500 * GeV; //stessa cosa ma aggiunta da me così il ciclo non rischio che vada in trip
-      const Jet* jet1 = NULL;
-      const Jet* jet2 = NULL; // NB: const Jets, not const pointers!
-      const Jet* jet3 = NULL; //aggiunto da me nel caso in cui ci sia anche un jet da radiazione gluonica del b
-      for (const Jet* i : good_jets) {
-        bool isbJet1 = false;
-        for (ConstGenParticlePtr b : b_hadrons) {
-          /// @todo Use direct momentum accessor / delta functions
-          const FourMomentum hadron = b->momentum();
-          const double hadron_jet_dR = deltaR(i->momentum(), hadron);
-          if (hadron_jet_dR < 0.3) {
-            isbJet1 = true;
+//blocco sistemato nella logica ecc: inizia qui
+const double nominalW   = 80.4 * GeV;
+const double nominalTop = 172.5 * GeV;
+
+const double sigmaW = 25. * GeV; //natural width di W e T
+const double sigmaT = 35. * GeV;
+
+double bestChi2 = numeric_limits<double>::infinity();
+
+const Jet* bestJ1 = nullptr;
+const Jet* bestJ2 = nullptr;
+const Jet* bestB  = nullptr; 
+//in principio, non so a quale dei due b-jets è associato il W che
+// decade adronicamente (che è uno e non entrambi, dato che ho solo
+//  sample nonallhad/singlelep/dilep, quindi in effetti per questa
+//   routine mi è inutile produrre anche l'output di dilep) quindi debbo 
+//   ciclare anche su b_jets
+
+for (size_t a = 0; a < good_jets.size(); ++a) {
+
+    const Jet* j1 = good_jets[a];
+
+    // Do not use b jets as W candidates
+    bool isB1 = false;
+    for (ConstGenParticlePtr b : b_hadrons) {
+        if (deltaR(j1->momentum(), b->momentum()) < 0.3) {
+            isB1 = true;
             break;
-          }
         }
-        if (isbJet1) continue;
-        for (const Jet* j : good_jets) {
-          bool isbJet2 = false;
-          for (ConstGenParticlePtr b : b_hadrons) {
-            FourMomentum hadron = b->momentum();
-            double hadron_jet_dR = deltaR(j->momentum(), hadron);
-            if (hadron_jet_dR < 0.3) {
-              isbJet2 = true;
-              break;
+    }
+    if (isB1) continue;
+
+
+    for (size_t b = a + 1; b < good_jets.size(); ++b)
+   //scrivere questo ciclo con b = a+1 impedisce che i jet j1 e j2 coincidano,
+   //quindi di fatto va a ottimizzare il codice impedendo che j1=j2 e anche doppi conteggi
+    {   const Jet* j2 = good_jets[b];
+
+        // Do not use b jets as W candidates
+        bool isB2 = false;
+        for (ConstGenParticlePtr bhad : b_hadrons) {
+            if (deltaR(j2->momentum(), bhad->momentum()) < 0.3) {
+                isB2 = true;
+                break;
             }
-          }
-          if (isbJet2) continue;
-          //BLOCCO AGGIUNTO DA ME PER IL TERZO JET
-            for (const Jet* z : good_jets) {
-          bool isbJet3 = false;
-          for (ConstGenParticlePtr b : b_hadrons) {
-            FourMomentum hadron = b->momentum();
-            double hadron_jet_dR = deltaR(j->momentum(), hadron);
-            if (hadron_jet_dR < 0.3) {
-              isbJet3 = true;
-              break;
-            }
-          }
-          if (isbJet3) continue;
-       //fine blocco
-           
-	  double invMass_Wcand; //= (i->momentum() + j->momentum()).mass();
-	  double invMass_Tcand; //inizialilzzo m^2(top_reco)
-	  double chi2 = 500; //inizializzo il chi2
-	  const double sigmaT = 35 * GeV;
-	  const double sigmaW = 25 * GeV;
-	  for (const Jet* bjet : b_jets) {  //il fatto che ci siano due bjets per evento e quindi il doppio di tutto mi complica le cose o no?
-	  //io ho solo sample dilepton o singlelepton per ora, 
-	  //quindi l'unico rilevante per questa analisi è il singlelepton, 
-	  //in cui un W su due decade adronicamente. Quindi in effetti è 
-	  //solo una (e non due) la possibile coppia di jet con massa invariante 	  //circa pari a quella del W. Se avessi invece un sample allhadronic 
-	  //(o proprio all tutto cioè singlelep + dilep + allhad) sarebbe
-	  //chiaramente una storia diversa e potrei aver in alcuni casi due
-	  // coppie di jet che vengono da un W. 
-	  // Mi viene da pensare di dover ciclare anche sui b-jets così da 
-	  // poter identificare i jet da radiazione gluonica del b. 
-	  // magari sto a fa na cosa inutile, magari no.   
-	   // for (const Jet* cjet : c_jets) {
-	     
-           invMass_Wcand = (i->momentum() + j->momentum()).mass();
-	   invMass_Tcand = (bjet->momentum() + z->momentum() + i->momentum() + j->momentum()).mass();   //controllare se è concettualmente corretto 
-	   double chi2_cand = std::pow((invMass_Tcand - nominalTop),2)/std::pow(sigmaT,2) + std::pow((invMass_Wcand - nominalW),2)/std::pow(sigmaW,2); 
-	   if( chi2_cand < chi2) {
-		  chi2 = chi2_cand;
-	   // if (fabs(invMass_Wcand - nominalW) < deltaM) {
-           // deltaM = fabs(invMass_Wcand - nominalW);
-            jet1 = i; //W_jets
-            jet2 = j; //W_jets
-	    jet3 = z; //light_jet dovuto realisticamente a radiazione gluonica dal bottom
-          }
         }
-      }
-	  }	  //le parentesi chiaramente saranno sbagliate but still 
+        if (isB2) continue;
+
+        // Reconstructed W
+        const double mW =
+            (j1->momentum() + j2->momentum()).mass();
+
+
+        // Try both b jets
+        for (const Jet* bjet : b_jets) {
+
+            // Reconstructed hadronic top
+            const double mTop =
+                (bjet->momentum()
+                + j1->momentum()
+                + j2->momentum()).mass();
+                //non ha senso fisico qui mettere anche z->momentum() per un 
+		//eventuale jet da isr/fsr/gluon radiation from b perché il 
+		//decadimento del top è w+b, non w+b+z, e all'interno del 
+		//momento di b potrebbe esserci già quella parte di momento 
+		//che poi andrà in z (se fosse fsr o gluon radiation) quindi 
+		//conterei due volte la stessa cosa. è quindi meglio rimandare 
+		//(in che modo però) la trattazione di questo eventaule jet z. 
+
+            const double chi2 =
+                pow((mW   - nominalW) / sigmaW, 2)
+              + pow((mTop - nominalTop) / sigmaT, 2);
+
+
+            if (chi2 < bestChi2) {
+
+                bestChi2 = chi2;
+
+                bestJ1 = j1;
+                bestJ2 = j2;
+                bestB  = bjet;
+            }
+        }
+    }
+}
 
       // Check that both jets are not overlapped, and populate the W jets list
       vector<const Jet*> W_jets;
-      const bool hasGoodWJet = jet1 != NULL && jet2 != NULL && jet1 != jet2;
+      const bool hasGoodWJet = bestJ1 != NULL && bestJ2 != NULL && bestJ1 != bestJ2;
       if (hasGoodWJet) {
         bool isOverlap1 = false, isOverlap2 = false;
         for (const Jet* j : allJets) {
-          if (jet1 == j) continue;
-          const double dR1j = deltaR(jet1->momentum(), j->momentum());
+          if (bestJ1 == j) continue;
+          const double dR1j = deltaR(bestJ1->momentum(), j->momentum());
           if (dR1j < 0.8) {
             isOverlap1 = true;
             break;
           }
         }
         for (const Jet* j : allJets) {
-          if (jet2 == j) continue;
-          const double dR2j = deltaR(jet2->momentum(), j->momentum());
+          if (bestJ2 == j) continue;
+          const double dR2j = deltaR(bestJ2->momentum(), j->momentum());
           if (dR2j < 0.8) {
             isOverlap2 = true;
             break;
           }
         }
         if (!isOverlap1 && !isOverlap2) {
-          W_jets.push_back(jet1);
-          W_jets.push_back(jet2);
+          W_jets.push_back(bestJ1);
+          W_jets.push_back(bestJ2);
         }
       }
       MSG_DEBUG(W_jets.size() << " W jets selected");
-
+  //anche qui le parentesi potrebbero essere giuste
 
       // Calculate the jet shapes
       /// @todo Use C++11 vector/array initialization
