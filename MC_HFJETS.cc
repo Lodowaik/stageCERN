@@ -62,7 +62,13 @@ namespace Rivet {
       muon_fs.acceptIdPair(PID::MUON);
       declare(muon_fs, "MUON_FS");
       //fine blocco aggiunto
+      
+      //inizio blocco aggiunto il 25 agosto:
+      book(_h_pT_muon, "pT_muon", linspace(5, 0, 20, false) + logspace(25, 20, 200));
+      book(_h_pT_electron, "pT_electron", linspace(5, 0, 20, false) + logspace(25, 20, 200));
 
+      book(_h_pT_lepton, "pT_lepton", linspace(5, 0, 20, false) + logspace(25, 20, 200)); //fine blocco aggiunto il 25 agosto
+     
       book(_h_ptCJetLead ,"ptCJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       book(_h_ptCHadrLead ,"ptCHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
       book(_h_ptFracC ,"ptfracC", 50, 0, 1.5);
@@ -100,7 +106,7 @@ namespace Rivet {
     book(_p_Wjets_Psi[d],
          "Wjets_Psi_" + to_string(d),
          10, 0., 0.4);
-}     //fine blocco sostitivo
+}     //fine blocco sostitutivo
 
       book(_h_bar_Wjets_width, "width_Wjets", 7, 0., 0.3);
       book(_h_Wjets_ch_mult, "charged_mult_Wjets", 40, 0.5, 40.5);
@@ -135,7 +141,21 @@ double deltaRJetGen(const Jet& jet,
 	    const Particles bhadrons = sortByPt(apply<HeavyHadrons>(event, "BCHadrons").bHadrons());
       const Particles chadrons = sortByPt(apply<HeavyHadrons>(event, "BCHadrons").cHadrons());
       MSG_DEBUG("# b hadrons = " << bhadrons.size() << ", # c hadrons = " << chadrons.size());
-
+      //
+        /// Get the various sets of final state particles
+      const Particles& elecFS = apply<IdentifiedFinalState>(event, "ELEC_FS").particlesByPt();
+      const Particles& muonFS = apply<IdentifiedFinalState>(event, "MUON_FS").particlesByPt();
+      const size_t nElec = elecFS.size();
+      const size_t nMuon = muonFS.size();
+      //aggiungo qui il riempimento degli istogrammi relativi al pt dei leptoni:
+      for (size_t i = 0; i < nMuon; i++) {
+      _h_pT_muon->fill(muonFS[i].pT()/GeV);
+      _h_pT_lepton->fill(muonFS[i].pT()/GeV);}
+      for (size_t i = 0; i < nElec; i++) {
+      _h_pT_lepton->fill(elecFS[i].pT()/GeV);
+      _h_pT_electron->fill(elecFS[i].pT()/GeV);}
+      //fine riempimento istogrammi pt leptoni
+      //
       // Loop over jets and use ghost-tag info
       for (const Jet& j : jets) {
         bool gotLeadingB = false, gotLeadingC = false;
@@ -164,14 +184,12 @@ double deltaRJetGen(const Jet& jet,
     
     
     //qui inizia il blocco aggiunto da me
-    //io ho bisogno delle liste di jet per calcolare poi il chiquadro ecc, quindi devo dichiarare b_jets, c_jets, light_jets e W_jet.\\
-    //anzi, b_jets era già dichiarato nel pezzo di codice che ho copiato quindi me lo tengo. 
+    //io ho bisogno delle liste di jet per calcolare poi il chiquadro ecc,
+    //quindi devo dichiarare b_jets, c_jets, light_jets e W_jet.\\
+    //anzi, b_jets era già dichiarato nel pezzo di codice che ho copiato 
+    //quindi me lo tengo. 
     //	QUESTO PEZZO DI ROUTINE è PRESO E RIADATTATO DA ATLAS_2013_I1243871
     
-    /// Get the various sets of final state particles
-      const Particles& elecFS = apply<IdentifiedFinalState>(event, "ELEC_FS").particlesByPt();
-      const Particles& muonFS = apply<IdentifiedFinalState>(event, "MUON_FS").particlesByPt();
-
       // Get all jets with pT > 7 GeV (ATLAS standard jet collection)
       /// @todo Why rewrite the jets collection as a vector of pointers?
        //const Jets& fastjets = apply<FastJets>(event, "JETS").jetsByPt(Cuts::pT > 7 * GeV); 
@@ -203,8 +221,6 @@ double deltaRJetGen(const Jet& jet,
       }
 
       // Classify the event type
-      const size_t nElec = elecFS.size();
-      const size_t nMuon = muonFS.size();
       bool isSemilepton = false, isDilepton = false;
       if (nElec == 1 && nMuon == 0) {
         isSemilepton = true;
@@ -336,7 +352,9 @@ for (size_t a = 0; a < good_jets.size(); ++a) {
     // Do not use b jets as W candidates
     bool isB1 = false;
     for (ConstGenParticlePtr b : b_hadrons) {
-      //blocco che serve per uniformare i tipi di j1->momentum e quello che sarebbe b->momentum(): il primo è un Rivet::FourMomentum, il secondo è un HepMC3FourVector e questa cosa manda in pappa rivet.
+      //blocco che serve per uniformare i tipi di j1->momentum e quello 
+      //che sarebbe b->momentum(): il primo è un Rivet::FourMomentum, il 
+      //secondo è un HepMC3FourVector e questa cosa manda in pappa rivet.
      // const FourMomentum bhad_mom(
    // b->momentum().px(),
    // b->momentum().py(),
@@ -511,7 +529,7 @@ if (deltaRJetGen(*j1, b) < 0.3) {
     void finalize() {
       normalize({_h_ptCJetLead, _h_ptCHadrLead, _h_ptBJetLead, _h_ptBHadrLead,
             _h_ptFracC, _h_eFracC, _h_ptFracB, _h_eFracB, _h_bar_Wjets_width,
-	    _h_Wjets_pT, _h_Wjets_ch_mult});
+	    _h_Wjets_pT, _h_Wjets_ch_mult, _h_pT_muon, _h_pT_electron, _h_pT_lepton});
       //, _p_Wjets_rho, _p_Wjets_Psi, _p_b_rho, _p_b_Psi}); //questi sono Profile1D, non vanno normalizzati a mano
    }
 
@@ -521,6 +539,7 @@ if (deltaRJetGen(*j1, b) < 0.3) {
     Histo1DPtr _h_ptCJetLead, _h_ptCHadrLead, _h_ptFracC, _h_eFracC;
     Histo1DPtr _h_ptBJetLead, _h_ptBHadrLead, _h_ptFracB, _h_eFracB;
     Histo1DPtr   _h_bar_Wjets_width,_h_Wjets_pT, _h_Wjets_ch_mult;
+    Histo1DPtr _h_pT_muon, _h_pT_electron, _h_pT_lepton;
     Profile1DPtr _p_b_rho[5];//inizio aggiunta mia
     Profile1DPtr _p_Wjets_rho[5];
     Profile1DPtr _p_b_Psi[5];
