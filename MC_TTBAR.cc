@@ -101,6 +101,12 @@ namespace Rivet {
           book(_h_jetb_1_l2_dphi, pre + "jetb_1_l2_dphi", 20, 0.0, M_PI);
           book(_h_jetb_1_l2_mass, pre + "jetb_1_l2_mass", 40, 0.0, 500.0);
       //  } }
+      //  istogrammi che aggiungo ora e che davano problemi perché usati ma
+      //  non bookati:
+      book(_h_t_pT, pre + "t_pT", logspace(100, 0., 1000.));
+      book(_h_jetb_1_jetl_2_dR, pre + "jetb_1_jetl_2_dR", 20, 0.0, 7.0);
+      book(_h_jetb_1_jetl_2_deta, pre + "jetb_1_jetl_2_deta", 20, 0.0, 7.0);
+      book(_h_jetb_1_jetl_2_dphi, pre + "jetb_1_jetl_2_dphi", 20, 0.0, M_PI);
     }
 
 
@@ -301,8 +307,8 @@ namespace Rivet {
       return pz_estimate;
     }
 
-   // void safeNormalize(Histo1DPtr h) {
-   // if (h) normalize(h);} //controllo di sicurezza, normalizza un 
+    void safeNormalize(Histo1DPtr h) {
+    if (h) normalize(h);} //controllo di sicurezza, normalizza un 
     //istogramma solo se questo esiste. Svantaggio: accetta un solo argomento 
     //per volta. 
 
@@ -313,9 +319,11 @@ namespace Rivet {
      // normalizzazione a 1 (messa da me)
     normalize({_h_njets, _h_jet_1_pT, _h_jet_2_pT, _h_jet_3_pT,
         _h_jet_4_pT, _h_jet_HT, _h_bjet_1_pT, _h_bjet_2_pT, _h_ljet_1_pT,
-        _h_ljet_2_pT, _h_tt_mass, _h_W_pT, _h_W_mass, _h_t_mass,
-        _h_t_mass_W_cut, _h_t_pT, _h_t_pT_W_cut, _h_jetb_1_W_dR,
-        _h_jetb_1_W_deta, _h_jetb_1_W_dphi, _h_jetb_1_jetb_2_dR,
+        _h_ljet_2_pT, _h_tt_mass, _h_W_pT, _h_t_pT,
+       	//_h_W_mass, _h_t_mass,
+        //_h_t_mass_W_cut, _h_t_pT_W_cut,
+       //	_h_jetb_1_W_dR, _h_jetb_1_W_deta, _h_jetb_1_W_dphi,
+       	_h_jetb_1_jetb_2_dR,
         _h_jetb_1_jetb_2_deta, _h_jetb_1_jetb_2_dphi, _h_jetb_1_jetl_1_dR,
         _h_jetb_1_jetl_1_deta, _h_jetb_1_jetl_1_dphi, _h_jetb_1_jetl_2_dR,
         _h_jetb_1_jetl_2_deta, _h_jetb_1_jetl_2_dphi, _h_jetb_1_l_dR,
@@ -323,8 +331,17 @@ namespace Rivet {
         _h_jetb_1_l2_dR, _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi,
         _h_jetb_1_l2_mass,  _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,
 	_h_jetl_1_jetl_2_dphi});
-    }
+    safeNormalize(_h_jetb_1_W_dR);
+    safeNormalize(_h_jetb_1_W_deta);
+    safeNormalize(_h_jetb_1_W_dphi);
+    safeNormalize(_h_t_mass);
+    safeNormalize(_h_t_mass_W_cut);
+    safeNormalize(_h_t_pT_W_cut);
+    safeNormalize(_h_W_mass);
 
+
+    }
+   
     /// @}
 
   protected:
