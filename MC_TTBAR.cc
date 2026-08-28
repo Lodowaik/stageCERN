@@ -25,7 +25,7 @@ namespace Rivet {
     /// Set up projections and book histograms
     void init() {
 
-      _mode = 1; string pre = "onelep_"; // default is single-lepton decay mode
+      _mode = 3; string pre = "anylep_"; // default is single-lepton decay mode
       if ( getOption("TTMODE") == "ALLHAD" ) { _mode = 0; pre = "allhad_"; }
       if ( getOption("TTMODE") == "ONELEP" ) { _mode = 1; pre = "onelep_"; }
       if ( getOption("TTMODE") == "TWOLEP" ) { _mode = 2; pre = "twolep_"; }
@@ -34,7 +34,7 @@ namespace Rivet {
       // A FinalState is used to select particles within |eta| < 4.2 and with pT
       // > 30 GeV, out of which the ChargedLeptons projection picks only the
       // electrons and muons, to be accessed later as "LFS".
-      ChargedLeptons lfs(FinalState(Cuts::abseta < 4.2 && Cuts::pT > 30*GeV));
+      ChargedLeptons lfs(FinalState(Cuts::abseta < 2.5 && Cuts::pT > 20*GeV));
       declare(lfs, "LFS");
 
       // A second FinalState is used to select all particles in |eta| < 4.2,
@@ -46,55 +46,61 @@ namespace Rivet {
       declare(MissingMomentum(fs), "MissingET");
 
       // Booking of histograms
-      book(_h["njets"], pre + "jet_mult", 11, -0.5, 10.5);
+      book(_h_njets, pre + "jet_mult", 11, -0.5, 10.5);
       //
-      book(_h["jet_1_pT"], pre + "jet_1_pT", logspace(50, 20.0, 500.0));
-      book(_h["jet_2_pT"], pre + "jet_2_pT", logspace(50, 20.0, 400.0));
-      book(_h["jet_3_pT"], pre + "jet_3_pT", logspace(50, 20.0, 300.0));
-      book(_h["jet_4_pT"], pre + "jet_4_pT", logspace(50, 20.0, 200.0));
-      book(_h["jet_HT"],   pre + "jet_HT", logspace(50, 100.0, 2000.0));
+      book(_h_jet_1_pT, pre + "jet_1_pT", logspace(50, 20.0, 500.0));
+      book(_h_jet_2_pT, pre + "jet_2_pT", logspace(50, 20.0, 400.0));
+      book(_h_jet_3_pT, pre + "jet_3_pT", logspace(50, 20.0, 300.0));
+      book(_h_jet_4_pT, pre + "jet_4_pT", logspace(50, 20.0, 200.0));
+      book(_h_jet_HT,   pre + "jet_HT", logspace(50, 100.0, 2000.0));
       //
-      book(_h["bjet_1_pT"], pre + "jetb_1_pT", logspace(50, 20.0, 400.0));
-      book(_h["bjet_2_pT"], pre + "jetb_2_pT", logspace(50, 20.0, 300.0));
+      book(_h_bjet_1_pT, pre + "jetb_1_pT", logspace(50, 20.0, 400.0));
+      book(_h_bjet_2_pT, pre + "jetb_2_pT", logspace(50, 20.0, 300.0));
       //
-      book(_h["ljet_1_pT"], pre + "jetl_1_pT", logspace(50, 20.0, 400.0));
-      book(_h["ljet_2_pT"], pre + "jetl_2_pT", logspace(50, 20.0, 300.0));
+      book(_h_ljet_1_pT, pre + "jetl_1_pT", logspace(50, 20.0, 400.0));
+      book(_h_ljet_2_pT, pre + "jetl_2_pT", logspace(50, 20.0, 300.0));
       //
-      if (_mode != 2)  book(_h["tt_mass"], pre + "tt_mass", 200, 300.0, 700.0);
+      //PROVO A SILENZIARE LE CONDIZIONI RICHIESTE PER BOOKARE QUESTI ISTOGRAMMI
+      //PER VEDERE SE SI SBLOCCA LA SITUAZIONE (ALLA FINE POSSO LO STESSO 
+      //PRENOTARLI E POI LASCIARLI VUOTI SE LA CONDIZIONE, A LIVELLO DI 
+      //ANALYZE, NON VIENE SODDISFATTA)
+     // if  (_mode != 2)  
+	      book(_h_tt_mass, pre + "tt_mass", 200, 300.0, 700.0);
       //
-      if (_mode < 2) { // these rely on a hadronic W being part of the ttbar decay
-        book(_h["W_pT"], pre + "W_pT", logspace(50, 5.0, 650.0)); //riga aggiunta da me
-	book(_h["W_mass"], pre + "W_mass", 75, 30, 180);
-        book(_h["t_mass"], pre + "t_mass", 150, 130, 430);
-        book(_h["t_mass_W_cut"], pre + "t_mass_W_cut", 150, 130, 430);
-        book(_h["t_pT"], pre + "t_pT", 100, 0., 1000.);
-        book(_h["t_pT_W_cut"], pre + "t_pT_W_cut", 100, 0., 1000.);
-        book(_h["jetb_1_W_dR"],  pre + "jetb_1_W_dR", 20, 0.0, 7.0);
-        book(_h["jetb_1_W_deta"], pre + "jetb_1_W_deta", 20, 0.0, 7.0);
-        book(_h["jetb_1_W_dphi"], pre + "jetb_1_W_dphi", 20, 0.0, M_PI);
-      }
+     // if (_mode < 2) { // these rely on a hadronic W being part of the ttbar decay
+        book(_h_W_pT, pre + "W_pT", logspace(50, 5.0, 650.0)); //riga aggiunta da me
+	book(_h_W_mass, pre + "W_mass", 75, 30, 180);
+        book(_h_t_mass, pre + "t_mass", 150, 130, 430);
+        book(_h_t_mass_W_cut, pre + "t_mass_W_cut", 150, 130, 430);
+        book(_h_t_pT_W_cut, pre + "t_pT_W_cut", 100, 0., 1000.);
+        book(_h_jetb_1_W_dR,  pre + "jetb_1_W_dR", 20, 0.0, 7.0);
+        book(_h_jetb_1_W_deta, pre + "jetb_1_W_deta", 20, 0.0, 7.0);
+        book(_h_jetb_1_W_dphi, pre + "jetb_1_W_dphi", 20, 0.0, M_PI);
+     // }
       //
-      book(_h["jetb_1_jetb_2_dR"],   pre + "jetb_1_jetb_2_dR", 20, 0.0, 7.0);
-      book(_h["jetb_1_jetb_2_deta"], pre + "jetb_1_jetb_2_deta", 20, 0.0, 7.0);
-      book(_h["jetb_1_jetb_2_dphi"], pre + "jetb_1_jetb_2_dphi", 20, 0.0, M_PI);
-      book(_h["jetb_1_jetl_1_dR"],   pre + "jetb_1_jetl_1_dR", 20, 0.0, 7.0);
-      book(_h["jetb_1_jetl_1_deta"], pre + "jetb_1_jetl_1_deta", 20, 0.0, 7.0);
-      book(_h["jetb_1_jetl_1_dphi"], pre + "jetb_1_jetl_1_dphi", 20, 0.0, M_PI);
-      book(_h["jetl_1_jetl_2_dR"],   pre + "jetl_1_jetl_2_dR", 20, 0.0, 7.0);
-      book(_h["jetl_1_jetl_2_deta"], pre + "jetl_1_jetl_2_deta", 20, 0.0, 7.0);
-      book(_h["jetl_1_jetl_2_dphi"], pre + "jetl_1_jetl_2_dphi", 20, 0.0, M_PI);
-      if (_mode > 0) { // these rely on at least one leptonic decay mode
-        book(_h["jetb_1_l_dR"],   pre + "jetb_1_l_dR", 20, 0.0, 7.0);
-        book(_h["jetb_1_l_deta"], pre + "jetb_1_l_deta", 20, 0.0, 7.0);
-        book(_h["jetb_1_l_dphi"], pre + "jetb_1_l_dphi", 20, 0.0, M_PI);
-        book(_h["jetb_1_l_mass"], pre + "jetb_1_l_mass", 40, 0.0, 500.0);
-        if (_mode > 1) {
-          book(_h["jetb_1_l2_dR"],   pre + "jetb_1_l2_dR", 20, 0.0, 7.0);
-          book(_h["jetb_1_l2_deta"], pre + "jetb_1_l2_deta", 20, 0.0, 7.0);
-          book(_h["jetb_1_l2_dphi"], pre + "jetb_1_l2_dphi", 20, 0.0, M_PI);
-          book(_h["jetb_1_l2_mass"], pre + "jetb_1_l2_mass", 40, 0.0, 500.0);
-        }
-      }
+      book(_h_jetb_1_jetb_2_dR,   pre + "jetb_1_jetb_2_dR", 20, 0.0, 7.0);
+      book(_h_jetb_1_jetb_2_deta, pre + "jetb_1_jetb_2_deta", 20, 0.0, 7.0);
+      book(_h_jetb_1_jetb_2_dphi, pre + "jetb_1_jetb_2_dphi", 20, 0.0, M_PI);
+      book(_h_jetb_1_jetl_1_dR,   pre + "jetb_1_jetl_1_dR", 20, 0.0, 7.0);
+      book(_h_jetb_1_jetl_1_deta, pre + "jetb_1_jetl_1_deta", 20, 0.0, 7.0);
+      book(_h_jetb_1_jetl_1_dphi, pre + "jetb_1_jetl_1_dphi", 20, 0.0, M_PI);
+     //questi tre istogrammi vengono riempiti solo da eventi singlelep, dato 
+     //che per eventi dilep gli unici jet adronici possibili provengono da 
+     //radiazione isr o fsr.  
+      book(_h_jetl_1_jetl_2_dR,   pre + "jetl_1_jetl_2_dR", 20, 0.0, 7.0);
+      book(_h_jetl_1_jetl_2_deta, pre + "jetl_1_jetl_2_deta", 20, 0.0, 7.0);
+      book(_h_jetl_1_jetl_2_dphi, pre + "jetl_1_jetl_2_dphi", 20, 0.0, M_PI);
+    //  if (_mode > 0) { // these rely on at least one leptonic decay mode
+        book(_h_jetb_1_l_dR,   pre + "jetb_1_l_dR", 20, 0.0, 7.0);
+        book(_h_jetb_1_l_deta, pre + "jetb_1_l_deta", 20, 0.0, 7.0);
+        book(_h_jetb_1_l_dphi, pre + "jetb_1_l_dphi", 20, 0.0, M_PI);
+        book(_h_jetb_1_l_mass, pre + "jetb_1_l_mass", 40, 0.0, 500.0);
+       // if (_mode > 1) {
+          book(_h_jetb_1_l2_dR,   pre + "jetb_1_l2_dR", 20, 0.0, 7.0);
+          book(_h_jetb_1_l2_deta, pre + "jetb_1_l2_deta", 20, 0.0, 7.0);
+          book(_h_jetb_1_l2_dphi, pre + "jetb_1_l2_dphi", 20, 0.0, M_PI);
+          book(_h_jetb_1_l2_mass, pre + "jetb_1_l2_mass", 40, 0.0, 500.0);
+      //  } }
     }
 
 
@@ -143,14 +149,14 @@ namespace Rivet {
       MSG_DEBUG("Event failed jet multiplicity cut");
 
       // Fill histograms for inclusive jet kinematics
-      _h["njets"]->fill(jets.size());
-      if (jets.size() > 0)  _h["jet_1_pT"]->fill(jets[0].pT()/GeV);
-      if (jets.size() > 1)  _h["jet_2_pT"]->fill(jets[1].pT()/GeV);
-      if (jets.size() > 2)  _h["jet_3_pT"]->fill(jets[2].pT()/GeV);
-      if (jets.size() > 3)  _h["jet_4_pT"]->fill(jets[3].pT()/GeV);
+      _h_njets->fill(jets.size());
+      if (jets.size() > 0)  _h_jet_1_pT->fill(jets[0].pT()/GeV);
+      if (jets.size() > 1)  _h_jet_2_pT->fill(jets[1].pT()/GeV);
+      if (jets.size() > 2)  _h_jet_3_pT->fill(jets[2].pT()/GeV);
+      if (jets.size() > 3)  _h_jet_4_pT->fill(jets[3].pT()/GeV);
       double ht = 0.0;
       for (const Jet& j : jets) { ht += j.pT(); }
-      _h["jet_HT"]->fill(ht/GeV);
+      _h_jet_HT->fill(ht/GeV);
 
       // Sort the jets into b-jets and light jets. We expect one hard b-jet from
       // each top decay, so our 4 hardest jets should include two b-jets. The
@@ -172,11 +178,11 @@ namespace Rivet {
       else if (_mode == 3 && nLeps == 1 && ljets.size() < 2)  vetoEvent;
 
       // Plot the pTs of the identified jets.
-      _h["bjet_1_pT"]->fill(bjets[0].pT());
-      _h["bjet_2_pT"]->fill(bjets[1].pT());
+      _h_bjet_1_pT->fill(bjets[0].pT());
+      _h_bjet_2_pT->fill(bjets[1].pT());
       // need to check size to cater for dileptonic mode
-      if (ljets.size() > 0)  _h["ljet_1_pT"]->fill(ljets[0].pT());
-      if (ljets.size() > 1)  _h["ljet_2_pT"]->fill(ljets[1].pT());
+      if (ljets.size() > 0)  _h_ljet_1_pT->fill(ljets[0].pT());
+      if (ljets.size() > 1)  _h_ljet_2_pT->fill(ljets[1].pT());
 
 
       // Try to reconstruct ttbar pair (doesn't really work in the dileptonic mode)
@@ -191,7 +197,7 @@ namespace Rivet {
         FourMomentum neutrino(sqrt(sqr(met.x()) + sqr(met.y()) + sqr(pz)), met.x(), met.y(), pz);
         ttpair += lep + neutrino;
       }
-      if (nLeps < 2)  _h["tt_mass"]->fill(ttpair.mass()/GeV);
+      if (nLeps < 2)  _h_tt_mass->fill(ttpair.mass()/GeV);
 
       if (_mode < 2) {
         // Construct the hadronically decaying W momentum 4-vector from pairs of
@@ -216,64 +222,65 @@ namespace Rivet {
         // not... but we have no way to identify which is which, so we construct
         // both possible top momenta and fill the histograms with both.
         const FourMomentum t1 = W + bjets[0].momentum();
-        const FourMomentum t2 = W + bjets[1].momentum();
-        _h["W_pT"]->fill(W.pT()/GeV); //oh magari ho culo e basta questo
-	_h["W_mass"]->fill(W.mass());
-        _h["t_mass"]->fill(t1.mass());
-        _h["t_mass"]->fill(t2.mass());
-        _h["t_pT"]->fill(t1.pT()/GeV);
-        _h["t_pT"]->fill(t2.pT()/GeV);
+       const FourMomentum t2 = W + bjets[1].momentum();
+        _h_W_pT->fill(W.pT()/GeV); //oh magari ho culo e basta questo
+	_h_W_mass->fill(W.mass());
+        _h_t_mass->fill(t1.mass());
+        _h_t_mass->fill(t2.mass());
+        _h_t_pT->fill(t1.pT()/GeV);
+        _h_t_pT->fill(t2.pT()/GeV);
 
         // Placing a cut on the well-known W mass helps to reduce backgrounds
         // only done for all-hadronic and semileptonic mode (since W is hadronic)
         if (!inRange(W.mass()/GeV, 75.0, 85.0))  vetoEvent;
         MSG_DEBUG("W found with mass " << W.mass()/GeV << " GeV");
 
-        _h["t_mass_W_cut"]->fill(t1.mass());
-        _h["t_mass_W_cut"]->fill(t2.mass());
+        _h_t_mass_W_cut->fill(t1.mass());
+        _h_t_mass_W_cut->fill(t2.mass());
 
-        _h["t_pT_W_cut"]->fill(t1.pT()/GeV);
-        _h["t_pT_W_cut"]->fill(t2.pT()/GeV);
+        _h_t_pT_W_cut->fill(t1.pT()/GeV);
+        _h_t_pT_W_cut->fill(t2.pT()/GeV);
 
-        _h["jetb_1_W_dR"]->fill(deltaR(bjets[0].momentum(), W));
-        _h["jetb_1_W_deta"]->fill(fabs(bjets[0].eta()-W.eta()));
-        _h["jetb_1_W_dphi"]->fill(deltaPhi(bjets[0].momentum(),W));
+        _h_jetb_1_W_dR->fill(deltaR(bjets[0].momentum(), W));
+        _h_jetb_1_W_deta->fill(fabs(bjets[0].eta()-W.eta()));
+        _h_jetb_1_W_dphi->fill(deltaPhi(bjets[0].momentum(),W));
       }
 
-      _h["jetb_1_jetb_2_dR"]->fill(deltaR(bjets[0].momentum(), bjets[1].momentum()));
-      _h["jetb_1_jetb_2_deta"]->fill(fabs(bjets[0].eta()-bjets[1].eta()));
-      _h["jetb_1_jetb_2_dphi"]->fill(deltaPhi(bjets[0].momentum(),bjets[1].momentum()));
+      _h_jetb_1_jetb_2_dR->fill(deltaR(bjets[0].momentum(), bjets[1].momentum()));
+      _h_jetb_1_jetb_2_deta->fill(fabs(bjets[0].eta()-bjets[1].eta()));
+      _h_jetb_1_jetb_2_dphi->fill(deltaPhi(bjets[0].momentum(),bjets[1].momentum()));
 
       if (ljets.size() > 0) {
-        _h["jetb_1_jetl_1_dR"]->fill(deltaR(bjets[0].momentum(), ljets[0].momentum()));
-        _h["jetb_1_jetl_1_deta"]->fill(fabs(bjets[0].eta()-ljets[0].eta()));
-        _h["jetb_1_jetl_1_dphi"]->fill(deltaPhi(bjets[0].momentum(),ljets[0].momentum()));
+        _h_jetb_1_jetl_1_dR->fill(deltaR(bjets[0].momentum(), ljets[0].momentum()));
+        _h_jetb_1_jetl_1_deta->fill(fabs(bjets[0].eta()-ljets[0].eta()));
+        _h_jetb_1_jetl_1_dphi->fill(deltaPhi(bjets[0].momentum(),ljets[0].momentum()));
         if (ljets.size() > 1) {
-          _h["jetl_1_jetl_2_dR"]->fill(deltaR(ljets[0].momentum(), ljets[1].momentum()));
-          _h["jetl_1_jetl_2_deta"]->fill(fabs(ljets[0].eta()-ljets[1].eta()));
-          _h["jetl_1_jetl_2_dphi"]->fill(deltaPhi(ljets[0].momentum(),ljets[1].momentum()));
+          _h_jetl_1_jetl_2_dR->fill(deltaR(ljets[0].momentum(), ljets[1].momentum()));
+          _h_jetl_1_jetl_2_deta->fill(fabs(ljets[0].eta()-ljets[1].eta()));
+          _h_jetl_1_jetl_2_dphi->fill(deltaPhi(ljets[0].momentum(),ljets[1].momentum()));
         }
       }
 
       // lepton-centric plots
       if (_mode > 0) {
         FourMomentum l=lfs.chargedLeptons()[0].momentum();
-        _h["jetb_1_l_dR"]->fill(deltaR(bjets[0].momentum(), l));
-        _h["jetb_1_l_deta"]->fill(fabs(bjets[0].eta()-l.eta()));
-        _h["jetb_1_l_dphi"]->fill(deltaPhi(bjets[0].momentum(),l));
-        _h["jetb_1_l_mass"]->fill(FourMomentum(bjets[0].momentum()+l).mass());
+        _h_jetb_1_l_dR->fill(deltaR(bjets[0].momentum(), l));
+        _h_jetb_1_l_deta->fill(fabs(bjets[0].eta()-l.eta()));
+        _h_jetb_1_l_dphi->fill(deltaPhi(bjets[0].momentum(),l));
+        _h_jetb_1_l_mass->fill(FourMomentum(bjets[0].momentum()+l).mass());
 
         if (nLeps > 1) {
           FourMomentum l=lfs.chargedLeptons()[1].momentum();
-          _h["jetb_1_l2_dR"]->fill(deltaR(bjets[0].momentum(), l));
-          _h["jetb_1_l2_deta"]->fill(fabs(bjets[0].eta()-l.eta()));
-          _h["jetb_1_l2_dphi"]->fill(deltaPhi(bjets[0].momentum(),l));
-          _h["jetb_1_l2_mass"]->fill(FourMomentum(bjets[0].momentum()+l).mass());
+          _h_jetb_1_l2_dR->fill(deltaR(bjets[0].momentum(), l));
+          _h_jetb_1_l2_deta->fill(fabs(bjets[0].eta()-l.eta()));
+          _h_jetb_1_l2_dphi->fill(deltaPhi(bjets[0].momentum(),l));
+          _h_jetb_1_l2_mass->fill(FourMomentum(bjets[0].momentum()+l).mass());
         }
       }
 
     }
-
+    
+    //non ho capito a che serve tutto sto blocco qua su z component
     double findZcomponent(const FourMomentum& lepton, const Vector3& met) const {
       // estimate z-component of momentum given lepton 4-vector and MET 3-vector
       double pz_estimate;
@@ -294,9 +301,28 @@ namespace Rivet {
       return pz_estimate;
     }
 
+   // void safeNormalize(Histo1DPtr h) {
+   // if (h) normalize(h);} //controllo di sicurezza, normalizza un 
+    //istogramma solo se questo esiste. Svantaggio: accetta un solo argomento 
+    //per volta. 
+
     void finalize() {
-      const double sf = crossSection()/picobarn / sumOfWeights();
-      for (auto hist : _h) { scale(hist.second, sf); }
+	    //normalizzazione della routine originaria:
+     // const double sf = crossSection()/picobarn / sumOfWeights();
+     // for (auto hist : _h) { scale(hist.second, sf); }
+     // normalizzazione a 1 (messa da me)
+    normalize({_h_njets, _h_jet_1_pT, _h_jet_2_pT, _h_jet_3_pT,
+        _h_jet_4_pT, _h_jet_HT, _h_bjet_1_pT, _h_bjet_2_pT, _h_ljet_1_pT,
+        _h_ljet_2_pT, _h_tt_mass, _h_W_pT, _h_W_mass, _h_t_mass,
+        _h_t_mass_W_cut, _h_t_pT, _h_t_pT_W_cut, _h_jetb_1_W_dR,
+        _h_jetb_1_W_deta, _h_jetb_1_W_dphi, _h_jetb_1_jetb_2_dR,
+        _h_jetb_1_jetb_2_deta, _h_jetb_1_jetb_2_dphi, _h_jetb_1_jetl_1_dR,
+        _h_jetb_1_jetl_1_deta, _h_jetb_1_jetl_1_dphi, _h_jetb_1_jetl_2_dR,
+        _h_jetb_1_jetl_2_deta, _h_jetb_1_jetl_2_dphi, _h_jetb_1_l_dR,
+        _h_jetb_1_l_deta, _h_jetb_1_l_dphi, _h_jetb_1_l_mass,
+        _h_jetb_1_l2_dR, _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi,
+        _h_jetb_1_l2_mass,  _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,
+	_h_jetl_1_jetl_2_dphi});
     }
 
     /// @}
@@ -310,9 +336,24 @@ namespace Rivet {
 
     /// @name Histogram data members
     /// @{
-    map<string, Histo1DPtr> _h;
+   // map<string, Histo1DPtr> _h; //commentata da me 
     /// @}
-
+    //aggiunta da me:
+    /// @name Histograms
+    /// @{
+    Histo1DPtr  _h_njets, _h_jet_1_pT, _h_jet_2_pT, _h_jet_3_pT;
+    Histo1DPtr  _h_jet_4_pT, _h_jet_HT, _h_bjet_1_pT, _h_bjet_2_pT;
+    Histo1DPtr  _h_ljet_1_pT, _h_ljet_2_pT, _h_tt_mass, _h_W_pT, _h_W_mass;
+    Histo1DPtr  _h_t_mass,_h_t_mass_W_cut, _h_t_pT, _h_t_pT_W_cut;
+    Histo1DPtr  _h_jetb_1_W_dR, _h_jetb_1_W_deta, _h_jetb_1_W_dphi;
+    Histo1DPtr  _h_jetb_1_jetb_2_dR, _h_jetb_1_jetb_2_deta;
+    Histo1DPtr  _h_jetb_1_jetb_2_dphi, _h_jetb_1_jetl_1_dR;
+    Histo1DPtr  _h_jetb_1_jetl_1_deta, _h_jetb_1_jetl_1_dphi;
+    Histo1DPtr  _h_jetb_1_jetl_2_dR, _h_jetb_1_jetl_2_deta;
+    Histo1DPtr  _h_jetb_1_jetl_2_dphi, _h_jetb_1_l_dR, _h_jetb_1_l_deta;
+    Histo1DPtr  _h_jetb_1_l_dphi, _h_jetb_1_l_mass, _h_jetb_1_l2_dR;
+    Histo1DPtr  _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi, _h_jetb_1_l2_mass;
+    Histo1DPtr _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,_h_jetl_1_jetl_2_dphi;
   };
 
 
