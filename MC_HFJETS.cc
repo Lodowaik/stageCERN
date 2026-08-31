@@ -15,6 +15,7 @@
 #include <iostream> //questi due mi servono per fare i quadrati
 #include <cmath>
 #include <limits> //serve per inizializzare il chi2 a infinito
+#include <sstream> //serve per il ciclo in cui do un titolo agli istogrammi di rho e psi
 
 namespace Rivet {
 
@@ -101,12 +102,12 @@ namespace Rivet {
       book(_h_ptBJetLead ,"ptBJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       _h_ptBJetLead->setTitle("pT distribution of the leading b-jet");
       _h_ptBJetLead->setAnnotation("XLabel", "pT of the lead. b-jet [GeV]");
-      _h_ptBJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+      _h_ptBJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
 
       book(_h_ptBHadrLead ,"ptBHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
       _h_ptBHadrLead->setTitle("pT distribution of the leading b-hadron");
       _h_ptBHadrLead->setAnnotation("XLabel", "pT of the lead. b-hadron [GeV]");
-      _h_ptBHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+      _h_ptBHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
 
       book(_h_ptFracB ,"ptfracB", 50, 0, 1.5);
       _h_ptFracB->setTitle("pT_{b-hadron}/pT_{b-jet} distribution");
@@ -132,12 +133,33 @@ namespace Rivet {
           << ptEdges[d] << " < p_{T}^{b-jet} < "
           << ptEdges[d+1] << " GeV";
           _p_b_rho[d]->setTitle(title1.str());
+	  _p_b_rho[d]->setAnnotation("XLabel", "#rho_{b-jet}");
+	  //_p_b_rho[d]->setAnnotation("YLabel", "1/N_{ev}");
 	  
 	  std::ostringstream title2;
 	  title2 << "Differential jet shape of W-jets with "
           << ptEdges[d] << " p_{T}^{W-jet} < "
 	  << ptEdges[d+1] << " GeV";
 	  _p_Wjets_rho[d]->setTitle(title2.str());
+	  _p_Wjets_rho[d]->setAnnotation("XLabel", "#rho_{W-jet}");
+	 // _p_Wjets_rho[d]->setAnnotation("YLabel", "1/N_{ev}");
+	 
+          std::ostringstream title3;
+          title3 << "Integrated jet shape of b-jets with "
+          << ptEdges[d] << " < p_{T}^{b-jet} < "
+          << ptEdges[d+1] << " GeV";
+          _p_b_Psi[d]->setTitle(title3.str());
+          _p_b_Psi[d]->setAnnotation("XLabel", "#Psi_{b-jet}");
+          //_p_b_Psi[d]->setAnnotation("YLabel", "1/N_{ev}");
+
+          std::ostringstream title4;
+          title4 << "Integrated jet shape of W-jets with "
+          << ptEdges[d] << " p_{T}^{W-jet} < "
+          << ptEdges[d+1] << " GeV";
+          _p_Wjets_Psi[d]->setTitle(title4.str());
+          _p_Wjets_Psi[d]->setAnnotation("XLabel", "#Psi_{W-jet}");
+         // _p_Wjets_Psi[d]->setAnnotation("YLabel", "1/N_{ev}");
+
     }
 
       book(_h_bar_Wjets_width, "width_Wjets", 7, 0., 0.3);
@@ -182,7 +204,7 @@ namespace Rivet {
 
       book(_h_lcjet_mass, "lcjet_mass", 50, 0.1, 3.5); //boh non so
       _h_lcjet_mass->setTitle("Invariant mass of a light or c-jet");
-      _h_lcjet_mass->setAnnotation("XLabel", "light/c-jet mass [GeV}"); 
+      _h_lcjet_mass->setAnnotation("XLabel", "light/c-jet mass [GeV]"); 
       //_h_lcjet_mass->setAnnotation("YLabel", "1/N_{ev}");
 
       book(_h_W_pT, "W_pT", logspace(50, 5.0, 650.0)); //questo e 
@@ -546,8 +568,8 @@ if (isfinite(bestChi2)) {
       // Calculate the jet shapes
       /// @todo Use C++11 vector/array initialization
       const double binWidth = 0.04; // -> 10 bins from 0.0-0.4
-     // vector<double> ptEdges;  //dichiarato già in init()
-     // ptEdges += {{30, 40, 50, 70, 100, 150}};
+     vector<double> _ptEdges;  //dichiarato già in init()
+     _ptEdges += {{30, 40, 50, 70, 100, 150}};
 
       // b-jet shapes
       MSG_DEBUG("Filling b-jet shapes");
@@ -561,23 +583,7 @@ if (isfinite(bestChi2)) {
        /// @todo Use YODA bin index lookup tools
         size_t ipt;
         for (ipt = 0; ipt < 5; ++ipt)
-          if (inRange(jetPt / GeV, ptEdges[ipt], ptEdges[ipt + 1])) break;
-        MSG_DEBUG("Jet pT index = " << ipt);
-      ptEdges += {{30, 40, 50, 70, 100, 150}};
-
-      // b-jet shapes
-      MSG_DEBUG("Filling b-jet shapes");
-      for (const Jet* bJet : b_jets) {
-        // Work out jet pT bin and skip this jet if out of range
-        const double jetPt = bJet->momentum().pT();
-        MSG_DEBUG("Jet pT = " << jetPt / GeV << " GeV");
-        if (!inRange(jetPt / GeV, 30., 150.)) continue;
- 
-
-       /// @todo Use YODA bin index lookup tools
-        size_t ipt;
-        for (ipt = 0; ipt < 5; ++ipt)
-          if (inRange(jetPt / GeV, ptEdges[ipt], ptEdges[ipt + 1])) break;
+          if (inRange(jetPt / GeV, _ptEdges[ipt], _ptEdges[ipt + 1])) break;
         MSG_DEBUG("Jet pT index = " << ipt);
 
         // Calculate jet shape
@@ -610,7 +616,7 @@ if (isfinite(bestChi2)) {
         /// @todo Use YODA bin index lookup tools
         size_t ipt;
         for (ipt = 0; ipt < 5; ++ipt)
-          if (inRange(jetPt / GeV, ptEdges[ipt], ptEdges[ipt + 1])) break;
+          if (inRange(jetPt / GeV, _ptEdges[ipt], _ptEdges[ipt + 1])) break;
         MSG_DEBUG("Jet pT index = " << ipt);
 
         // Calculate jet shape
