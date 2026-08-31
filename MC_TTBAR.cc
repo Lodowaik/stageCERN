@@ -184,11 +184,11 @@ namespace Rivet {
       else if (_mode == 3 && nLeps == 1 && ljets.size() < 2)  vetoEvent;
 
       // Plot the pTs of the identified jets.
-      _h_bjet_1_pT->fill(bjets[0].pT());
-      _h_bjet_2_pT->fill(bjets[1].pT());
+      _h_bjet_1_pT->fill(bjets[0].pT()/GeV);
+      _h_bjet_2_pT->fill(bjets[1].pT()/GeV);
       // need to check size to cater for dileptonic mode
-      if (ljets.size() > 0)  _h_ljet_1_pT->fill(ljets[0].pT());
-      if (ljets.size() > 1)  _h_ljet_2_pT->fill(ljets[1].pT());
+      if (ljets.size() > 0)  _h_ljet_1_pT->fill(ljets[0].pT()/GeV);
+      if (ljets.size() > 1)  _h_ljet_2_pT->fill(ljets[1].pT()/GeV);
 
 
       // Try to reconstruct ttbar pair (doesn't really work in the dileptonic mode)
@@ -203,9 +203,10 @@ namespace Rivet {
         FourMomentum neutrino(sqrt(sqr(met.x()) + sqr(met.y()) + sqr(pz)), met.x(), met.y(), pz);
         ttpair += lep + neutrino;
       }
-      if (nLeps < 2)  _h_tt_mass->fill(ttpair.mass()/GeV);
+      if (nLeps < 2)  _h_tt_mass->fill(ttpair.mass());
 
-      if (_mode < 2) {
+      //qui c'era if (_mode<2), che però mi va a silenziare anylep e quindi fa sì che gli istogrammi in questo blocco non vengano riempiti.
+      if (ljets.size()>1) {
         // Construct the hadronically decaying W momentum 4-vector from pairs of
         // non-b-tagged jets. The pair which best matches the W mass is used. We start
         // with an always terrible 4-vector estimate which should always be "beaten" by
@@ -296,19 +297,29 @@ namespace Rivet {
       double b = -2*k*lepton.pz();
       double c = sqr( lepton.E() ) * sqr( met.perp() ) - sqr( k );
       double discriminant = sqr(b) - 4 * a * c;
-      double quad[2] = { (- b - sqrt(discriminant)) / (2 * a), (- b + sqrt(discriminant)) / (2 * a) }; //two possible quadratic solns
-      if (discriminant < 0)  pz_estimate = - b / (2 * a); //if the discriminant is negative
-      else { //if the discriminant is greater than or equal to zero, take the soln with smallest absolute value
-        double absquad[2];
-        for (int n=0; n<2; ++n)  absquad[n] = fabs(quad[n]);
-        if (absquad[0] < absquad[1])  pz_estimate = quad[0];
-        else                          pz_estimate = quad[1];
+      if (discriminant < 0) { pz_estimate = - b / (2 * a);} //if the discriminant is negative 
+     else {
+      const double sqrtDisc = sqrt(discriminant);
+      double pz1 = (-b - sqrtDisc)/(2*a);
+    double pz2 = (-b + sqrtDisc)/(2*a);
+
+    if (fabs(pz1) < fabs(pz2))
+        pz_estimate = pz1;
+
+     // double quad[2] = { (- b - sqrt(discriminant)) / (2 * a), (- b + sqrt(discriminant)) / (2 * a) }; //two possible quadratic solns
+      
+     // else { //if the discriminant is greater than or equal to zero, take the soln with smallest absolute value
+       // double absquad[2];
+       // for (int n=0; n<2; ++n)  absquad[n] = fabs(quad[n]);
+        //if (absquad[0] < absquad[1])
+	 
+        else   pz_estimate = pz2;
       }
       return pz_estimate;
     }
 
     void safeNormalize(Histo1DPtr h) {
-    if (h) normalize(h);} //controllo di sicurezza, normalizza un 
+    if (h && h->numEntries() > 0) normalize(h);} //controllo di sicurezza, normalizza un 
     //istogramma solo se questo esiste. Svantaggio: accetta un solo argomento 
     //per volta. 
 
