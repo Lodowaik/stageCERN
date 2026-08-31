@@ -46,14 +46,14 @@ namespace Rivet {
     clusterAlgo = JetAlg::ANTIKT;
       }
       
-      FastJets fj(FinalState(Cuts::abseta < 5), clusterAlgo, R);
+      FastJets fj(FinalState(Cuts::abseta < 2.5), clusterAlgo, R);
       fj.useInvisibles();
       declare(fj, "Jets");
-      declare(HeavyHadrons(Cuts::abseta < 5 && Cuts::pT > 500*MeV), "BCHadrons");
+      declare(HeavyHadrons(Cuts::abseta < 2.5 && Cuts::pT > 500*MeV), "BCHadrons");
       
       //blocco aggiunto:
        /// Get electrons from truth record
-      IdentifiedFinalState elec_fs(Cuts::abseta < 2.47 && Cuts::pT > 25 * GeV);
+      IdentifiedFinalState elec_fs(Cuts::abseta < 2.5 && Cuts::pT > 25 * GeV);
       elec_fs.acceptIdPair(PID::ELECTRON);
       declare(elec_fs, "ELEC_FS");
 
@@ -90,27 +90,28 @@ namespace Rivet {
        //INFORMAZIONI CHE IN REALTA STAREBBERO SUL FILE ATLAS2013...yoda.gz
        //cosa che quindi manda in pappa il sistema quando runno
        for (size_t d = 0; d < 5; ++d) {
-
-    book(_p_b_rho[d],
-         "b_rho_" + to_string(d),
-         10, 0., 0.4);
-
-    book(_p_Wjets_rho[d],
-         "Wjets_rho_" + to_string(d),
-         10, 0., 0.4);
-
-    book(_p_b_Psi[d],
-         "b_Psi_" + to_string(d),
-         10, 0., 0.4);
-
-    book(_p_Wjets_Psi[d],
-         "Wjets_Psi_" + to_string(d),
-         10, 0., 0.4);
+          book(_p_b_rho[d], "b_rho_" + to_string(d), 10, 0., 0.4);
+          book(_p_Wjets_rho[d], "Wjets_rho_" + to_string(d), 10, 0., 0.4);
+          book(_p_b_Psi[d], "b_Psi_" + to_string(d), 10, 0., 0.4);
+          book(_p_Wjets_Psi[d], "Wjets_Psi_" + to_string(d), 10, 0., 0.4);
 }     //fine blocco sostitutivo
 
       book(_h_bar_Wjets_width, "width_Wjets", 7, 0., 0.3);
       book(_h_Wjets_ch_mult, "charged_mult_Wjets", 40, 0.5, 40.5);
-       book(_h_Wjets_pT, "pT_B_jet", 25, 7., 1025.);
+      book(_h_Wjets_pT, "pT_B_jet", 25, 7., 1025.);
+      book(_h_W_chi2, "W_chi2", 50, 0., 4.0); //aggiunto il 31 agosto
+      book(_h_W_Wjets_dR, "W_Wjets_dR", 20, 0.0, 7.0);
+      book(_h_W_Wjets_deta, "W_Wjets_deta", 20, 0.0, 7.0);
+      book(_h_W_Wjets_dphi, "W_Wjets_dphi", 20, 0.0, M_PI);
+      book(_h_bjet_mass, "bjet_mass", 50, 1.5, 6.0);
+      book(_h_lcjet_mass, "lcjet_mass", 50, 0.1, 2.5); //boh non so
+      //se gli estremi sono giusti, inteno provo così
+      book(_h_W_pT, "W_pT", logspace(50, 5.0, 650.0)); //questo e 
+      //sqguente istogramma sono già presenti in TTBAR, ma voglio vedere se 
+      //identificanod il W in questo modo (con questi tagli ecc) cambia qualcosa
+      book(_h_W_mass, "W_mass", 75, 30, 180);
+      //fine blocco aggiunto il 31 agosto
+
     } //ok fin qui dovremmo essere a posto con le parentesi
 
 
@@ -323,6 +324,13 @@ else
     light_jets.push_back(j);
     }
 
+for (const Jet* jet : b_jets) {
+       _h_bjet_mass->fill(jet->mass()/GeV);}
+for (const Jet* jet : light_jets) {
+       _h_lcjet_mass->fill(jet->mass()/GeV);}
+for (const Jet* jet : c_jets) {
+       _h_lcjet_mass->fill(jet->mass()/GeV);}	
+
 //fin qui con le parentesi dovrebbe essere a posto
       // Select light-jets as the pair of non-b-jets with invariant mass closest to the W mass
      //IO INVECE VOGLIO TUTTI I JET PROVENIENTI DAL W. QUINDI RINOMINO W_JETS QUELLO CHE ERA LIGHT_JETS 
@@ -416,8 +424,9 @@ if (deltaRJetGen(*j1, b) < 0.3) {
             }
         }
     }
+    _h_W_chi2 -> fill(bestChi2);
 }
-
+      
       // Check that both jets are not overlapped, and populate the W jets list
       vector<const Jet*> W_jets;
       const bool hasGoodWJet = bestJ1 != NULL && bestJ2 != NULL && bestJ1 != bestJ2;
@@ -425,10 +434,25 @@ if (deltaRJetGen(*j1, b) < 0.3) {
   //qui in precedenza c'era tutto un blocco che richiedeva che i due bestJ fossero separati da DeltaR maggiore o uguale a 0.8 da un qualunque altro jet di alljet. Ma dato che nella selezione di alljet ci sono tutti i jet con pT superiore a 7 GeV, questa cosa è pericolosa perché rischia di ammazzarmi un sacco di Wjets. Meglio quindi togliere quella selezione e tenere solo la richiesta che i due Wjets non coincidano. 
           W_jets.push_back(bestJ1);
           W_jets.push_back(bestJ2);
-        
+          const FourMomentum W = W_jets[0]->momentum() + W_jets[1]->momentum();
+	  _h_W_pT->fill(W.pT()/GeV);
+	  _h_W_mass->fill(W.mass()/GeV); 
       }
+
       MSG_DEBUG(W_jets.size() << " W jets selected");
   //anche qui le parentesi potrebbero essere giuste
+
+      //agiunto il 31 agosto:
+       if (W_jets.size() > 1) {
+        const FourMomentum W = W_jets[0]->momentum() + W_jets[1]->momentum();
+       //amen la ridichiaro tanto è una variabile interna al loop
+       //ordunque non dovrebbe dare problemi 
+       	_h_W_Wjets_dR->fill(deltaR(W, W_jets[0]->momentum()));
+        _h_W_Wjets_dR->fill(deltaR(W, W_jets[1]->momentum()));
+         _h_W_Wjets_deta->fill(fabs(W.eta()-W_jets[0]->eta()));
+        _h_W_Wjets_dphi->fill(deltaPhi(W, W_jets[0]->momentum()));
+	_h_W_Wjets_deta->fill(fabs(W.eta()-W_jets[1]->eta()));
+        _h_W_Wjets_dphi->fill(deltaPhi(W,W_jets[1]->momentum())); } //fine blocco aggiunto il 31 agosto
 
       // Calculate the jet shapes
       /// @todo Use C++11 vector/array initialization
@@ -529,7 +553,9 @@ if (deltaRJetGen(*j1, b) < 0.3) {
     void finalize() {
       normalize({_h_ptCJetLead, _h_ptCHadrLead, _h_ptBJetLead, _h_ptBHadrLead,
             _h_ptFracC, _h_eFracC, _h_ptFracB, _h_eFracB, _h_bar_Wjets_width,
-	    _h_Wjets_pT, _h_Wjets_ch_mult, _h_pT_muon, _h_pT_electron, _h_pT_lepton});
+	    _h_Wjets_pT, _h_Wjets_ch_mult, _h_pT_muon, _h_pT_electron,
+	    _h_pT_lepton, _h_W_chi2, _h_W_Wjets_dR, _h_W_Wjets_deta,
+	    _h_W_Wjets_dphi, _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_W_mass});
       //, _p_Wjets_rho, _p_Wjets_Psi, _p_b_rho, _p_b_Psi}); //questi sono Profile1D, non vanno normalizzati a mano
    }
 
@@ -539,7 +565,9 @@ if (deltaRJetGen(*j1, b) < 0.3) {
     Histo1DPtr _h_ptCJetLead, _h_ptCHadrLead, _h_ptFracC, _h_eFracC;
     Histo1DPtr _h_ptBJetLead, _h_ptBHadrLead, _h_ptFracB, _h_eFracB;
     Histo1DPtr   _h_bar_Wjets_width,_h_Wjets_pT, _h_Wjets_ch_mult;
-    Histo1DPtr _h_pT_muon, _h_pT_electron, _h_pT_lepton;
+    Histo1DPtr _h_pT_muon, _h_pT_electron, _h_pT_lepton, _h_W_chi2;
+    Histo1DPtr _h_W_Wjets_dR, _h_W_Wjets_deta, _h_W_Wjets_dphi;
+    Histo1DPtr _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_W_mass;
     Profile1DPtr _p_b_rho[5];//inizio aggiunta mia
     Profile1DPtr _p_Wjets_rho[5];
     Profile1DPtr _p_b_Psi[5];
