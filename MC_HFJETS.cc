@@ -63,53 +63,139 @@ namespace Rivet {
       declare(muon_fs, "MUON_FS");
       //fine blocco aggiunto
       
-      //inizio blocco aggiunto il 25 agosto:
       book(_h_pT_muon, "pT_muon", linspace(5, 0, 20, false) + logspace(25, 20, 200));
+      _h_pT_muon->setTitle("pT distribution of muons");
+      _h_pT_muon->setAnnotation("XLabel", "pT_{#mu} [GeV]");
+      _h_pT_muon->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+      
       book(_h_pT_electron, "pT_electron", linspace(5, 0, 20, false) + logspace(25, 20, 200));
+      _h_pT_electron->setTitle("pT distribution of electrons");
+      _h_pT_electron->setAnnotation("XLabel", "pT_{e} [GeV]");
+      _h_pT_electron->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
 
-      book(_h_pT_lepton, "pT_lepton", linspace(5, 0, 20, false) + logspace(25, 20, 200)); //fine blocco aggiunto il 25 agosto
+      book(_h_pT_lepton, "pT_lepton", linspace(5, 0, 20, false) + logspace(25, 20, 200)); 
+      _h_pT_lepton->setTitle("pT distribution of leptons");
+      _h_pT_lepton->setAnnotation("XLabel", "pT_{l} [GeV]");
+      _h_pT_lepton->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
      
       book(_h_ptCJetLead ,"ptCJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
+      _h_ptCJetLead->setTitle("pT distribution of the leading c-jet");
+      _h_ptCJetLead->setAnnotation("XLabel", "pT of the lead. c-jet [GeV]");
+      _h_ptCJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+
       book(_h_ptCHadrLead ,"ptCHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
+      _h_ptCHadrLead->setTitle("pT distribution of the leading c-hadron");
+      _h_ptCHadrLead->setAnnotation("XLabel", "pT of the lead. c-hadron [GeV]");
+      _h_ptCHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+
       book(_h_ptFracC ,"ptfracC", 50, 0, 1.5);
+      _h_ptFracC->setTitle("pT_{c-hadron}/pT_{c-jet} distribution");
+      _h_ptFracC->setAnnotation("XLabel", "pT_{c-had}/pT_{c-jet}");
+      //_h_ptFracC->setAnnotation("YLabel", "1/N{ev}");
+      
       book(_h_eFracC ,"efracC", 50, 0, 1.5);
+      _h_eFracC->setTitle("E_{c-hadron}/E_{c-jet} distribution");
+      _h_eFracC->setAnnotation("XLabel", "E_{c-had}/E_{c-jet}");
+      //_h_eFracC->setAnnotation("YLabel", "1/N{ev}");
 
       book(_h_ptBJetLead ,"ptBJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
+      _h_ptBJetLead->setTitle("pT distribution of the leading b-jet");
+      _h_ptBJetLead->setAnnotation("XLabel", "pT of the lead. b-jet [GeV]");
+      _h_ptBJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+
       book(_h_ptBHadrLead ,"ptBHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
+      _h_ptBHadrLead->setTitle("pT distribution of the leading b-hadron");
+      _h_ptBHadrLead->setAnnotation("XLabel", "pT of the lead. b-hadron [GeV]");
+      _h_ptBHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+
       book(_h_ptFracB ,"ptfracB", 50, 0, 1.5);
+      _h_ptFracB->setTitle("pT_{b-hadron}/pT_{b-jet} distribution");
+      _h_ptFracB->setAnnotation("XLabel", "pT_{b-had}/pT_{b-jet}");
+      //_h_ptFracB->setAnnotation("YLabel", "1/N{ev}");
+
       book(_h_eFracB ,"efracB", 50, 0, 1.5);
-        // BLOCCO AGGIUNTO DA ME 
-  //    for (size_t d = 0; d < 5; ++d) {
-    //    book(_p_b_rho[d], d + 1, 1, 1);//iniziano con p e non con h perché
-	//sono profile1D, non Histogram1D
-      //  book(_p_Wjets_rho[d], d + 1, 2, 1);
-      //  book(_p_b_Psi[d], d + 1, 1, 2);
-       //book(_p_Wjets_Psi[d], d + 1, 2, 2);   }
-       //LO SOSTITUISCO CON QUEST'ALTRO BLOCCO COSI CHE TUTTI GLI 
-       //ISTOGRAMMI SIANO DICHIARATI ESPLICITAMENTE SENZA CHE IL FILE RICHIEDA
-       //INFORMAZIONI CHE IN REALTA STAREBBERO SUL FILE ATLAS2013...yoda.gz
-       //cosa che quindi manda in pappa il sistema quando runno
+      _h_eFracB->setTitle("E_{b-hadron}/E_{b-jet} distribution");
+      _h_eFracB->setAnnotation("XLabel", "E_{c-had}/E_{c-jet}");
+      //_h_eFracB->setAnnotation("YLabel", "1/N{ev}");
+      
+      vector<double> ptEdges;
+      ptEdges += {{30, 40, 50, 70, 100, 150}};
+      
        for (size_t d = 0; d < 5; ++d) {
           book(_p_b_rho[d], "b_rho_" + to_string(d), 10, 0., 0.4);
           book(_p_Wjets_rho[d], "Wjets_rho_" + to_string(d), 10, 0., 0.4);
           book(_p_b_Psi[d], "b_Psi_" + to_string(d), 10, 0., 0.4);
           book(_p_Wjets_Psi[d], "Wjets_Psi_" + to_string(d), 10, 0., 0.4);
-}     //fine blocco sostitutivo
+	  
+          std::ostringstream title1;
+          title1 << "Differential jet shape of b-jets with " 
+          << ptEdges[d] << " < p_{T}^{b-jet} < "
+          << ptEdges[d+1] << " GeV";
+          _p_b_rho[d]->setTitle(title1.str());
+	  
+	  std::ostringstream title2;
+	  title2 << "Differential jet shape of W-jets with "
+          << ptEdges[d] << " p_{T}^{W-jet} < "
+	  << ptEdges[d+1] << " GeV";
+	  _p_Wjets_rho[d]->setTitle(title2.str());
+    }
 
       book(_h_bar_Wjets_width, "width_Wjets", 7, 0., 0.3);
+      _h_bar_Wjets_width->setTitle("Width of the jets coming from W decay");
+      _h_bar_Wjets_width->setAnnotation("XLabel", "width");
+      //_h_bar_Wjets_width->setAnnotation("YLabel", "1/N_{ev}");
+      
       book(_h_Wjets_ch_mult, "charged_mult_Wjets", 40, 0.5, 40.5);
-      book(_h_Wjets_pT, "pT_B_jet", 25, 7., 1025.);
+      _h_Wjets_ch_mult->setTitle("Charged multiplicity of jets coming from W boson decay");
+      _h_Wjets_ch_mult->setAnnotation("XLabel", "N. of charged particles");
+      //_h_Wjets_ch_mult->setAnnotation("YLabel", "1/N_{ev}");
+      
+      book(_h_Wjets_pT, "pT_Wjets", 25, 7., 700.);
+      _h_Wjets_pT->setTitle("pT distribution of the jets coming from W decay");
+      _h_Wjets_pT->setAnnotation("XLabel2", "pT_{Wjet}");
+      _h_Wjets_pT->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
+
       book(_h_W_chi2, "W_chi2", 50, 0., 4.0); //aggiunto il 31 agosto
+      _h_W_chi2->setTitle("Hadronic W candidate #chi^{2}");
+      _h_W_chi2->setAnnotation("XLabel", "#chi^{2}_{W}");
+      _h_W_chi2->setAnnotation("YLabel", "1/N_{ev} dN/d#chi^{2}_{W}");
+      
       book(_h_W_Wjets_dR, "W_Wjets_dR", 20, 0.0, 7.0);
+      _h_W_Wjets_dR->setTitle("dR between W and a jet originated by W decay");
+      _h_W_Wjets_dR->setAnnotation("XLabel", "dR between W and W-originated jet");
+     // _h_W_Wjets_dR->setannotation("YLabel", "1/N_{ev}");
+      
       book(_h_W_Wjets_deta, "W_Wjets_deta", 20, 0.0, 7.0);
+      _h_W_Wjets_deta->setTitle("d#eta between W and a jet originated by W decay");
+      _h_W_Wjets_deta->setAnnotation("XLabel", "d#eta between W and W-originated jet");
+     // _h_W_Wjets_deta->setannotation("YLabel", "1/N_{ev}");
+
       book(_h_W_Wjets_dphi, "W_Wjets_dphi", 20, 0.0, M_PI);
-      book(_h_bjet_mass, "bjet_mass", 50, 1.5, 6.0);
-      book(_h_lcjet_mass, "lcjet_mass", 50, 0.1, 2.5); //boh non so
-      //se gli estremi sono giusti, inteno provo così
+      _h_W_Wjets_dphi->setTitle("d#phi between W and a jet originated by W decay");
+      _h_W_Wjets_dphi->setAnnotation("XLabel", "d#phi between W and W-originated jet");
+     // _h_W_Wjets_dphi->setannotation("YLabel", "1/N_{ev}");
+
+      book(_h_bjet_mass, "bjet_mass", 50, 1.5, 8.5);
+      _h_bjet_mass->setTitle("Invariant mass of a b-jet");
+      _h_bjet_mass->setAnnotation("XLabel", "bjet mass [GeV]");
+      //_h_bjet_mass->setAnnotation("YLabel", "1/N_{ev}");
+
+      book(_h_lcjet_mass, "lcjet_mass", 50, 0.1, 3.5); //boh non so
+      _h_lcjet_mass->setTitle("Invariant mass of a light or c-jet");
+      _h_lcjet_mass->setAnnotation("XLabel", "light/c-jet mass [GeV}"); 
+      //_h_lcjet_mass->setAnnotation("YLabel", "1/N_{ev}");
+
       book(_h_W_pT, "W_pT", logspace(50, 5.0, 650.0)); //questo e 
       //sqguente istogramma sono già presenti in TTBAR, ma voglio vedere se 
       //identificanod il W in questo modo (con questi tagli ecc) cambia qualcosa
+      _h_W_pT->setTitle("pT distribution for the W boson");
+      _h_W_pT->setAnnotation("XLabel", "pT_{W} [GeV]");
+      _h_W_pT->setAnnotation("YLabel", "d#sigma/dpT_{W} [pb GeV^{-1}]");
+
       book(_h_W_mass, "W_mass", 75, 30, 180);
+      _h_W_mass->setTitle("Mass distribution of the W boson");
+      _h_W_mass->setAnnotation("XLabel", "m_{W} [GeV]");
+      _h_W_mass->setAnnotation("YLabel", "d#sigma/dm_{W} [pb GeV^{-1}]");
       //fine blocco aggiunto il 31 agosto
 
     } //ok fin qui dovremmo essere a posto con le parentesi
@@ -424,9 +510,12 @@ if (deltaRJetGen(*j1, b) < 0.3) {
             }
         }
     }
-    _h_W_chi2 -> fill(bestChi2);
 }
-      
+
+// UNA SOLA entry per evento
+if (isfinite(bestChi2)) {
+    _h_W_chi2->fill(bestChi2);
+}      
       // Check that both jets are not overlapped, and populate the W jets list
       vector<const Jet*> W_jets;
       const bool hasGoodWJet = bestJ1 != NULL && bestJ2 != NULL && bestJ1 != bestJ2;
@@ -457,7 +546,23 @@ if (deltaRJetGen(*j1, b) < 0.3) {
       // Calculate the jet shapes
       /// @todo Use C++11 vector/array initialization
       const double binWidth = 0.04; // -> 10 bins from 0.0-0.4
-      vector<double> ptEdges;
+     // vector<double> ptEdges;  //dichiarato già in init()
+     // ptEdges += {{30, 40, 50, 70, 100, 150}};
+
+      // b-jet shapes
+      MSG_DEBUG("Filling b-jet shapes");
+      for (const Jet* bJet : b_jets) {
+        // Work out jet pT bin and skip this jet if out of range
+        const double jetPt = bJet->momentum().pT();
+        MSG_DEBUG("Jet pT = " << jetPt / GeV << " GeV");
+        if (!inRange(jetPt / GeV, 30., 150.)) continue;
+
+
+       /// @todo Use YODA bin index lookup tools
+        size_t ipt;
+        for (ipt = 0; ipt < 5; ++ipt)
+          if (inRange(jetPt / GeV, ptEdges[ipt], ptEdges[ipt + 1])) break;
+        MSG_DEBUG("Jet pT index = " << ipt);
       ptEdges += {{30, 40, 50, 70, 100, 150}};
 
       // b-jet shapes
@@ -467,7 +572,9 @@ if (deltaRJetGen(*j1, b) < 0.3) {
         const double jetPt = bJet->momentum().pT();
         MSG_DEBUG("Jet pT = " << jetPt / GeV << " GeV");
         if (!inRange(jetPt / GeV, 30., 150.)) continue;
-        /// @todo Use YODA bin index lookup tools
+ 
+
+       /// @todo Use YODA bin index lookup tools
         size_t ipt;
         for (ipt = 0; ipt < 5; ++ipt)
           if (inRange(jetPt / GeV, ptEdges[ipt], ptEdges[ipt + 1])) break;
