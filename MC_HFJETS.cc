@@ -67,27 +67,27 @@ namespace Rivet {
       book(_h_pT_muon, "pT_muon", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       _h_pT_muon->setTitle("pT distribution of muons");
       _h_pT_muon->setAnnotation("XLabel", "pT_{#mu} [GeV]");
-      _h_pT_muon->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+     // _h_pT_muon->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
       
       book(_h_pT_electron, "pT_electron", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       _h_pT_electron->setTitle("pT distribution of electrons");
       _h_pT_electron->setAnnotation("XLabel", "pT_{e} [GeV]");
-      _h_pT_electron->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+     // _h_pT_electron->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
 
       book(_h_pT_lepton, "pT_lepton", linspace(5, 0, 20, false) + logspace(25, 20, 200)); 
       _h_pT_lepton->setTitle("pT distribution of leptons");
       _h_pT_lepton->setAnnotation("XLabel", "pT_{l} [GeV]");
-      _h_pT_lepton->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+     // _h_pT_lepton->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
      
       book(_h_ptCJetLead ,"ptCJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       _h_ptCJetLead->setTitle("pT distribution of the leading c-jet");
       _h_ptCJetLead->setAnnotation("XLabel", "pT of the lead. c-jet [GeV]");
-      _h_ptCJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+     // _h_ptCJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
 
       book(_h_ptCHadrLead ,"ptCHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
       _h_ptCHadrLead->setTitle("pT distribution of the leading c-hadron");
       _h_ptCHadrLead->setAnnotation("XLabel", "pT of the lead. c-hadron [GeV]");
-      _h_ptCHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
+     // _h_ptCHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}");
 
       book(_h_ptFracC ,"ptfracC", 50, 0, 1.5);
       _h_ptFracC->setTitle("pT_{c-hadron}/pT_{c-jet} distribution");
@@ -102,12 +102,12 @@ namespace Rivet {
       book(_h_ptBJetLead ,"ptBJetLead", linspace(5, 0, 20, false) + logspace(25, 20, 200));
       _h_ptBJetLead->setTitle("pT distribution of the leading b-jet");
       _h_ptBJetLead->setAnnotation("XLabel", "pT of the lead. b-jet [GeV]");
-      _h_ptBJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
+     // _h_ptBJetLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
 
       book(_h_ptBHadrLead ,"ptBHadrLead", linspace(5, 0, 10, false) + logspace(25, 10, 200));
       _h_ptBHadrLead->setTitle("pT distribution of the leading b-hadron");
       _h_ptBHadrLead->setAnnotation("XLabel", "pT of the lead. b-hadron [GeV]");
-      _h_ptBHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
+     // _h_ptBHadrLead->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
 
       book(_h_ptFracB ,"ptfracB", 50, 0, 1.5);
       _h_ptFracB->setTitle("pT_{b-hadron}/pT_{b-jet} distribution");
@@ -116,7 +116,7 @@ namespace Rivet {
 
       book(_h_eFracB ,"efracB", 50, 0, 1.5);
       _h_eFracB->setTitle("E_{b-hadron}/E_{b-jet} distribution");
-      _h_eFracB->setAnnotation("XLabel", "E_{c-had}/E_{c-jet}");
+      _h_eFracB->setAnnotation("XLabel", "E_{b-had}/E_{b-jet}");
       //_h_eFracB->setAnnotation("YLabel", "1/N{ev}");
       
       vector<double> ptEdges;
@@ -174,13 +174,13 @@ namespace Rivet {
       
       book(_h_Wjets_pT, "pT_Wjets", 25, 7., 700.);
       _h_Wjets_pT->setTitle("pT distribution of the jets coming from W decay");
-      _h_Wjets_pT->setAnnotation("XLabel2", "pT_{Wjet}");
-      _h_Wjets_pT->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
+      _h_Wjets_pT->setAnnotation("XLabel", "pT_{Wjet}");
+     // _h_Wjets_pT->setAnnotation("YLabel", "d#sigma/dpT [pb GeV^{-1}]");
 
       book(_h_W_chi2, "W_chi2", 50, 0., 4.0); //aggiunto il 31 agosto
       _h_W_chi2->setTitle("Hadronic W candidate #chi^{2}");
       _h_W_chi2->setAnnotation("XLabel", "#chi^{2}_{W}");
-      _h_W_chi2->setAnnotation("YLabel", "1/N_{ev} dN/d#chi^{2}_{W}");
+     // _h_W_chi2->setAnnotation("YLabel", "1/N_{ev} dN/d#chi^{2}_{W}");
       
       book(_h_W_Wjets_dR, "W_Wjets_dR", 20, 0.0, 7.0);
       _h_W_Wjets_dR->setTitle("dR between W and a jet originated by W decay");
@@ -212,7 +212,7 @@ namespace Rivet {
       //identificanod il W in questo modo (con questi tagli ecc) cambia qualcosa
       _h_W_pT->setTitle("pT distribution for the W boson");
       _h_W_pT->setAnnotation("XLabel", "pT_{W} [GeV]");
-      _h_W_pT->setAnnotation("YLabel", "d#sigma/dpT_{W} [pb GeV^{-1}]");
+     // _h_W_pT->setAnnotation("YLabel", "d#sigma/dpT_{W} [pb GeV^{-1}]");
 
       book(_h_W_mass, "W_mass", 75, 30, 180);
       _h_W_mass->setTitle("Mass distribution of the W boson");
@@ -424,11 +424,13 @@ if (!isBJet) {
     }
 }
 
-if (isBJet)
-    b_jets.push_back(j); //push_back vuole il puntatore al jet cioè j, non &j che sarebbe il puntatore di un puntatore
-else if (isCJet)
+//if (isBJet)  //lo silenzio e faccio diventare if quello 
+//che era else if (isCJet) perchè altrimenti riempirei due volte 
+//il vettore b_jets (già fatto sopra)
+  //  b_jets.push_back(j); //push_back vuole il puntatore al jet cioè j, non &j che sarebbe il puntatore di un puntatore
+if (isCJet)
     c_jets.push_back(j);
-else
+else if(!isBJet && !isCJet)
     light_jets.push_back(j);
     }
 
@@ -648,15 +650,13 @@ if (isfinite(bestChi2)) {
               if(pp.isStable()) {
                 W_num += pp.pT()*deltaR(wjet->momentum(),pp.momentum());
                 W_den += pp.pT();
-                if(pp.isCharged()) ++N_charged;}
+                if(pp.isCharged()) ++N_charged; } }
 	      //if pp.isLepton non lo faccio perché nei light jets è parecchio improbabile che ci sia un leptone
 	     if (W_den)  _h_bar_Wjets_width->fill(W_num/W_den);
             _h_Wjets_pT->fill(wjet->pT()/GeV);
             if (N_charged) {
-              _h_Wjets_ch_mult->fill(N_charged);
-            
-            }
-            }
+              _h_Wjets_ch_mult->fill(N_charged); }
+           
   }  //
 
 	//FINE DEL BLOCCO AGGIUNTO DA ME 
