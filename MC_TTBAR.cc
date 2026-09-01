@@ -40,7 +40,7 @@ namespace Rivet {
       // A second FinalState is used to select all particles in |eta| < 4.2,
       // with no pT cut. This is used to construct jets and measure missing
       // transverse energy.
-      VetoedFinalState fs(FinalState(Cuts::abseta < 4.2));
+      VetoedFinalState fs(FinalState(Cuts::abseta < 2.5));
       fs.addVetoOnThisFinalState(lfs);
       declare(FastJets(fs, JetAlg::ANTIKT, 0.4), "Jets"); //qui ho messo R=0.4 (nell'originale è R=0.6)
       declare(MissingMomentum(fs), "MissingET");
@@ -72,7 +72,7 @@ namespace Rivet {
 	book(_h_W_mass, pre + "W_mass", 75, 30, 180);
         book(_h_t_mass, pre + "t_mass", 150, 130, 430);
         book(_h_t_mass_W_cut, pre + "t_mass_W_cut", 150, 130, 430);
-        book(_h_t_pT_W_cut, pre + "t_pT_W_cut", 100, 0., 1000.);
+        book(_h_t_pT_W_cut, pre + "t_pT_W_cut", logspace(100, 5.0, 1000.));
         book(_h_jetb_1_W_dR,  pre + "jetb_1_W_dR", 20, 0.0, 7.0);
         book(_h_jetb_1_W_deta, pre + "jetb_1_W_deta", 20, 0.0, 7.0);
         book(_h_jetb_1_W_dphi, pre + "jetb_1_W_dphi", 20, 0.0, M_PI);
@@ -103,7 +103,7 @@ namespace Rivet {
       //  } }
       //  istogrammi che aggiungo ora e che davano problemi perché usati ma
       //  non bookati:
-      book(_h_t_pT, pre + "t_pT", logspace(100, 0., 1000.));
+      book(_h_t_pT, pre + "t_pT", logspace(100, 5.0, 1000.));
       book(_h_jetb_1_jetl_2_dR, pre + "jetb_1_jetl_2_dR", 20, 0.0, 7.0);
       book(_h_jetb_1_jetl_2_deta, pre + "jetb_1_jetl_2_deta", 20, 0.0, 7.0);
       book(_h_jetb_1_jetl_2_dphi, pre + "jetb_1_jetl_2_dphi", 20, 0.0, M_PI);
@@ -203,7 +203,7 @@ namespace Rivet {
         FourMomentum neutrino(sqrt(sqr(met.x()) + sqr(met.y()) + sqr(pz)), met.x(), met.y(), pz);
         ttpair += lep + neutrino;
       }
-      if (nLeps < 2)  _h_tt_mass->fill(ttpair.mass());
+      if (nLeps < 2)  _h_tt_mass->fill(ttpair.mass()/GeV);
 
       //qui c'era if (_mode<2), che però mi va a silenziare anylep e quindi fa sì che gli istogrammi in questo blocco non vengano riempiti.
       if (ljets.size()>1) {
@@ -231,9 +231,9 @@ namespace Rivet {
         const FourMomentum t1 = W + bjets[0].momentum();
        const FourMomentum t2 = W + bjets[1].momentum();
         _h_W_pT->fill(W.pT()/GeV); //oh magari ho culo e basta questo
-	_h_W_mass->fill(W.mass());
-        _h_t_mass->fill(t1.mass());
-        _h_t_mass->fill(t2.mass());
+	_h_W_mass->fill(W.mass()/GeV);
+        _h_t_mass->fill(t1.mass()/GeV);
+        _h_t_mass->fill(t2.mass()/GeV);
         _h_t_pT->fill(t1.pT()/GeV);
         _h_t_pT->fill(t2.pT()/GeV);
 
@@ -242,8 +242,8 @@ namespace Rivet {
         if (!inRange(W.mass()/GeV, 75.0, 85.0))  vetoEvent;
         MSG_DEBUG("W found with mass " << W.mass()/GeV << " GeV");
 
-        _h_t_mass_W_cut->fill(t1.mass());
-        _h_t_mass_W_cut->fill(t2.mass());
+        _h_t_mass_W_cut->fill(t1.mass()/GeV);
+        _h_t_mass_W_cut->fill(t2.mass()/GeV);
 
         _h_t_pT_W_cut->fill(t1.pT()/GeV);
         _h_t_pT_W_cut->fill(t2.pT()/GeV);
@@ -262,9 +262,12 @@ namespace Rivet {
         _h_jetb_1_jetl_1_deta->fill(fabs(bjets[0].eta()-ljets[0].eta()));
         _h_jetb_1_jetl_1_dphi->fill(deltaPhi(bjets[0].momentum(),ljets[0].momentum()));
         if (ljets.size() > 1) {
-          _h_jetl_1_jetl_2_dR->fill(deltaR(ljets[0].momentum(), ljets[1].momentum()));
-          _h_jetl_1_jetl_2_deta->fill(fabs(ljets[0].eta()-ljets[1].eta()));
-          _h_jetl_1_jetl_2_dphi->fill(deltaPhi(ljets[0].momentum(),ljets[1].momentum()));
+          _h_jetb_1_jetl_2_dR->fill(deltaR(bjets[0].momentum(), ljets[1].momentum()));
+          _h_jetb_1_jetl_2_deta->fill(fabs(bjets[0].eta()-ljets[1].eta()));
+          _h_jetb_1_jetl_2_dphi->fill(deltaPhi(bjets[0].momentum(),ljets[1].momentum()));
+	  _h_jetl_1_jetl_2_dR->fill(deltaR(ljets[0].momentum(), ljets[1].momentum()));
+          _h_jetl_1_jetl_2_deta->fill(fabs(ljets[0].eta() - ljets[1].eta()));
+          _h_jetl_1_jetl_2_dphi->fill(deltaPhi(ljets[0].momentum(), ljets[1].momentum()));
         }
       }
 
