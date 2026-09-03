@@ -42,7 +42,7 @@ namespace Rivet {
       // transverse energy.
       VetoedFinalState fs(FinalState(Cuts::abseta < 2.5));
       fs.addVetoOnThisFinalState(lfs);
-      declare(FastJets(fs, JetAlg::ANTIKT, 0.4), "Jets"); //qui ho messo R=0.4 (nell'originale è R=0.6)
+      declare(FastJets(fs, JetAlg::ANTIKT, 0.6), "Jets"); //qui ho messo R=0.4 (nell'originale è R=0.6)
       declare(MissingMomentum(fs), "MissingET");
 
       // Booking of histograms
