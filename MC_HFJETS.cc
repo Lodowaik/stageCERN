@@ -31,7 +31,7 @@ namespace Rivet {
     void init() {
 
       // set clustering radius from input option
-      const double R = getOption<double>("R", 0.6);
+      const double R = getOption<double>("R", 0.4);
 
       // set clustering algorithm from input option
       JetAlg clusterAlgo;
@@ -76,13 +76,13 @@ namespace Rivet {
       book(_h_ptFracB ,"ptfracB", 50, 0, 1.5);
       book(_h_eFracB ,"efracB", 50, 0, 1.5);
       vector<double> ptEdges;
-      ptEdges += {{30, 40, 50, 70, 100, 150}};
+      ptEdges += {{30, 40, 50, 70, 100, 150, 200, 300}};
       
-       for (size_t d = 0; d < 5; ++d) {
-          book(_p_b_rho[d], "b_rho_" + to_string(d), 10, 0., 0.4);
-          book(_p_Wjets_rho[d], "Wjets_rho_" + to_string(d), 10, 0., 0.4);
-          book(_p_b_Psi[d], "b_Psi_" + to_string(d), 10, 0., 0.4);
-          book(_p_Wjets_Psi[d], "Wjets_Psi_" + to_string(d), 10, 0., 0.4); 
+       for (size_t d = 0; d < 7; ++d) {
+          book(_p_b_rho[d], "b_rho_" + to_string(d), 10, 0., 1.0);
+          book(_p_Wjets_rho[d], "Wjets_rho_" + to_string(d), 10, 0., 1.0);
+          book(_p_b_Psi[d], "b_Psi_" + to_string(d), 10, 0., 1.0);
+          book(_p_Wjets_Psi[d], "Wjets_Psi_" + to_string(d), 10, 0., 1.0); 
     }
 
       book(_h_bar_Wjets_width, "width_Wjets", 7, 0., 0.3);
@@ -100,6 +100,9 @@ namespace Rivet {
       book(_h_W_mass, "W_mass", 75, 30, 180);
       //fine blocco aggiunto il 31 agosto
       book(_h_t_mass, "t_mass", 150, 130, 430);
+      book(_h_N_addjets ,"N_addjets", 5, -0.5, 4.5);
+    //per ora questo lo silenzio
+    //book(_h_pT_N_addjets, "pT_N_addjets",  linspace(5, 0, 20, false) + logspace(25, 20, 200));
     } //ok fin qui dovremmo essere a posto con le parentesi
 
 
@@ -136,6 +139,7 @@ double deltaRJetGen(const Jet& jet,
       const Particles& muonFS = apply<IdentifiedFinalState>(event, "MUON_FS").particlesByPt();
       const size_t nElec = elecFS.size();
       const size_t nMuon = muonFS.size();
+      size_t nleps = nElec + nMuon;
       //aggiungo qui il riempimento degli istogrammi relativi al pt dei leptoni:
       for (size_t i = 0; i < nMuon; i++) {
       _h_pT_muon->fill(muonFS[i].pT()/GeV);
@@ -451,12 +455,23 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
         _h_W_Wjets_dphi->fill(deltaPhi(W, W_jets[0]->momentum()));
 	_h_W_Wjets_deta->fill(fabs(W.eta()-W_jets[1]->eta()));
         _h_W_Wjets_dphi->fill(deltaPhi(W,W_jets[1]->momentum())); } //fine blocco aggiunto il 31 agosto
-
+    double N_addjets = 0.;
+      	for (const Jet* jet : good_jets){ 
+                 if (nleps == 1) {
+		if (jet!=bestB && jet!=W_jets[0] && jet!=W_jets[1])
+		      {	N_addjets += 1;} N_addjets = N_addjets - 1;}
+		//devo sottarre l'altro b jet per questo faccio - 1
+		else if (nleps == 2) {
+			 N_addjets = good_jets.size() - 2;}
+                else if (nleps == 0) {
+			N_addjets = good_jets.size() - 6; }}
+	_h_N_addjets->fill(N_addjets);		      	
+	      
       // Calculate the jet shapes
       /// @todo Use C++11 vector/array initialization
-      const double binWidth = 0.04; // -> 10 bins from 0.0-0.4
+      const double binWidth = 0.04; // -> 10 bins from 0.0 to 0.4
      vector<double> _ptEdges;  //dichiarato già in init()
-     _ptEdges += {{30, 40, 50, 70, 100, 150}};
+     _ptEdges += {{30, 40, 50, 70, 100, 150, 200, 300}};
 
       // b-jet shapes
       MSG_DEBUG("Filling b-jet shapes");
@@ -464,12 +479,12 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
         // Work out jet pT bin and skip this jet if out of range
         const double jetPt = bJet->momentum().pT();
         MSG_DEBUG("Jet pT = " << jetPt / GeV << " GeV");
-        if (!inRange(jetPt / GeV, 30., 150.)) continue;
+        if (!inRange(jetPt / GeV, 30., 300.)) continue;
 
 
        /// @todo Use YODA bin index lookup tools
         size_t ipt;
-        for (ipt = 0; ipt < 5; ++ipt)
+        for (ipt = 0; ipt < 7; ++ipt)
           if (inRange(jetPt / GeV, _ptEdges[ipt], _ptEdges[ipt + 1])) break;
         MSG_DEBUG("Jet pT index = " << ipt);
 
@@ -501,10 +516,10 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
         // Work out jet pT bin and skip this jet if out of range
         const double jetPt = WJet->momentum().pT();
         MSG_DEBUG("Jet pT = " << jetPt / GeV << " GeV");
-        if (!inRange(jetPt / GeV, 30., 150.)) continue;
+        if (!inRange(jetPt / GeV, 30., 300.)) continue;
         /// @todo Use YODA bin index lookup tools
         size_t ipt;
-        for (ipt = 0; ipt < 5; ++ipt)
+        for (ipt = 0; ipt < 7; ++ipt)
           if (inRange(jetPt / GeV, _ptEdges[ipt], _ptEdges[ipt + 1])) break;
         MSG_DEBUG("Jet pT index = " << ipt);
 
@@ -522,7 +537,7 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
              if (rings[9] <= 0) continue;
         // Fill each dR bin of the histos for this jet pT
         for (int iBin = 0; iBin < 10; ++iBin) {
-          const double rcenter = 0.02 + iBin * binWidth;
+          const double rcenter = 0.05 + iBin * binWidth;
           const double rhoval = (iBin != 0 ? (rings[iBin] - rings[iBin - 1]) : rings[iBin]) / binWidth
               / rings[9];
           const double psival = rings[iBin] / rings[9];
@@ -554,7 +569,7 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
 	    _h_Wjets_pT, _h_Wjets_ch_mult, _h_pT_muon, _h_pT_electron,
 	    _h_pT_lepton, _h_W_chi2, _h_W_Wjets_dR, _h_W_Wjets_deta,
 	    _h_W_Wjets_dphi, _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_W_mass, 
-	    _h_t_mass});
+	    _h_t_mass, _h_N_addjets});
       //, _p_Wjets_rho, _p_Wjets_Psi, _p_b_rho, _p_b_Psi}); //questi sono Profile1D, non vanno normalizzati a mano
    }
 
@@ -567,10 +582,11 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
     Histo1DPtr _h_pT_muon, _h_pT_electron, _h_pT_lepton, _h_W_chi2;
     Histo1DPtr _h_W_Wjets_dR, _h_W_Wjets_deta, _h_W_Wjets_dphi;
     Histo1DPtr _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_W_mass, _h_t_mass;
-    Profile1DPtr _p_b_rho[5];//inizio aggiunta mia
-    Profile1DPtr _p_Wjets_rho[5];
-    Profile1DPtr _p_b_Psi[5];
-    Profile1DPtr _p_Wjets_Psi[5];//fine aggiunta mia  
+    Histo1DPtr _h_N_addjets;
+    Profile1DPtr _p_b_rho[7];//inizio aggiunta mia
+    Profile1DPtr _p_Wjets_rho[7];
+    Profile1DPtr _p_b_Psi[7];
+    Profile1DPtr _p_Wjets_Psi[7];//fine aggiunta mia  
     /// @}
 
 
