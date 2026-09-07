@@ -107,8 +107,21 @@ namespace Rivet {
       book(_h_jetb_1_jetl_2_dR, pre + "jetb_1_jetl_2_dR", 20, 0.0, 7.0);
       book(_h_jetb_1_jetl_2_deta, pre + "jetb_1_jetl_2_deta", 20, 0.0, 7.0);
       book(_h_jetb_1_jetl_2_dphi, pre + "jetb_1_jetl_2_dphi", 20, 0.0, M_PI);
+      book(_h_W_chi2, "W_chi2", 50, 0., 4.0);
     }
 
+double deltaRJetGen(const Jet& jet,
+                   ConstGenParticlePtr p) const {
+
+    const FourMomentum pmom(
+        p->momentum().px(),
+        p->momentum().py(),
+        p->momentum().pz(),
+        p->momentum().e()
+    );
+
+    return deltaR(jet.momentum(), pmom);
+}
 
     void analyze(const Event& event) {
 
@@ -146,6 +159,15 @@ namespace Rivet {
       // cut on jet multiplicity depending on ttbar decay mode
       const FastJets& jetpro = apply<FastJets>(event, "Jets");
       const Jets jets = discardIfAnyDeltaRLess(jetpro.jetsByPt(Cuts::pT > 30*GeV), lfs.chargedLeptons(), 0.3);
+     
+       vector<ConstGenParticlePtr> b_hadrons;
+      vector<ConstGenParticlePtr> allParticles = HepMCUtils::particles(event.genEvent());
+      for (size_t i = 0; i < allParticles.size(); i++) {
+        ConstGenParticlePtr p = allParticles.at(i);
+        if (!(PID::isHadron(p->pdg_id()) && PID::hasBottom(p->pdg_id()))) continue;
+        if (p->momentum().perp() < 5 * GeV) continue;
+        b_hadrons.push_back(p);
+      }
 
       if (     _mode == 0 && jets.size() < 6)  vetoEvent; // all-hadronic
       else if (_mode == 1 && jets.size() < 4)  vetoEvent; // single lepton
@@ -211,46 +233,132 @@ namespace Rivet {
         // non-b-tagged jets. The pair which best matches the W mass is used. We start
         // with an always terrible 4-vector estimate which should always be "beaten" by
         // a real jet pair.
-        FourMomentum W(10*(sqrtS()>0.?sqrtS():14000.), 0, 0, 0);
-        for (size_t i = 0; i < ljets.size()-1; ++i) {
-          for (size_t j = i + 1; j < ljets.size(); ++j) {
-            const FourMomentum Wcand = ljets[i].momentum() + ljets[j].momentum();
-            MSG_TRACE(i << "," << j << ": candidate W mass = " << Wcand.mass()/GeV
-                      << " GeV, vs. incumbent candidate with " << W.mass()/GeV << " GeV");
-            if (fabs(Wcand.mass() - 80.4*GeV) < fabs(W.mass() - 80.4*GeV)) {
-              W = Wcand;
-            }
-          }
-        }
-        MSG_DEBUG("Candidate W mass = " << W.mass() << " GeV");
-
+       //DA QUI COMMENTO LA VECCHIA IDENTIFICAZIONE DI W
+	    //  FourMomentum W(10*(sqrtS()>0.?sqrtS():14000.), 0, 0, 0);
+      //  for (size_t i = 0; i < ljets.size()-1; ++i) {
+        //  for (size_t j = i + 1; j < ljets.size(); ++j) {
+         //   const FourMomentum Wcand = ljets[i].momentum() + ljets[j].momentum();
+          //  MSG_TRACE(i << "," << j << ": candidate W mass = " << Wcand.mass()/GeV
+           //           << " GeV, vs. incumbent candidate with " << W.mass()/GeV << " GeV");
+          //  if (fabs(Wcand.mass() - 80.4*GeV) < fabs(W.mass() - 80.4*GeV)) {
+           //   W = Wcand;  }    } }
+     //   MSG_DEBUG("Candidate W mass = " << W.mass() << " GeV");
         // There are two b-jets with which this can be combined to make the
         // hadronically decaying top, one of which is correct and the other is
         // not... but we have no way to identify which is which, so we construct
         // both possible top momenta and fill the histograms with both.
-        const FourMomentum t1 = W + bjets[0].momentum();
-       const FourMomentum t2 = W + bjets[1].momentum();
-        _h_W_pT->fill(W.pT()/GeV); //oh magari ho culo e basta questo
-	_h_W_mass->fill(W.mass()/GeV);
-        _h_t_mass->fill(t1.mass()/GeV);
-        _h_t_mass->fill(t2.mass()/GeV);
-        _h_t_pT->fill(t1.pT()/GeV);
-        _h_t_pT->fill(t2.pT()/GeV);
+      //  const FourMomentum t1 = W + bjets[0].momentum();
+     //  const FourMomentum t2 = W + bjets[1].momentum();
+     // FINE BLOCCO DELLA VECCHIA IDENTIFICAZIONE DI W E TOP
+     //
+     // INIZIO IDENTIFICAZIONE DI W E TOP CON IL CHI2 (PRESO DA HFJETS)
+     //blocco sistemato nella logica ecc: inizia qui
+const double nominalW   = 80.4 * GeV;
+const double nominalTop = 172.5 * GeV;
+const FourMomentum W_reco;
+const FourMomentum t_reco;
+
+const double sigmaW = 25. * GeV; //decay width and approximate experimental resolution 
+const double sigmaT = 35. * GeV;
+
+double bestChi2 = numeric_limits<double>::infinity();
+
+const Jet* bestJ1 = nullptr;
+const Jet* bestJ2 = nullptr;
+const Jet* bestB  = nullptr; //anche se questo in realtà non serve, ho già 
+//b_jets e non mi serve granché sapere qual è il b jet associato al W adronico 
+//in principio, non so a quale dei due b-jets è associato il W che
+// decade adronicamente (che è uno e non entrambi, dato che ho solo
+//  sample nonallhad/singlelep/dilep, quindi in effetti per questa
+//   routine mi è inutile produrre anche l'output di dilep) quindi debbo 
+//   ciclare anche su b_jets
+const Jet* j1 = nullptr;
+
+for (size_t a = 0; a < jets.size(); ++a) {
+
+   // const Jet* j1 = jets[a];
+     &j1 = jets[a].mom();
+    // Do not use b jets as W candidates
+    bool isB1 = false;
+    for (ConstGenParticlePtr b : b_hadrons) {
+
+if (deltaRJetGen(*j1, b) < 0.3) {
+    isB1 = true;
+    break;
+       }
+    }
+    if (isB1) continue;
+
+    for (size_t b = a + 1; b < jets.size(); ++b)
+   //scrivere questo ciclo con b = a+1 impedisce che i jet *j1 e j2 coincidano,
+   //quindi di fatto va a ottimizzare il codice impedendo che j1=j2 e anche doppi conteggi
+    {   const Jet* j2 = jets[b];
+        // Do not use b jets as W candidates
+        bool isB2 = false;
+        for (ConstGenParticlePtr bhad : b_hadrons) {
+            if (deltaRJetGen(*j2, bhad) < 0.3) {
+                isB2 = true;
+                break;
+            }
+        }
+        if (isB2) continue;
+        // Reconstructed W
+        const double mW =
+            (j1->momentum() + j2->momentum()).mass();
+        // Try both b jets
+        for (const Jet& bjet : bjets) {
+
+            // Reconstructed hadronic top
+            const double mTop =
+                (bjet->momentum()
+                + j1->momentum()
+                + j2->momentum()).mass();
+                //non ha senso fisico qui mettere anche z->momentum() per un 
+		//eventuale jet da isr/fsr/gluon radiation from b perché il 
+		//decadimento del top è w+b, non w+b+z, e all'interno del 
+		//momento di b potrebbe esserci già quella parte di momento 
+		//che poi andrà in z (se fosse fsr o gluon radiation) quindi 
+		//conterei due volte la stessa cosa. è quindi meglio rimandare 
+		//(in che modo però) la trattazione di questo eventaule jet z. 
+
+            const double chi2 =
+                pow((mW   - nominalW) / sigmaW, 2)
+              + pow((mTop - nominalTop) / sigmaT, 2);
+
+
+            if (chi2 < bestChi2) {
+      		    bestChi2 = chi2;
+                bestJ1 = j1;
+                bestJ2 = j2;
+                bestB  = bjet;
+            }
+        }
+    }
+}
+
+// UNA SOLA entry per evento
+if (isfinite(bestChi2)) {
+    W_reco = bestJ1->momentum() + bestJ2->momentum();
+    t_reco = W_reco + bestB->momentum();    
+    _h_W_chi2->fill(bestChi2);
+    _h_W_pT->fill(W_reco.pT()/GeV);
+        _h_W_mass->fill(W_reco.mass()/GeV);
+        _h_t_mass->fill(t_reco.mass()/GeV);
+        _h_t_pT->fill(t_reco.pT()/GeV);
+}  
+     //FINE BLOCCO IDENTIFICAZIONE DI W E TOP ATTRAVERSO IL CHI2
+     //
 
         // Placing a cut on the well-known W mass helps to reduce backgrounds
         // only done for all-hadronic and semileptonic mode (since W is hadronic)
-        if (!inRange(W.mass()/GeV, 75.0, 85.0))  vetoEvent;
-        MSG_DEBUG("W found with mass " << W.mass()/GeV << " GeV");
+        if (!inRange(W_reco.mass()/GeV, 75.0, 85.0))  vetoEvent;
+        MSG_DEBUG("W found with mass " << W_reco.mass()/GeV << " GeV");
 
-        _h_t_mass_W_cut->fill(t1.mass()/GeV);
-        _h_t_mass_W_cut->fill(t2.mass()/GeV);
-
-        _h_t_pT_W_cut->fill(t1.pT()/GeV);
-        _h_t_pT_W_cut->fill(t2.pT()/GeV);
-
-        _h_jetb_1_W_dR->fill(deltaR(bjets[0].momentum(), W));
-        _h_jetb_1_W_deta->fill(fabs(bjets[0].eta()-W.eta()));
-        _h_jetb_1_W_dphi->fill(deltaPhi(bjets[0].momentum(),W));
+        _h_t_mass_W_cut->fill(t_reco.mass()/GeV);
+        _h_t_pT_W_cut->fill(t_reco.pT()/GeV);
+        _h_jetb_1_W_dR->fill(deltaR(bjets[0].momentum(), W_reco));
+        _h_jetb_1_W_deta->fill(fabs(bjets[0].eta()-W_reco.eta()));
+        _h_jetb_1_W_dphi->fill(deltaPhi(bjets[0].momentum(),W_reco));
       }
 
       _h_jetb_1_jetb_2_dR->fill(deltaR(bjets[0].momentum(), bjets[1].momentum()));
@@ -344,7 +452,7 @@ namespace Rivet {
         _h_jetb_1_l_deta, _h_jetb_1_l_dphi, _h_jetb_1_l_mass,
         _h_jetb_1_l2_dR, _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi,
         _h_jetb_1_l2_mass,  _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,
-	_h_jetl_1_jetl_2_dphi});
+	_h_jetl_1_jetl_2_dphi, _h_W_chi2});
     safeNormalize(_h_jetb_1_W_dR);
     safeNormalize(_h_jetb_1_W_deta);
     safeNormalize(_h_jetb_1_W_dphi);
@@ -352,8 +460,6 @@ namespace Rivet {
     safeNormalize(_h_t_mass_W_cut);
     safeNormalize(_h_t_pT_W_cut);
     safeNormalize(_h_W_mass);
-
-
     }
    
     /// @}
@@ -385,6 +491,7 @@ namespace Rivet {
     Histo1DPtr  _h_jetb_1_l_dphi, _h_jetb_1_l_mass, _h_jetb_1_l2_dR;
     Histo1DPtr  _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi, _h_jetb_1_l2_mass;
     Histo1DPtr _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,_h_jetl_1_jetl_2_dphi;
+    Histo1DPtr _h_W_chi2;
   };
 
 
