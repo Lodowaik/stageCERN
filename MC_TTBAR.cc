@@ -42,7 +42,7 @@ namespace Rivet {
       // transverse energy.
       VetoedFinalState fs(FinalState(Cuts::abseta < 2.5));
       fs.addVetoOnThisFinalState(lfs);
-      declare(FastJets(fs, JetAlg::ANTIKT, 0.6), "Jets"); //qui ho messo R=0.4 (nell'originale è R=0.6)
+      declare(FastJets(fs, JetAlg::ANTIKT, 0.4), "Jets"); //qui ho messo R=0.4 (nell'originale è R=0.6)
       declare(MissingMomentum(fs), "MissingET");
 
       // Booking of histograms
@@ -107,7 +107,8 @@ namespace Rivet {
       book(_h_jetb_1_jetl_2_dR, pre + "jetb_1_jetl_2_dR", 20, 0.0, 7.0);
       book(_h_jetb_1_jetl_2_deta, pre + "jetb_1_jetl_2_deta", 20, 0.0, 7.0);
       book(_h_jetb_1_jetl_2_dphi, pre + "jetb_1_jetl_2_dphi", 20, 0.0, M_PI);
-      book(_h_W_chi2, "W_chi2", 50, 0., 4.0);
+      book(_h_Wt_chi2, pre + "Wt_chi2", 50, 0., 8.0);
+      book(_h_W_chi2, pre + "W_chi2", 50, 0., 8.0);
     }
 
 double deltaRJetGen(const Jet& jet,
@@ -121,7 +122,7 @@ double deltaRJetGen(const Jet& jet,
     );
 
     return deltaR(jet.momentum(), pmom);
-}
+}   //in realtà mi sa che non serve
 
     void analyze(const Event& event) {
 
@@ -253,18 +254,27 @@ double deltaRJetGen(const Jet& jet,
      //
      // INIZIO IDENTIFICAZIONE DI W E TOP CON IL CHI2 (PRESO DA HFJETS)
      //blocco sistemato nella logica ecc: inizia qui
+const bool hasHadronicW =
+    (_mode == 0) ||
+    (_mode == 1) ||
+    (_mode == 3 && nLeps == 1);
+
+if (hasHadronicW && ljets.size() >= 2) {
 const double nominalW   = 80.4 * GeV;
 const double nominalTop = 172.5 * GeV;
-const FourMomentum W_reco;
-const FourMomentum t_reco;
+FourMomentum W_reco;
+FourMomentum t_reco;
 
 const double sigmaW = 25. * GeV; //decay width and approximate experimental resolution 
 const double sigmaT = 35. * GeV;
 
-double bestChi2 = numeric_limits<double>::infinity();
+double bestChi2_Wt = numeric_limits<double>::infinity();
+double bestChi2_W = numeric_limits<double>::infinity();
 
 const Jet* bestJ1 = nullptr;
 const Jet* bestJ2 = nullptr;
+const Jet* bestJ1_W = nullptr;
+const Jet* bestJ2_W = nullptr;
 const Jet* bestB  = nullptr; //anche se questo in realtà non serve, ho già 
 //b_jets e non mi serve granché sapere qual è il b jet associato al W adronico 
 //in principio, non so a quale dei due b-jets è associato il W che
@@ -272,36 +282,13 @@ const Jet* bestB  = nullptr; //anche se questo in realtà non serve, ho già
 //  sample nonallhad/singlelep/dilep, quindi in effetti per questa
 //   routine mi è inutile produrre anche l'output di dilep) quindi debbo 
 //   ciclare anche su b_jets
-const Jet* j1 = nullptr;
 
-for (size_t a = 0; a < jets.size(); ++a) {
-
-   // const Jet* j1 = jets[a];
-     &j1 = jets[a].mom();
-    // Do not use b jets as W candidates
-    bool isB1 = false;
-    for (ConstGenParticlePtr b : b_hadrons) {
-
-if (deltaRJetGen(*j1, b) < 0.3) {
-    isB1 = true;
-    break;
-       }
-    }
-    if (isB1) continue;
-
+for (size_t a = 0; a < ljets.size(); ++a) {
+    const Jet* j1 = &ljets[a];
     for (size_t b = a + 1; b < jets.size(); ++b)
    //scrivere questo ciclo con b = a+1 impedisce che i jet *j1 e j2 coincidano,
    //quindi di fatto va a ottimizzare il codice impedendo che j1=j2 e anche doppi conteggi
-    {   const Jet* j2 = jets[b];
-        // Do not use b jets as W candidates
-        bool isB2 = false;
-        for (ConstGenParticlePtr bhad : b_hadrons) {
-            if (deltaRJetGen(*j2, bhad) < 0.3) {
-                isB2 = true;
-                break;
-            }
-        }
-        if (isB2) continue;
+    {   const Jet* j2 = &jets[b];
         // Reconstructed W
         const double mW =
             (j1->momentum() + j2->momentum()).mass();
@@ -310,7 +297,7 @@ if (deltaRJetGen(*j1, b) < 0.3) {
 
             // Reconstructed hadronic top
             const double mTop =
-                (bjet->momentum()
+                (bjet.momentum()
                 + j1->momentum()
                 + j2->momentum()).mass();
                 //non ha senso fisico qui mettere anche z->momentum() per un 
@@ -320,32 +307,33 @@ if (deltaRJetGen(*j1, b) < 0.3) {
 		//che poi andrà in z (se fosse fsr o gluon radiation) quindi 
 		//conterei due volte la stessa cosa. è quindi meglio rimandare 
 		//(in che modo però) la trattazione di questo eventaule jet z. 
-
-            const double chi2 =
+            const double chi2_W = pow((mW - nominalW)/sigmaW, 2); 
+            const double chi2_Wt =
                 pow((mW   - nominalW) / sigmaW, 2)
               + pow((mTop - nominalTop) / sigmaT, 2);
 
-
-            if (chi2 < bestChi2) {
-      		    bestChi2 = chi2;
+            if (chi2_W < bestChi2_W) {bestChi2_W = chi2_W;  bestJ1_W = j1; bestJ2_W = j2;}
+            if (chi2_Wt < bestChi2_Wt) {
+      		    bestChi2_Wt = chi2_Wt;
                 bestJ1 = j1;
                 bestJ2 = j2;
-                bestB  = bjet;
+                bestB  = &bjet;
             }
         }
     }
 }
 
 // UNA SOLA entry per evento
-if (isfinite(bestChi2)) {
+if (isfinite(bestChi2_Wt)) {
     W_reco = bestJ1->momentum() + bestJ2->momentum();
     t_reco = W_reco + bestB->momentum();    
-    _h_W_chi2->fill(bestChi2);
+    _h_Wt_chi2->fill(bestChi2_Wt);
     _h_W_pT->fill(W_reco.pT()/GeV);
         _h_W_mass->fill(W_reco.mass()/GeV);
         _h_t_mass->fill(t_reco.mass()/GeV);
         _h_t_pT->fill(t_reco.pT()/GeV);
 }  
+if (isfinite(bestChi2_W))  {_h_W_chi2->fill(bestChi2_W);}   
      //FINE BLOCCO IDENTIFICAZIONE DI W E TOP ATTRAVERSO IL CHI2
      //
 
@@ -360,7 +348,7 @@ if (isfinite(bestChi2)) {
         _h_jetb_1_W_deta->fill(fabs(bjets[0].eta()-W_reco.eta()));
         _h_jetb_1_W_dphi->fill(deltaPhi(bjets[0].momentum(),W_reco));
       }
-
+}
       _h_jetb_1_jetb_2_dR->fill(deltaR(bjets[0].momentum(), bjets[1].momentum()));
       _h_jetb_1_jetb_2_deta->fill(fabs(bjets[0].eta()-bjets[1].eta()));
       _h_jetb_1_jetb_2_dphi->fill(deltaPhi(bjets[0].momentum(),bjets[1].momentum()));
@@ -452,7 +440,7 @@ if (isfinite(bestChi2)) {
         _h_jetb_1_l_deta, _h_jetb_1_l_dphi, _h_jetb_1_l_mass,
         _h_jetb_1_l2_dR, _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi,
         _h_jetb_1_l2_mass,  _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,
-	_h_jetl_1_jetl_2_dphi, _h_W_chi2});
+	_h_jetl_1_jetl_2_dphi, _h_Wt_chi2, _h_W_chi2});
     safeNormalize(_h_jetb_1_W_dR);
     safeNormalize(_h_jetb_1_W_deta);
     safeNormalize(_h_jetb_1_W_dphi);
@@ -491,7 +479,7 @@ if (isfinite(bestChi2)) {
     Histo1DPtr  _h_jetb_1_l_dphi, _h_jetb_1_l_mass, _h_jetb_1_l2_dR;
     Histo1DPtr  _h_jetb_1_l2_deta, _h_jetb_1_l2_dphi, _h_jetb_1_l2_mass;
     Histo1DPtr _h_jetl_1_jetl_2_dR, _h_jetl_1_jetl_2_deta,_h_jetl_1_jetl_2_dphi;
-    Histo1DPtr _h_W_chi2;
+    Histo1DPtr _h_Wt_chi2, _h_W_chi2;
   };
 
 
