@@ -456,15 +456,17 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
 	_h_W_Wjets_deta->fill(fabs(W.eta()-W_jets[1]->eta()));
         _h_W_Wjets_dphi->fill(deltaPhi(W,W_jets[1]->momentum())); } //fine blocco aggiunto il 31 agosto
     double N_addjets = 0.;
-      	for (const Jet* jet : good_jets){ 
                  if (nleps == 1) {
-		if (jet!=bestB && jet!=W_jets[0] && jet!=W_jets[1])
-		      {	N_addjets += 1;} N_addjets = N_addjets - 1;}
+			 for (const Jet* jet : good_jets) {
+		if (bestB!= nullptr && W_jets.size>=2 && jet!=bestB && jet!=W_jets[0] && jet!=W_jets[1])
+		      {	N_addjets += 1;}} N_addjets = N_addjets - 1;}
 		//devo sottarre l'altro b jet per questo faccio - 1
 		else if (nleps == 2) {
-			 N_addjets = good_jets.size() - 2;}
+			// N_addjets = good_jets.size() - 2;
+			N_addjets = std::max(0, int(good_jets.size()) - 2);}
                 else if (nleps == 0) {
-			N_addjets = good_jets.size() - 6; }}
+		       //N_addjets = good_jets.size() - 6;
+		       N_addjets = std::max(0, int(good_jets.size()) - 6);}}
 	_h_N_addjets->fill(N_addjets);		      	
 	      
       // Calculate the jet shapes
