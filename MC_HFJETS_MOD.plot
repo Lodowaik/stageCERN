@@ -315,19 +315,41 @@ YLabel=$1/\sigma\,d\sigma/dp_T$ [GeV$^{-1}$]
 # W RECONSTRUCTION / CHI2
 # ============================================================
 
-# BEGIN PLOT /MC_HFJETS_MOD/W_chi2
-Title=Minimum W/top reconstruction $(\chi^2)$
-XLabel=$\chi^2$
-YLabel=$1/\sigma\,d\sigma/d\chi^2$
-# END PLOT
-
-
-# BEGIN PLOT /MC_HFJETS_MOD/W_mass
-Title=Reconstructed W boson mass
+# BEGIN PLOT /MC_HFJETS_MOD/W_mass_Wchi2max1
+Title=Reconstructed hadronic W mass with $\chi_{W}^2 < 1.3$
 XLabel=$m_W$ [GeV]
-YLabel=$1/\sigma\,d\sigma/dm_W$ [GeV$^{-1}$]
+YLabel=$1/N\,dN/dm_W$
 # END PLOT
 
+# BEGIN PLOT /MC_HFJETS_MOD/W_mass_Wchi2
+Title=Reconstructed hadronic W mass with $\chi_{W}^2$
+XLabel=$m_W$ [GeV]
+YLabel=$1/N\,dN/dm_W$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/W_chi2
+Title=Best W reconstruction $\chi^2$
+XLabel=$\chi^2_W$
+YLabel=$1/N\,dN/d\chi^2$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/Wt_chi2
+Title=Best W+top reconstruction $\chi^2$
+XLabel=$\chi^2_{W,t}$
+YLabel=$1/N\,dN/d\chi^2$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/W_mass_Wtchi2
+Title=Reconstructed hadronic W mass with $\chi_{Wt}^2$
+XLabel=$m_W$ [GeV]
+YLabel=$1/N\,dN/dm_W$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/W_mass_Wtchi2max1
+Title=Reconstructed hadronic W mass with $\chi_{Wt}^2 < 1.3$
+XLabel=$m_W$ [GeV]
+YLabel=$1/N\,dN/dm_W$
+# END PLOT
 
 # BEGIN PLOT /MC_HFJETS_MOD/W_pT
 Title=Reconstructed W boson transverse momentum
@@ -335,13 +357,11 @@ XLabel=$p_T^W$ [GeV]
 YLabel=$1/\sigma\,d\sigma/dp_T$ [GeV$^{-1}$]
 # END PLOT
 
-
 # BEGIN PLOT /MC_HFJETS_MOD/W_Wjets_dR
 Title=Angular ($\Delta R$) separation between W and W-jet
 XLabel=$\Delta R(W,\mathrm{W\!-\!jet})$
 YLabel=$1/\sigma\,d\sigma/d\Delta R$
 # END PLOT
-
 
 # BEGIN PLOT /MC_HFJETS_MOD/W_Wjets_deta
 Title=Pseudorapidity ($\eta$) separation between W and W-jet
@@ -349,13 +369,11 @@ XLabel=$|\Delta\eta(W,\mathrm{W\!-\!jet})|$
 YLabel=$1/\sigma\,d\sigma/d|\Delta\eta|$
 # END PLOT
 
-
 # BEGIN PLOT /MC_HFJETS_MOD/W_Wjets_dphi
 Title=Azimuthal ($\phi$) separation between W and W-jet
 XLabel=$|\Delta\phi(W,\mathrm{W\!-\!jet})|$
 YLabel=$1/\sigma\,d\sigma/d|\Delta\phi|$
 # END PLOT
-
 
 # ============================================================
 # JET MASSES
@@ -367,21 +385,45 @@ XLabel=$m_{b\text{-jet}}$ [GeV]
 YLabel=$1/\sigma\,d\sigma/dm$ [GeV$^{-1}$]
 # END PLOT
 
-
 # BEGIN PLOT /MC_HFJETS_MOD/lcjet_mass
 Title=Light/charm-jet mass
 XLabel=$m_{\mathrm{jet}}$ [GeV]
 YLabel=$1/\sigma\,d\sigma/dm$ [GeV$^{-1}$]
 # END PLOT
 
-#BEGIN PLOT /MC_HFJETS_MOD/t_mass
-Title=Reconstructed top mass
+# BEGIN PLOT /MC_HFJETS_MOD/t_mass
+Title=Reconstructed hadronic top mass
 XLabel=$m_{top}$
 YLabel=$1/\sigma\,d\sigma/dm$ [GeV$^{-1}$]
 # END PLOT
 
-#BEGIN PLOT /MC_HFJETS_MOD/N_addjets
+# BEGIN PLOT /MC_HFJETS_MOD/N_addjets
 Title=Number of additional jets
 XLabel=$N_{addjets}$
 #YLabel=?
-#END PLOT
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/jetlW_1_jetlW_2_dR
+Title=$\Delta R$ between the two jets coming from W decay
+XLabel=$\Delta R(j_1,j_2)$
+YLabel=$1/N\,dN/d\Delta R$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/jetlW_1_jetlW_2_deta
+Title=Pseudorapidity separation of the two jets coming from W decay
+XLabel=$|\Delta\eta(j_1,j_2)|$
+YLabel=$1/N\,dN/d|\Delta\eta|$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/jetlW_1_jetlW_2_dphi
+Title=Azimuthal separation of the two jets coming from W decay
+XLabel=$|\Delta\phi(j_1,j_2)|$
+YLabel=$1/N\,dN/d\Delta\phi$
+# END PLOT
+
+# BEGIN PLOT /MC_HFJETS_MOD/jet_multiplicity
+Title=Number of jets per event
+XLabel=$N_{jets}$
+YLabel=$1/\sigma\,d\sigma/dN_{jets}$]
+# END PLOT
+
