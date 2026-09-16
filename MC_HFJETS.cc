@@ -16,6 +16,7 @@
 #include <cmath>
 #include <limits> //serve per inizializzare il chi2 a infinito
 #include <sstream> //serve per il ciclo in cui do un titolo agli istogrammi di rho e psi
+#include <algorithm> //per std::max
 
 namespace Rivet {
 
@@ -79,31 +80,40 @@ namespace Rivet {
       ptEdges += {{30, 40, 50, 70, 100, 150, 200, 300}};
       
        for (size_t d = 0; d < 7; ++d) {
-          book(_p_b_rho[d], "b_rho_" + to_string(d), 10, 0., 1.0);
-          book(_p_Wjets_rho[d], "Wjets_rho_" + to_string(d), 10, 0., 1.0);
-          book(_p_b_Psi[d], "b_Psi_" + to_string(d), 10, 0., 1.0);
-          book(_p_Wjets_Psi[d], "Wjets_Psi_" + to_string(d), 10, 0., 1.0); 
+          book(_p_b_rho[d], "b_rho_" + to_string(d), 10, 0., 0.4);
+          book(_p_Wjets_rho[d], "Wjets_rho_" + to_string(d), 10, 0., 0.4);
+          book(_p_b_Psi[d], "b_Psi_" + to_string(d), 10, 0., 0.4);
+          book(_p_Wjets_Psi[d], "Wjets_Psi_" + to_string(d), 10, 0., 0.4); 
     }
 
       book(_h_bar_Wjets_width, "width_Wjets", 7, 0., 0.3);
       book(_h_Wjets_ch_mult, "charged_mult_Wjets", 40, 0.5, 40.5);
       book(_h_Wjets_pT, "pT_Wjets", 25, 7., 700.);
-      book(_h_W_chi2, "W_chi2", 50, 0., 8.0); //aggiunto il 31 agosto
       book(_h_W_Wjets_dR, "W_Wjets_dR", 20, 0.0, 7.0);
       book(_h_W_Wjets_deta, "W_Wjets_deta", 20, 0.0, 7.0);
       book(_h_W_Wjets_dphi, "W_Wjets_dphi", 20, 0.0, M_PI);
-      book(_h_bjet_mass, "bjet_mass", 50, 1.5, 8.5);
-      book(_h_lcjet_mass, "lcjet_mass", 50, 0.1, 3.5); //boh non so
+      book(_h_bjet_mass, "bjet_mass", 50, 1.5, 16);
+      book(_h_lcjet_mass, "lcjet_mass", 50, 0.1, 6.5); //boh non so
       book(_h_W_pT, "W_pT", logspace(50, 5.0, 650.0)); //questo e 
       //sqguente istogramma sono già presenti in TTBAR, ma voglio vedere se 
       //identificanod il W in questo modo (con questi tagli ecc) cambia qualcosa
-      book(_h_W_mass, "W_mass", 75, 30, 180);
-      //fine blocco aggiunto il 31 agosto
       book(_h_t_mass, "t_mass", 150, 130, 430);
+      book(_h_njets, "jet_multiplicity", 11, -0.5, 10.5);
       book(_h_N_addjets ,"N_addjets", 5, -0.5, 4.5);
     //per ora questo lo silenzio
     //book(_h_pT_N_addjets, "pT_N_addjets",  linspace(5, 0, 20, false) + logspace(25, 20, 200));
-    } //ok fin qui dovremmo essere a posto con le parentesi
+      book(_h_Wt_chi2, "Wt_chi2", 50, 0., 8.0);
+      book(_h_W_chi2, "W_chi2", 50, 0., 8.0);
+      book(_h_W_mass_Wtchi2, "W_mass_Wtchi2", 75, 30, 180);
+      book(_h_W_mass_Wchi2, "W_mass_Wchi2", 75, 30, 180);
+      book(_h_W_mass_Wtchi2max1, "W_mass_Wtchi2max1", 75, 30, 180);
+      book(_h_W_mass_Wchi2max1, "W_mass_Wchi2max1", 75, 30, 180);
+
+      book(_h_jetlW_1_jetlW_2_dR, "jetlW_1_jetlW_2_dR", 20, 0.0, 7.0);
+      book(_h_jetlW_1_jetlW_2_deta, "jetlW_1_jetlW_2_deta", 20, 0.0, 7.0);
+      book(_h_jetlW_1_jetlW_2_dphi, "jetlW_1_jetlW_2_dphi", 20, 0.0, M_PI);
+
+ } //ok fin qui dovremmo essere a posto con le parentesi
 
 
     //blocco necessario perché deltaR() così com'è richiede due rivet::fourmomentum
@@ -233,7 +243,9 @@ double deltaRJetGen(const Jet& jet,
       const bool isGoodEvent = (isSemilepton && good_jets.size() >= 4)
           || (isDilepton && good_jets.size() >= 2);
       if (!isGoodEvent) vetoEvent;
-
+      
+      //istogramma del numero dei jet buoni per ogni evento
+      _h_njets->fill(good_jets.size()); 		
 
       // Select b-hadrons
       /// @todo Use built-in identification on Particle, avoid HepMC
@@ -331,15 +343,19 @@ for (const Jet* jet : c_jets) {
 //blocco sistemato nella logica ecc: inizia qui
 const double nominalW   = 80.4 * GeV;
 const double nominalTop = 172.5 * GeV;
-
+FourMomentum W_reco;
+FourMomentum t_reco;
 //queste due sono delle effective mass resolutions
 const double sigmaW = 25. * GeV; //decay width and approximate experimental resolution 
 const double sigmaT = 35. * GeV;
-
-double bestChi2 = numeric_limits<double>::infinity();
-
+double chi2_Wt =  numeric_limits<double>::infinity();
+double chi2_W =  numeric_limits<double>::infinity();
+double bestChi2_Wt = numeric_limits<double>::infinity();
+double bestChi2_W = numeric_limits<double>::infinity();
 const Jet* bestJ1 = nullptr;
 const Jet* bestJ2 = nullptr;
+const Jet* bestJ1_W = nullptr;
+const Jet* bestJ2_W = nullptr;
 const Jet* bestB  = nullptr; //anche se questo in realtà non serve, ho già 
 //b_jets e non mi serve granché sapere qual è il b jet associato al W adronico 
 //in principio, non so a quale dei due b-jets è associato il W che
@@ -366,33 +382,24 @@ for (size_t a = 0; a < good_jets.size(); ++a) {
 
 if (deltaRJetGen(*j1, b) < 0.3) {
     isB1 = true;
-    break;
-       }
-
-    }
+    break; } }
     if (isB1) continue;
-
-
-    for (size_t b = a + 1; b < good_jets.size(); ++b)
+for (size_t b = a + 1; b < good_jets.size(); ++b)
    //scrivere questo ciclo con b = a+1 impedisce che i jet *j1 e j2 coincidano,
    //quindi di fatto va a ottimizzare il codice impedendo che j1=j2 e anche doppi conteggi
     {   const Jet* j2 = good_jets[b];
-
         // Do not use b jets as W candidates
         bool isB2 = false;
         for (ConstGenParticlePtr bhad : b_hadrons) {
             if (deltaRJetGen(*j2, bhad) < 0.3) {
                 isB2 = true;
-                break;
-            }
-        }
+                break; }  }
         if (isB2) continue;
         // Reconstructed W
         const double mW =
             (j1->momentum() + j2->momentum()).mass();
         // Try both b jets
         for (const Jet* bjet : b_jets) {
-
             // Reconstructed hadronic top
             const double mTop =
                 (bjet->momentum()
@@ -405,14 +412,13 @@ if (deltaRJetGen(*j1, b) < 0.3) {
 		//che poi andrà in z (se fosse fsr o gluon radiation) quindi 
 		//conterei due volte la stessa cosa. è quindi meglio rimandare 
 		//(in che modo però) la trattazione di questo eventaule jet z. 
-
-            const double chi2 =
-                pow((mW   - nominalW) / sigmaW, 2)
+             chi2_Wt =   pow((mW   - nominalW) / sigmaW, 2)
               + pow((mTop - nominalTop) / sigmaT, 2);
-
-
-            if (chi2 < bestChi2) {
-      		    bestChi2 = chi2;
+	    chi2_W = pow((mW - nominalW)/sigmaW,2);
+	 if (chi2_W < bestChi2_W) {bestChi2_W = chi2_W; 
+		 bestJ1_W = j1; bestJ2_W=j2;}
+         if (chi2_Wt < bestChi2_Wt) {
+      		bestChi2_Wt = chi2_Wt;
                 bestJ1 = j1;
                 bestJ2 = j2;
                 bestB  = bjet;
@@ -420,11 +426,12 @@ if (deltaRJetGen(*j1, b) < 0.3) {
         }
     }
 }
-
 // UNA SOLA entry per evento
-if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
-    _h_W_chi2->fill(bestChi2);
+if (isfinite(bestChi2_Wt) && bestJ1 && bestJ2 && bestB) {
+    _h_Wt_chi2->fill(bestChi2_Wt);
 }      
+if (isfinite(bestChi2_W) && bestJ1_W && bestJ2_W) {
+	_h_W_chi2->fill(bestChi2_W); }
       // Check that both jets are not overlapped, and populate the W jets list
       vector<const Jet*> W_jets;
       const bool hasGoodWJet = bestJ1 != NULL && bestJ2 != NULL && bestJ1 != bestJ2;
@@ -432,16 +439,26 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
   //qui in precedenza c'era tutto un blocco che richiedeva che i due bestJ fossero separati da DeltaR maggiore o uguale a 0.8 da un qualunque altro jet di alljet. Ma dato che nella selezione di alljet ci sono tutti i jet con pT superiore a 7 GeV, questa cosa è pericolosa perché rischia di ammazzarmi un sacco di Wjets. Meglio quindi togliere quella selezione e tenere solo la richiesta che i due Wjets non coincidano. 
           W_jets.push_back(bestJ1);
           W_jets.push_back(bestJ2);
-          const FourMomentum W = W_jets[0]->momentum() + W_jets[1]->momentum();
-	  _h_W_pT->fill(W.pT()/GeV);
-	  _h_W_mass->fill(W.mass()/GeV);
-
-	 const FourMomentum t_reco = W + bestB->momentum();
+          W_reco = W_jets[0]->momentum() + W_jets[1]->momentum();
+	  _h_W_pT->fill(W_reco.pT()/GeV);
+	  _h_W_mass_Wtchi2->fill(W_reco.mass()/GeV);
+          if (chi2_Wt < 1.3) {_h_W_mass_Wtchi2max1->fill(W_reco.mass()/GeV);}
+	 t_reco = W_reco + bestB->momentum();
 	 _h_t_mass->fill(t_reco.mass()/GeV);
          
       }
-
-      MSG_DEBUG(W_jets.size() << " W jets selected");
+     
+const bool hasGoodWJet_new = bestJ1_W != NULL && bestJ2_W != NULL && bestJ1_W != bestJ2_W;
+      if (hasGoodWJet_new) {
+          W_jets.push_back(bestJ1_W);
+          W_jets.push_back(bestJ2_W);
+          W_reco = W_jets[0]->momentum() + W_jets[1]->momentum();
+          _h_W_mass_Wchi2->fill(W_reco.mass()/GeV);
+         if (chi2_W<1.3) {
+		 _h_W_mass_Wchi2max1->fill(W_reco.mass()/GeV);}
+      }
+   
+   MSG_DEBUG(W_jets.size() << " W jets selected");
   //anche qui le parentesi potrebbero essere giuste
 
       //agiunto il 31 agosto:
@@ -458,7 +475,7 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
     double N_addjets = 0.;
                  if (nleps == 1) {
 			 for (const Jet* jet : good_jets) {
-		if (bestB!= nullptr && W_jets.size>=2 && jet!=bestB && jet!=W_jets[0] && jet!=W_jets[1])
+		if (bestB!= nullptr && W_jets.size()>=2 && jet!=bestB && jet!=W_jets[0] && jet!=W_jets[1])
 		      {	N_addjets += 1;}} N_addjets = N_addjets - 1;}
 		//devo sottarre l'altro b jet per questo faccio - 1
 		else if (nleps == 2) {
@@ -466,9 +483,16 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
 			N_addjets = std::max(0, int(good_jets.size()) - 2);}
                 else if (nleps == 0) {
 		       //N_addjets = good_jets.size() - 6;
-		       N_addjets = std::max(0, int(good_jets.size()) - 6);}}
+		       N_addjets = std::max(0, int(good_jets.size()) - 6);}
 	_h_N_addjets->fill(N_addjets);		      	
-	      
+
+      if (W_jets.size() > 1) {
+          _h_jetlW_1_jetlW_2_dR->fill(deltaR(W_jets[0]->momentum(), W_jets[1]->momentum()));
+          _h_jetlW_1_jetlW_2_deta->fill(fabs(W_jets[0]->eta() - W_jets[1]->eta()));
+          _h_jetlW_1_jetlW_2_dphi->fill(deltaPhi(W_jets[0]->momentum(), W_jets[1]->momentum()));
+        }
+
+
       // Calculate the jet shapes
       /// @todo Use C++11 vector/array initialization
       const double binWidth = 0.04; // -> 10 bins from 0.0 to 0.4
@@ -539,7 +563,7 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
              if (rings[9] <= 0) continue;
         // Fill each dR bin of the histos for this jet pT
         for (int iBin = 0; iBin < 10; ++iBin) {
-          const double rcenter = 0.05 + iBin * binWidth;
+          const double rcenter = 0.02 + iBin * binWidth;
           const double rhoval = (iBin != 0 ? (rings[iBin] - rings[iBin - 1]) : rings[iBin]) / binWidth
               / rings[9];
           const double psival = rings[iBin] / rings[9];
@@ -569,9 +593,13 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
       normalize({_h_ptCJetLead, _h_ptCHadrLead, _h_ptBJetLead, _h_ptBHadrLead,
             _h_ptFracC, _h_eFracC, _h_ptFracB, _h_eFracB, _h_bar_Wjets_width,
 	    _h_Wjets_pT, _h_Wjets_ch_mult, _h_pT_muon, _h_pT_electron,
-	    _h_pT_lepton, _h_W_chi2, _h_W_Wjets_dR, _h_W_Wjets_deta,
-	    _h_W_Wjets_dphi, _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_W_mass, 
-	    _h_t_mass, _h_N_addjets});
+	    _h_pT_lepton, _h_W_Wjets_dR, _h_W_Wjets_deta,
+	    _h_W_Wjets_dphi, _h_bjet_mass, _h_lcjet_mass, _h_W_pT, 
+	    _h_t_mass, _h_N_addjets, _h_W_chi2, _h_Wt_chi2, 
+	    _h_W_mass_Wtchi2, _h_W_mass_Wchi2, _h_W_mass_Wtchi2max1, 	
+	    _h_W_mass_Wchi2max1, _h_jetlW_1_jetlW_2_dR,
+            _h_jetlW_1_jetlW_2_deta, _h_jetlW_1_jetlW_2_dphi,
+	    _h_njets});
       //, _p_Wjets_rho, _p_Wjets_Psi, _p_b_rho, _p_b_Psi}); //questi sono Profile1D, non vanno normalizzati a mano
    }
 
@@ -580,11 +608,15 @@ if (isfinite(bestChi2) && bestJ1 && bestJ2 && bestB) {
     /// @{
     Histo1DPtr _h_ptCJetLead, _h_ptCHadrLead, _h_ptFracC, _h_eFracC;
     Histo1DPtr _h_ptBJetLead, _h_ptBHadrLead, _h_ptFracB, _h_eFracB;
-    Histo1DPtr   _h_bar_Wjets_width,_h_Wjets_pT, _h_Wjets_ch_mult;
-    Histo1DPtr _h_pT_muon, _h_pT_electron, _h_pT_lepton, _h_W_chi2;
+    Histo1DPtr _h_bar_Wjets_width,_h_Wjets_pT, _h_Wjets_ch_mult;
+    Histo1DPtr _h_pT_muon, _h_pT_electron, _h_pT_lepton;
     Histo1DPtr _h_W_Wjets_dR, _h_W_Wjets_deta, _h_W_Wjets_dphi;
-    Histo1DPtr _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_W_mass, _h_t_mass;
-    Histo1DPtr _h_N_addjets;
+    Histo1DPtr _h_bjet_mass, _h_lcjet_mass, _h_W_pT, _h_t_mass;
+    Histo1DPtr _h_N_addjets, _h_W_chi2, _h_Wt_chi2;
+    Histo1DPtr _h_W_mass_Wtchi2, _h_W_mass_Wchi2, _h_W_mass_Wtchi2max1;
+    Histo1DPtr _h_W_mass_Wchi2max1, _h_jetlW_1_jetlW_2_dR;
+    Histo1DPtr _h_jetlW_1_jetlW_2_deta, _h_jetlW_1_jetlW_2_dphi;
+    Histo1DPtr _h_njets;
     Profile1DPtr _p_b_rho[7];//inizio aggiunta mia
     Profile1DPtr _p_Wjets_rho[7];
     Profile1DPtr _p_b_Psi[7];
